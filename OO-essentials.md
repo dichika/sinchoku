@@ -27,14 +27,17 @@ R's three OO systems differ in how classes and methods are defined:
   `drawRect(canvas, "blue")`. S3 is a very casual system. It has no 
   formal definition of classes.
 ```
+Rにおける３つのオブジェクト指向クラスシステムは、クラス及びメソッドの定義方法に違いがあります。
+* __S3クラスシステム__ はジェネリック関数型オブジェクト指向クラスシステム(generic-function OO)を実装しています。これは、Java、C++、C#といった多くのプログラミング言語に実装されたメッセージ伝達型オブジェクト指向クラスシステム(message-passing OO)とは異なります。メッセージ伝達により、メッセージ（つまりメソッド）はオブジェクトからオブジェクトに送られ、オブジェクトは呼び出す関数を決定します。典型的には、このオブジェクトはそのメソッド呼び出しに伴う特殊な形で現れます(special appearance)。`canvas.drawRect("blue")` といったように、メソッド/メッセージの名称の前に現れることが多いようです。S#クラスシステムはこれとは異なっています。メソッドを介して振る舞うという点は同じですが(computations)、__総称的関数(generic function)__ と呼ばれる特殊なタイプの関数によって、どのメソッドが呼ばれるかが決定されます。 例えば`drawRect(canvas, "blue")`といった形です。S3は非常に扱いやすいクラスシステムであり、クラスの定義に形式的手続きを必要としていません。
 
+```
 * __S4__ works similarly to S3, but is more formal. There are two major
   differences to S3. S4 has formal class definitions, which describe the
   representation and inheritance for each class, and has special helper
   functions for defining generics and methods. S4 also has multiple dispatch,
   which means that generic functions can pick methods based on the class of 
   any number of arguments, not just one.
-
+```
 * __Reference classes__, called RC for short, are quite different from S3 
   and S4. RC implements message-passing OO, so methods belong to classes, 
   not functions. `$` is used to separate objects and methods, so method calls
