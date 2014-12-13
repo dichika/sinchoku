@@ -58,11 +58,23 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="oo" class="section level1">
 <h1>OO field guide</h1>
 <pre><code>This chapter is a field guide for recognising and working with R's objects in the wild. R has three object oriented systems (plus the base types), so it can be a bit intimidating. The goal of this guide is not to make you an expert in all four systems, but to help you identify which system you're working with and to help you use it effectively. \index{object-oriented programming}</code></pre>
-<p>本章は実務（in the wild） においてRのオブジェクトを使いこなすためのフィールドガイドです。Rには３つのオブジェクト指向クラスシステム(object oriented systems)（及び基本のデータ型(base types)）があり、それゆえ大仰な(intimidating)印象があります。本章の目的は、あなたをこの４つのオブジェクトシステムのエキスパートにすることではなく、あなたが使っているのがどのクラスシステムであるかを認識し、どのようにすれば効率よくそれを使えるようになるかを手助けすることにあります。</p>
+<p>本章は実務（in the wild） においてRのオブジェクトを使いこなすためのフィールドガイドです。Rには３つのオブジェクト指向型クラスシステム(object oriented systems)（及び基本のデータ型(base types)）があり、それゆえ大仰な(intimidating)印象があります。本章の目的は、あなたをこの４つのオブジェクトシステムのエキスパートにすることではなく、あなたが使っているのがどのクラスシステムであるかを認識し、どのようにすれば効率よくそれを使えるようになるかを手助けすることにあります。</p>
 <pre><code>Central to any object-oriented system are the concepts of class and method. A __class__ defines the behaviour of __objects__ by describing their attributes and their relationship to other classes. The class is also used when selecting __methods__, functions that behave differently depending on the class of their input. Classes are usually organised in a hierarchy: if a method does not exist for a child, then the parent's method is used instead; the child __inherits__ behaviour from the parent.</code></pre>
-<p>R’s three OO systems differ in how classes and methods are defined:</p>
+<p>いかなるオブジェクト指向型クラスシステムにおいても中心となるのはクラスとメソッドです。 <strong>クラス</strong> においては <strong>オブジェクト</strong> の属性(attributes)と他クラスとの関係(relationship)を記述することで、そのクラスの挙動を定義します。クラスはメソッドを選ぶ際にも用いられます（ <strong><em>ここの文章はよくわかりません</em></strong> ）。メソッドとはクラスの入力に従ってその挙動を変える関数のことです。通常、クラスは階層構造を持っており、子クラスは親クラスの挙動を <strong>継承</strong> します。例えば、あるメソッドが子クラスに存在しない場合、親クラスのメソッドが代わりに呼び出されます。</p>
+<pre><code>R's three OO systems differ in how classes and methods are defined:
+
+* __S3__ implements a style of OO programming called generic-function OO. 
+  This is different from most programming languages, like Java, C++, and C#,
+  which implement message-passing OO. With message-passing, messages (methods)
+  are sent to objects and the object determines which function to call.
+  Typically, this object has a special appearance in the method call, usually
+  appearing before the name of the method/message: e.g., 
+  `canvas.drawRect(&quot;blue&quot;)`. S3 is different. While computations are still
+  carried out via methods, a special type of function called a 
+  __generic function__ decides which method to call, e.g., 
+  `drawRect(canvas, &quot;blue&quot;)`. S3 is a very casual system. It has no 
+  formal definition of classes.</code></pre>
 <ul>
-<li><p><strong>S3</strong> implements a style of OO programming called generic-function OO. This is different from most programming languages, like Java, C++, and C#, which implement message-passing OO. With message-passing, messages (methods) are sent to objects and the object determines which function to call. Typically, this object has a special appearance in the method call, usually appearing before the name of the method/message: e.g., <code>canvas.drawRect(&quot;blue&quot;)</code>. S3 is different. While computations are still carried out via methods, a special type of function called a <strong>generic function</strong> decides which method to call, e.g., <code>drawRect(canvas, &quot;blue&quot;)</code>. S3 is a very casual system. It has no formal definition of classes.</p></li>
 <li><p><strong>S4</strong> works similarly to S3, but is more formal. There are two major differences to S3. S4 has formal class definitions, which describe the representation and inheritance for each class, and has special helper functions for defining generics and methods. S4 also has multiple dispatch, which means that generic functions can pick methods based on the class of any number of arguments, not just one.</p></li>
 <li><p><strong>Reference classes</strong>, called RC for short, are quite different from S3 and S4. RC implements message-passing OO, so methods belong to classes, not functions. <code>$</code> is used to separate objects and methods, so method calls look like <code>canvas$drawRect(&quot;blue&quot;)</code>. RC objects are also mutable: they don’t use R’s usual copy-on-modify semantics, but are modified in place. This makes them harder to reason about, but allows them to solve problems that are difficult to solve with S3 or S4.</p></li>
 </ul>

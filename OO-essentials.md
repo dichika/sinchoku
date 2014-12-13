@@ -5,12 +5,14 @@
 This chapter is a field guide for recognising and working with R's objects in the wild. R has three object oriented systems (plus the base types), so it can be a bit intimidating. The goal of this guide is not to make you an expert in all four systems, but to help you identify which system you're working with and to help you use it effectively. \index{object-oriented programming}
 ```
 
-本章は実務（in the wild） においてRのオブジェクトを使いこなすためのフィールドガイドです。Rには３つのオブジェクト指向クラスシステム(object oriented systems)（及び基本のデータ型(base types)）があり、それゆえ大仰な(intimidating)印象があります。本章の目的は、あなたをこの４つのオブジェクトシステムのエキスパートにすることではなく、あなたが使っているのがどのクラスシステムであるかを認識し、どのようにすれば効率よくそれを使えるようになるかを手助けすることにあります。
+本章は実務（in the wild） においてRのオブジェクトを使いこなすためのフィールドガイドです。Rには３つのオブジェクト指向型クラスシステム(object oriented systems)（及び基本のデータ型(base types)）があり、それゆえ大仰な(intimidating)印象があります。本章の目的は、あなたをこの４つのオブジェクトシステムのエキスパートにすることではなく、あなたが使っているのがどのクラスシステムであるかを認識し、どのようにすれば効率よくそれを使えるようになるかを手助けすることにあります。
 
 ```
 Central to any object-oriented system are the concepts of class and method. A __class__ defines the behaviour of __objects__ by describing their attributes and their relationship to other classes. The class is also used when selecting __methods__, functions that behave differently depending on the class of their input. Classes are usually organised in a hierarchy: if a method does not exist for a child, then the parent's method is used instead; the child __inherits__ behaviour from the parent.
 ```
+いかなるオブジェクト指向型クラスシステムにおいても中心となるのはクラスとメソッドです。 __クラス__ においては __オブジェクト__ の属性(attributes)と他クラスとの関係(relationship)を記述することで、そのクラスの挙動を定義します。クラスはメソッドを選ぶ際にも用いられます（ __*ここの文章はよくわかりません*__ ）。メソッドとはクラスの入力に従ってその挙動を変える関数のことです。通常、クラスは階層構造を持っており、子クラスは親クラスの挙動を __継承__ します。例えば、あるメソッドが子クラスに存在しない場合、親クラスのメソッドが代わりに呼び出されます。
 
+```
 R's three OO systems differ in how classes and methods are defined:
 
 * __S3__ implements a style of OO programming called generic-function OO. 
@@ -24,6 +26,7 @@ R's three OO systems differ in how classes and methods are defined:
   __generic function__ decides which method to call, e.g., 
   `drawRect(canvas, "blue")`. S3 is a very casual system. It has no 
   formal definition of classes.
+```
 
 * __S4__ works similarly to S3, but is more formal. There are two major
   differences to S3. S4 has formal class definitions, which describe the
