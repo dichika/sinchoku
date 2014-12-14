@@ -51,6 +51,9 @@ Rにおける３つのオブジェクト指向クラスシステムは、クラ�
   are difficult to solve with S3 or S4.
 ```
 
+* __リファレンスクラスシステム__ (RC) はS3クラスシステムやS4クラスシステムとは大きく異なっています。RCはメッセージ伝達型オブジェクト指向クラスシステムを実装しています。したがって、メソッドはクラスに属しており、関数には属していません。`canvas$drawRect("blue")`のように、メソッドはオブジェクトに$を付ける形で表現されます。またRCにおけるオブジェクトは変更可能(mutable)です。つまり、R言語において通常用いられるcopy-on-modify semantics(うまい訳語なし)ではなく、in place においてmodifyされます。これはreason aboutするのをより困難なものとしていますが、これによりS3やS4クラスシステムでは解決できなかった問題を解決できるようになりました。
+
+```
 There's also one other system that's not quite OO, but it's important to mention here:
 
 * __base types__, the internal C-level types that underlie the other OO 
@@ -77,3 +80,4 @@ Think you know this material already? If you can answer the following questions 
 
 1. What are the main differences between S3 and S4? What are the main 
    differences between S4 & RC?
+```
