@@ -28,6 +28,7 @@ R's three OO systems differ in how classes and methods are defined:
   formal definition of classes.
 ```
 Rにおける３つのオブジェクト指向クラスシステムは、クラス及びメソッドの定義方法に違いがあります。
+
 * __S3クラスシステム__ はジェネリック関数型オブジェクト指向クラスシステム(generic-function OO)を実装しています。これは、Java、C++、C#といった多くのプログラミング言語に実装されたメッセージ伝達型オブジェクト指向クラスシステム(message-passing OO)とは異なります。メッセージ伝達により、メッセージ（つまりメソッド）はオブジェクトからオブジェクトに送られ、オブジェクトは呼び出す関数を決定します。典型的には、このオブジェクトはそのメソッド呼び出しに伴う特殊な形で現れます(special appearance)。`canvas.drawRect("blue")` といったように、メソッド/メッセージの名称の前に現れることが多いようです。S#クラスシステムはこれとは異なっています。メソッドを介して振る舞うという点は同じですが(computations)、__総称的関数(generic function)__ と呼ばれる特殊なタイプの関数によって、どのメソッドが呼ばれるかが決定されます。 例えば`drawRect(canvas, "blue")`といった形です。S3は非常に扱いやすいクラスシステムであり、クラスの定義に形式的手続きを必要としていません。
 
 ```
@@ -38,6 +39,9 @@ Rにおける３つのオブジェクト指向クラスシステムは、クラ�
   which means that generic functions can pick methods based on the class of 
   any number of arguments, not just one.
 ```
+* __S4クラスシステム__ はS3クラスシステムと同様の機能(works)をもっていますが、より形式的です。S3クラスシステムとは２つの大きな違いがあります。まず、S4クラスシステムはクラス定義が形式的であるという点が挙げられます。S4クラスシステムは、表現(representation)と継承(inheritance)を記述しており、総称的関数(generics)とメソッドを定義するための固有のヘルパー関数が用意されています。そしてS4クラスシステムにはマルチプルディスパッチ(multiple dispatch)があります。マルチプルディスパッチとは、総称的関数(generic functions)が、１つに限らない複数の引数のクラスに基づいてメソッドを選択することを意味しています。
+
+```
 * __Reference classes__, called RC for short, are quite different from S3 
   and S4. RC implements message-passing OO, so methods belong to classes, 
   not functions. `$` is used to separate objects and methods, so method calls
@@ -45,6 +49,7 @@ Rにおける３つのオブジェクト指向クラスシステムは、クラ�
   use R's usual copy-on-modify semantics, but are modified in place. This 
   makes them harder to reason about, but allows them to solve problems that 
   are difficult to solve with S3 or S4.
+```
 
 There's also one other system that's not quite OO, but it's important to mention here:
 
