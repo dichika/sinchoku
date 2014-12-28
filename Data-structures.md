@@ -797,9 +797,14 @@ z$value
 # これで完璧
 # Perfect! :)
 ```
-99999
 
+```
 Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. Instead, use the argument `stringsAsFactors = FALSE` to suppress this behaviour, and then manually convert character vectors to factors using your knowledge of the data. A global option, `options(stringsAsFactors = FALSE)`, is available to control this behaviour, but I don't recommend using it. Changing a global option may have unexpected consequences when combined with other code (either from packages, or code that you're `source()`ing), and global options make code harder to understand because they increase the number of lines you need to read to understand how a single line of code will behave.  \indexc{stringsAsFactors}
+```
+
+残念なことにRのデータ読み込み関数群の多くは文字型ベクトルを自動的に因子に変換してしまう。これは最善手とは言いがたい。なぜならこれらの関数を用いる際に、とりうるレベルもしくはその順序を指定する方法が無いからである。この場合、データ読み込み関数群の引数に`stringsAsFactors = FALSE`を指定して、自動的に変換しないようにした上で、そのデータに関する知識(レベルの範囲や順序など)を用いて文字型ベクトルから因子にあらためて変換するようにした方が良い。グローバルオプション(global option)として`options(stringsAsFactors = FALSE)`を用いるという方法もあるが、筆者はこの方法を勧めない。グローバルオプションの変更は、外部パッケージや`source()`によって読み込まれた他のコードと組み合わせた場合に予期しない結果を招くことがあるからである。またグローバルオプションの指定はあるコードの一行を理解するのに必要なコードの量を増加させるため、コードを読みづらいものとしてしまうという難点もある。\indexc{stringsAsFactors}
+
+99999
 
 While factors look (and often behave) like character vectors, they are actually integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behaviour. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case. \index{factors|)}
 
