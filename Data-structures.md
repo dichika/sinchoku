@@ -1359,7 +1359,11 @@ dfl[2, "y"]
 
 `I()`は`AsIs`クラスを付与するが、これは通常無視される(this can usually be safely ignored.)。
 
+```
 Similarly, it's also possible to have a column of a data frame that's a matrix or array, as long as the number of rows matches the data frame: \index{data frames!array in column}
+```
+
+他列と行数さえ一致しているなら、リストと同様に列の構成要素が行列もしくは配列であるデータフレームを生成することも可能である。\index{data frames!array in column}
 
 
 ```r
@@ -1382,9 +1386,13 @@ dfm[2, "y"]
 ## [1,]    2    5    8
 ```
 
+```
 Use list and array columns with caution: many functions that work with data frames assume that all columns are atomic vectors. \index{data frames|)}
+```
 
-### Exercises
+リストおよび配列によって構成される列を生成する際には注意が必要である。データフレームに適用できる関数は構成要素がアトムであることを前提にしていることが多いからである。\index{data frames|)}
+
+### エクササイズ(Exercises)
 
 1.  What attributes does a data frame possess?
 
