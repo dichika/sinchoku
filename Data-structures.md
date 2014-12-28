@@ -619,12 +619,14 @@ You can create a new vector without names using `unname(x)`, or remove names in 
 ```
 名前付きのベクトルから名前をつけていないベクトルを新しく作る場合は`unname(x)`を用いるか、`names(x) <- NULL`で名前を消去する。
 
-99999
 
+### 因子(Factors)
 
-### Factors
-
+```
 One important use of attributes is to define factors. A factor is a vector that can contain only predefined values, and is used to store categorical data. Factors are built on top of integer vectors using two attributes: the `class()`, "factor", which makes them behave differently from regular integer vectors, and the `levels()`, which defines the set of allowed values. \index{factors|(}
+```
+
+属性の用途として最も重要なものに因子(factors)の定義が挙げられる。因子とはとはpredefineの値(predefined values)のみを格納するベクトルでありカテゴリカルデータを格納する際に用いられる。因子は2つの属性、`class()`と`levels()`で構成されている。前者には"factor"が設定され、これにより通常の整数型ベクトルとは異なる挙動を示すようになる。また後者によって許容される値の範囲を定義する。\index{factors|(}
 
 
 ```r
