@@ -88,8 +88,9 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 
 * データフレーム[Data frames](#data-frames) :この項ではデータフレームについて述べる。データフレームはRにおいて最も有名なデータ構造であり、リストおよび行列の性質を併せ持ち、統計的データを扱う目的に極めて合致したデータ構造となっている。
 
-## Vectors {#vectors}
+## ベクトル(Vectors) {#vectors}
 
+```
 The basic data structure in R is the vector. Vectors come in two flavours: atomic vectors and lists. They have three common properties:
 
 * Type, `typeof()`, what it is.
@@ -99,6 +100,19 @@ The basic data structure in R is the vector. Vectors come in two flavours: atomi
 They differ in the types of their elements: all elements of an atomic vector must be the same type, whereas the elements of a list can have different types.
 
 NB: `is.vector()` does not test if an object is a vector. Instead it returns `TRUE` only if the object is a vector with no attributes apart from names. Use `is.atomic(x) || is.list(x)` to test if an object is actually a vector.
+```
+
+Rにおける最も基本的な型はベクトルである。ベクトルはアトムでありリストでもあるという２つの側面(flavour)を持つ。また以下に示す3つの性質を持つ。
+
+* 型(Type) `typeof()` そのオブジェクトが何かを示す。
+* 長さ(Length), `length()`, そのオブジェクトが持つ要素数を示す。
+* 属性(Attributes), `attributes()`, そのオブジェクトに付加された任意のメタ情報を示す。
+
+アトムとリストはその構成要素の型において相違点がある。アトムは構成要素全てが同じ型を持つ一方、リストは異なる型を許容する。
+
+注意(NB):`is.vector()`はそのオブジェクトがベクトルであるか否かを判定しない。その代わり、対象となるオブジェクトが名前以外の属性を持たない場合のみ`TRUE`を返す。ベクトルであるか否かを判定したい際は`is.atomic(x) || is.list(x)`を用いること。
+
+
 
 ### Atomic vectors
 
