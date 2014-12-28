@@ -1211,11 +1211,13 @@ You can coerce an object to a data frame with `as.data.frame()`:
 
 * 行列を変換した場合、その行数、列数が同一のデータフレームが生成される。
 
-99999
+### データフレームの結合(Combining data frames)
 
-### Combining data frames
-
+```
 You can combine data frames using `cbind()` and `rbind()`: \indexc{cbind()} \indexc{rbind()}
+```
+
+データフレームを結合するには`cbind()`および`rbind()`を用いる。\indexc{cbind()} \indexc{rbind()}
 
 
 ```r
@@ -1241,9 +1243,17 @@ rbind(df, data.frame(x = 10, y = "z"))
 ## 4 10 z
 ```
 
+```
 When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. Use `plyr::rbind.fill()` to combine data frames that don't have the same columns. 
+```
 
+列方向に結合する場合は、結合するデータフレーム間で行数が一致している必要があり、行の名前は無視される。行方向に結合する場合は列の数と列の名前が一致している必要がある。なお、`plyr::rbind.fill()`を用いることで列が一致していなくても結合することが可能となる。
+
+```
 It's a common mistake to try and create a data frame by `cbind()`ing vectors together. This doesn't work because `cbind()` will create a matrix unless one of the arguments is already a data frame. Instead use `data.frame()` directly:
+```
+
+よくある間違いとしてベクトルを`cbind()`で結合することでデータフレームを生成しようとする、というものがある。これは意図通りには動かない。なぜなら`cbind()`は適用する要素の1つがデータフレームでない限り行列を生成するからである。代わりに`data.frame()`を用いるべきである。
 
 
 ```r
@@ -1269,11 +1279,19 @@ str(good)
 ##  $ b: chr  "a" "b"
 ```
 
+```
 The conversion rules for `cbind()` are complicated and best avoided by ensuring all inputs are of the same type.
+```
 
-### Special columns
+`cbind()`の変換ルールは複雑であり全ての入力データが同一の型であるとき以外は避けた方が良い。
 
+### 特殊な列(Special columns)
+
+```
 Since a data frame is a list of vectors, it is possible for a data frame to have a column that is a list: \index{data frames!list in column}
+```
+
+データフレームはベクトルのリストであるため、データフレームがはその構成要素がリストである列を持つことができる。\index{data frames!list in column}
 
 
 ```r
@@ -1289,7 +1307,11 @@ df
 ## 3 3 1, 2, 3, 4
 ```
 
+```
 However, when a list is given to `data.frame()`, it tries to put each item of the list into its own column, so this fails:
+```
+
+だが、リストを`data.frame()`に入れると、リストの各構成要素を列とするデータフレームを生成しようとしてエラーになる。
 
 
 ```r
@@ -1300,7 +1322,11 @@ data.frame(x = 1:3, y = list(1:2, 1:3, 1:4))
 ## Error in data.frame(1:2, 1:3, 1:4, check.names = FALSE, stringsAsFactors = TRUE): arguments imply differing number of rows: 2, 3, 4
 ```
 
+```
 A workaround is to use `I()`, which causes `data.frame()` to treat the list as one unit:
+```
+
+これを防ぐには`I()`を用いる。これにより、`data.frame()`は指定したリストを一つの構成要素として扱ってくれる。
 
 
 ```r
@@ -1327,7 +1353,11 @@ dfl[2, "y"]
 ## [1] 1 2 3
 ```
 
+```
 `I()` adds the `AsIs` class to its input, but this can usually be safely ignored. \indexc{I()}
+```
+
+`I()`は`AsIs`クラスを付与するが、これは通常無視される(this can usually be safely ignored.)。
 
 Similarly, it's also possible to have a column of a data frame that's a matrix or array, as long as the number of rows matches the data frame: \index{data frames!array in column}
 
