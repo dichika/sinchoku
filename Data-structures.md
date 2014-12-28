@@ -1401,8 +1401,9 @@ Use list and array columns with caution: many functions that work with data fram
 
 1.  Can you have a data frame with 0 rows? What about 0 columns?
 
-## Answers {#data-structure-answers}
+## 解答(Answers) {#data-structure-answers}
 
+```
 1.  The three properties of a vector are type, length, and attributes.
    
 1.  The four common types of atomic vector are logical, integer, double 
@@ -1422,3 +1423,13 @@ Use list and array columns with caution: many functions that work with data fram
 1.  You can make "list-array" by assuming dimensions to a list. You can
     make a matrix a column of a data frame with `df$x <- matrix()`, or
     using `I()` when creating a new data frame `data.frame(x = I(matrix())`.
+```
+1. ベクトルの3つのプロパティ(property)とは型、長さ、属性である。
+   
+1. アトムでよく使われる4つの型は論理型、整数型、倍精度小数点型(数値型と呼ばれることも)、文字型である。稀に使われる2つの型は複素数型、ロウ型である。
+
+1.  属性によってオブジェクトに対してメタデータを付与することができる。属性の取得および付与はそれぞれ`attr(x, "y")`、`attr(x, "y") <- value`で可能である。一度に取得、付与したい場合は`attributes()`を用いる。
+
+1. リストの構成要素としてはリストを含めてどんな型も許容される。アトムはその構成要素が全て同一の型である必要がある。行列も同様である。データフレームは列単位で異なる型が許容される。
+
+1. リストに対して次元を付与することで"リスト-配列"を生成することができる。`df$x <- matrix()`とすることでデータフレームの列に行列を格納することも可能である。行列を列要素とするデータフレームを新しく生成する場合は`I()`を用いて`data.frame(x = I(matrix())`とする。
