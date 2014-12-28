@@ -469,11 +469,14 @@ is.list(mod)
 
 1. なぜ欠損値の初期値は論理型なのか？論理型の特殊な点は何か（ヒント：`c(FALSE, NA_character_)`について考えてみると良い）
 
-99999
 
-## Attributes {#attributes}
+## 属性(Attributes) {#attributes}
 
+```
 All objects can have arbitrary additional attributes, used to store metadata about the object. Attributes can be thought of as a named list (with unique names). Attributes can be accessed individually with `attr()` or all at once (as a list) with `attributes()`. \index{attributes}
+```
+
+全てのオブジェクトは任意の属性(attributes)を付与することができる。属性とはそのオブジェクトに関するメタデータである。属性は一意の名前をもつ名前付きリストと考えると良い。個々の要素に対して属性を取得するには`attr()`、構成要素全ての属性をリストとして取得するには`attributes()`を用いる。\index{attributes}
 
 
 ```r
@@ -495,7 +498,11 @@ str(attributes(y))
 ##  $ my_attribute: chr "This is a vector"
 ```
 
+```
 The `structure()` function returns a new object with modified attributes: \indexc{structure()}
+```
+
+`structure()`は変更された属性をもつ新しいオブジェクトを返す。
 
 
 ```r
@@ -508,7 +515,11 @@ structure(1:10, my_attribute = "This is a vector")
 ## [1] "This is a vector"
 ```
 
+```
 By default, most attributes are lost when modifying a vector:
+```
+
+デフォルトでは多くの属性はベクトルを変更した際に失われる。
 
 
 ```r
@@ -527,6 +538,7 @@ attributes(sum(y))
 ## NULL
 ```
 
+```
 The only attributes not lost are the three most important:
 
 * Names, a character vector giving each element a name, described in 
@@ -538,6 +550,19 @@ The only attributes not lost are the three most important:
 * Class, used to implement the S3 object system, described in [S3](#s3).
  
 Each of these attributes has a specific accessor function to get and set values. When working with these attributes, use `names(x)`, `dim(x)`, and `class(x)`, not `attr(x, "names")`, `attr(x, "dim")`, and `attr(x, "class")`.
+```
+
+ベクトル変更時に失われない属性のうち、重要な3つを以下に挙げる。
+
+* 名前(Names):構成要素の名前を示す文字型のベクトルである。[names](#vector-names)で述べる。
+
+* 次元(Dimensions):行列および配列の次元数を示す。[matrices and arrays](#matrices-and-arraysで述べる。
+
+* クラス(Class):S3オブジェクトシステム(the S3 object system)を実装する際に用いる。[S3](#s3)で述べる。
+
+以上の属性情報を取得もしくは設定する際は専用の関数を用いる。たとえば`attr(x, "names")`、`attr(x, "dim")`、`attr(x, "class")`の代わりに`names(x)`、`dim(x)`、`class(x)`を使う。
+
+99999
 
 #### Names {#vector-names}
 
