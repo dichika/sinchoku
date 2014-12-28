@@ -31,8 +31,8 @@ Rにおける基本データ構造はその次元数（１次元(1d)、２次元
 
 １つのオブジェクトが与えられた時、そのオブジェクトに用いられているデータ構造を知るためには`str()`関数を用いる。`str()`はstructureの短縮形であり、Rのデータ構造について簡潔でまとまった人間が読める形の情報を返す。\indexc{str()}
 
-##### Quiz
-
+##### 確認テスト(Quiz)
+```
 Take this short quiz to determine if you need to read this chapter. If the answers quickly come to mind, you can comfortably skip this chapter. You can check your answers in [answers](#data-structure-answers).
 
 1. What are the three properties of a vector, other than its contents?
@@ -47,6 +47,18 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 
 1. Can you have a list that is a matrix? Can a data frame have a column 
    that is a matrix?
+```
+以下のテストは本章を読む必要があるかどうかを判定するテストである。答えがすぐに頭に浮かぶようであれば本章はとばしても良い。答えは[answers](#data-structure-answers)を参照のこと。
+
+1. ベクトルの性質(property)を、その内容以外に3つ挙げよ。
+
+1. アトム(atomic vector)において、よく用いられる型を4つ、稀に用いられる型を2つ挙げよ。
+
+1. 属性(attribute)とは何か？属性情報はどのようにして取得し、どのように設定するか？
+
+1. アトム(atomic vector)とリストの違いはなにか4つ挙げよ。
+
+1. 行列であるリストは存在するか？構成している列が行列であるデータフレームは存在するか？
 
 ##### Outline
 
