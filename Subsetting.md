@@ -14,8 +14,7 @@ R's subsetting operators are powerful and fast. Mastery of subsetting allows you
 
 Rのデータ抽出演算子はパワフルかつ速い。データ抽出の文法をマスターすることで、複雑なデータ抽出も他のプログラミング言語ではなしえないくらい簡潔に行えます。ただ、以下に示すような込み入ったいくつかの概念を知っておく必要があるため、データ抽出は学びづらいものとなっています。
 
-99999
-
+```
 * The three subsetting operators.
 
 * The six types of subsetting.
@@ -24,6 +23,15 @@ Rのデータ抽出演算子はパワフルかつ速い。データ抽出の文�
   lists, factors, matrices, and data frames).
 
 * The use of subsetting in conjunction with assignment.
+```
+
+* 3つのデータ抽出演算子
+
+* 6つのデータ抽出方法
+
+* ベクトル、リスト、因子、行列、データフレームといった異なるオブジェクトに対して適用した場合の挙動の違い
+
+* データ抽出とアサインメント(assignment)との組み合わせ
 
 This chapter helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge, first to more complicated data types (like arrays and lists), and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
 
