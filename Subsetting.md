@@ -33,7 +33,11 @@ Rのデータ抽出演算子はパワフルかつ速い。データ抽出の文�
 
 * データ抽出とアサインメント(assignment)との組み合わせ
 
+```
 This chapter helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge, first to more complicated data types (like arrays and lists), and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
+```
+
+本章は、まずアトムから`[`でもってデータ抽出をするという簡単な例から始めることで、読者がデータ抽出をマスターできるよう導いていく。そして少しずつ知識の幅を広げていく。ベクトルの次は、配列やリストといったより複雑なデータ構造を対象とし、さらに`[[`や`$`といった他のデータ抽出演算子の説明に移る。そこで読者はオブジェクトに手を加える(to modify parts of an object)上で、どのようにデータ抽出とアサインメントを組み合わせれば良いかを学ぶことになる。最後に多くの応用例を示してこの章は終わりとする。
 
 Subsetting is a natural complement to `str()`. `str()` shows you the structure of any object, and subsetting allows you to pull out the pieces that you're interested in. \index{subsetting}
 
