@@ -6,6 +6,7 @@ This chapter summarises the most important data structures in base R. You've pro
 ```
 本章ではRにおけるデータ構造(data structure)について概観する。読者はおそらくこれらのデータ構造の多くを使った経験があると思われるが、データ構造間の関係性について思いを馳せたことはないだろう。本章においては筆者は個々のデータ型(individual types)について深く議論するつもりはない。その代わりにデータ型間が全体としてどのような関係性をもっているか(how they fit together as a whole)について述べていこうと思う。もし詳細について知りたい場合は、Rの公式ドキュメント群を参照してほしい。
 
+```
 R's base data structures can be organised by their dimensionality (1d, 2d, or nd) and whether they're homogeneous (all contents must be of the same type) or heterogeneous (the contents can be of different types). This gives rise to the five data types most often used in data analysis: 
 
 |    | Homogeneous   | Heterogeneous |
@@ -17,6 +18,18 @@ R's base data structures can be organised by their dimensionality (1d, 2d, or nd
 Almost all other objects are built upon these foundations. In [the OO field guide](#oo) you'll see how more complicated objects are built of these simple pieces. Note that R has no 0-dimensional, or scalar types. Individual numbers or strings, which you might think would be scalars, are actually vectors of length one. 
 
 Given an object, the best way to understand what data structures it's composed of is to use `str()`. `str()` is short for structure and it gives a compact, human readable description of any R data structure. \indexc{str()}
+```
+Rにおける基本データ構造はその次元数（１次元(1d)、２次元(2d)等）及び同一性(その構造に含まれる値が全て同じ型である必要があるか/違う型も許されるか)によって分類される。データ分析において多く用いられる5つのデータ型について下表に示した。
+
+|    | 同じ型である必要がある   | 違う型も許される |
+|----|---------------|---------------|
+| 1d | アトム(Atomic vector) | リスト(List)          |
+| 2d | 行列(Matrix)        | データフレーム(Data frame)    |
+| nd | 配列(Array)         |               |
+
+ほとんど全てのオブジェクトはこれらの基礎的な型のもと構築されている。詳しくは[the OO field guide](#oo)の章で述べるが、複雑な構造をもつオブジェクトもこれらの小さなピースで組み立てられている。なお、Rには0次元つまりスカラー型は無いことに注意しておきたい。一般的にスカラーとして考えられる個々の数値もしくは文字列(Individual numbers or strings)は、実際のところ長さが1のベクトルとして表現される。
+
+１つのオブジェクトが与えられた時、そのオブジェクトに用いられているデータ構造を知るためには`str()`関数を用いる。`str()`はstructureの短縮形であり、Rのデータ構造について簡潔でまとまった人間が読める形の情報を返す。\indexc{str()}
 
 ##### Quiz
 
