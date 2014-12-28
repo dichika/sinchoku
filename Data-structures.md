@@ -36,7 +36,7 @@ Rにおける基本データ構造はその次元数（１次元(1d)、２次元
 
 １つのオブジェクトが与えられた時、そのオブジェクトに用いられているデータ構造を知るためには`str()`関数を用いる。`str()`はstructureの短縮形であり、Rのデータ構造について簡潔でまとまった人間が読める形の情報を返す。\indexc{str()}
 
-##### 確認テスト(Quiz)
+##### クイズ(Quiz)
 ```
 Take this short quiz to determine if you need to read this chapter. If the answers quickly come to mind, you can comfortably skip this chapter. You can check your answers in [answers](#data-structure-answers).
 
