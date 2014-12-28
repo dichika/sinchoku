@@ -72,9 +72,10 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 1. `x`が行列の場合、`x[] <- 0`の結果はどうなるか？`x <- 0`との違いはなにか？
 
 1. カテゴリカル変数のラベルを付け直す(relabel)際、名前付きベクトルをどのように使うとよいか？
-99999
-##### Outline
 
+##### 概要(Outline)
+
+```
 * [Data types](#data-types) starts by teaching you about `[`. You'll start
   by learning the six types of data that you can use to subset atomic vectors.
   You'll then learn how those six data types act when used to subset lists,
@@ -91,6 +92,11 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 * [Applications](#applications) leads you through eight important, but
   not obvious, applications of subsetting to solve problems that you
   often encounter in a data analysis.
+```
+* [データ型(Data types)](#data-types) :この項では`[`の使い方から始める。
+アトムからデータ抽出する際に用いる6つのデータ型を学んだ上で、それらがリスト、行列、データフレーム、S3オブジェクトを対象とした場合にどのような挙動を示すかを学ぶ。
+
+* [データ抽出演算子(Subsetting operators)](#subsetting-operators):この項では、`[[`および`$`といったデータ抽出演算子について知識を深める。特に簡潔性(simplyfying)と一貫性(preserving)に焦点を当てる。
 
 ## Data types {#data-types}
 
