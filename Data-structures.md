@@ -912,8 +912,8 @@ c
 ## [1,]    1    3    5
 ## [2,]    2    4    6
 ```
-99999
 
+```
 `length()` and `names()` have high-dimensional generalisations:
 
 * `length()` generalises to `nrow()` and `ncol()` for matrices, and `dim()`
@@ -921,6 +921,15 @@ c
 
 * `names()` generalises to `rownames()` and `colnames()` for matrices, and
   `dimnames()`, a list of character vectors, for arrays. \indexc{rownames()}
+  \indexc{colnames()} \indexc{dimnames()}
+
+```
+`length()`および`names()`はそれぞれ高次元で同じ役割をもつ関数が用意されている。
+
+* `length()`の高次元版として、行列には`nrow`と`ncol()`、配列には `dim()`が用意されている。
+\indexc{nrow()} \indexc{ncol()} \indexc{dim()}
+
+* `names()` の高次元版として 行列には`rownames()`と`colnames()`、配列には`dimnames()`が用意されている。`dimnames()`は文字型ベクトルのリストである。\indexc{rownames()}
   \indexc{colnames()} \indexc{dimnames()}
 
 
@@ -994,6 +1003,7 @@ b
 ## one 7  9 11
 ## two 8 10 12
 ```
+99999
 
 `c()` generalises to `cbind()` and `rbind()` for matrices, and to `abind()` (provided by the `abind` package) for arrays. You can transpose a matrix with `t()`; the generalised equivalent for arrays is `aperm()`. \indexc{cbind()} \indexc{rbind()} \indexc{abind()} \indexc{aperm()}
 
