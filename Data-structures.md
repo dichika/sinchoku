@@ -60,8 +60,9 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 
 1. 行列であるリストは存在するか？構成している列が行列であるデータフレームは存在するか？
 
-##### Outline
+##### 概要(Outline)
 
+```
 * [Vectors](#vectors) introduces you to atomic vectors and lists, R's 1d 
   data structures.
   
@@ -77,6 +78,15 @@ Take this short quiz to determine if you need to read this chapter. If the answe
   important data structure for storing data in R. Data frames combine 
   the behaviour of lists and matrices to make a structure ideally suited for
   the needs of statistical data.
+```
+
+* ベクトル[Vectors](#vectors):この項ではRにおける1次元のデータ構造であるアトム(atomic vector)およびリストについて触れる。
+
+* 属性[Attributes](#attributes):この項では属性について説明する。属性とは柔軟性の高いメタデータの説明(flexible metadata specification)である。例として、因子型(factor)をとりあげる。因子型はよく使われるデータ型の一つであり、属性をアトムとして設定することで作られる。
+
+* 行列と配列[Matrices and arrays](#matrices-and-arrays):この項では行列と配列について触れる。これらは2次元以上の高次元のデータを格納するデータ構造である。
+
+* データフレーム[Data frames](#data-frames) :この項ではデータフレームについて述べる。データフレームはRにおいて最も有名なデータ構造であり、リストおよび行列の性質を併せ持ち、統計的データを扱う目的に極めて合致したデータ構造となっている。
 
 ## Vectors {#vectors}
 
