@@ -1003,17 +1003,28 @@ b
 ## one 7  9 11
 ## two 8 10 12
 ```
-99999
 
+```
 `c()` generalises to `cbind()` and `rbind()` for matrices, and to `abind()` (provided by the `abind` package) for arrays. You can transpose a matrix with `t()`; the generalised equivalent for arrays is `aperm()`. \indexc{cbind()} \indexc{rbind()} \indexc{abind()} \indexc{aperm()}
+```
 
+`c()`を高次元に対応させたものとして、行列には`cbind()`と`rbind()`、配列には`abind()`(ただしこれは`abind`パッケージが必要)がある。行列の転置には`t()`が用いられる。配列に関してこれと同等の役割をもつ関数としては`aperm()`がある。\indexc{cbind()} \indexc{rbind()} \indexc{abind()} \indexc{aperm()}
+
+```
 You can test if an object is a matrix or array using `is.matrix()` and `is.array()`, or by looking at the length of the `dim()`. `as.matrix()` and `as.array()` make it easy to turn an existing vector into a matrix or array.
+```
 
+オブジェクトが行列か配列か判定するには`is.matrix()`、`is.array()`を用いるか、`dim()`によって次元数を確認するとよい。また、既存のベクトルを行列および配列に変換するには `as.matrix()`、`as.array()`を用いるのが簡単である。
+
+```
 Vectors are not the only 1-dimensional data structure. You can have matrices with a single row or single column, or arrays with a single dimension. They may print similarly, but will behave differently. The differences aren't too important, but it's useful to know they exist in case you get strange output from a function (`tapply()` is a frequent offender). As always, use `str()` to reveal the differences. \index{arrays!1d}
+```
+
+ベクトルは1次元のデータ構造というだけではない。1つの行（または列）のみをもつ行列や、1次元の配列を作成することは可能である。これらは外観が同一だが、異なる挙動を示す。その違いはそこまで重要なものではないが、関数の出力に差異が出ることは知っておくと有用だろう(`tapply()`の出力において困ることが多い)。`str()`を用いることでベクトル、行列、配列は見分けることができる。\index{arrays!1d}
 
 
 ```r
-str(1:3)                   # 1d vector
+str(1:3)                   # 1次元のベクトル 1d vector
 ```
 
 ```
@@ -1021,7 +1032,7 @@ str(1:3)                   # 1d vector
 ```
 
 ```r
-str(matrix(1:3, ncol = 1)) # column vector
+str(matrix(1:3, ncol = 1)) # 行列の列ベクトル column vector
 ```
 
 ```
@@ -1029,7 +1040,7 @@ str(matrix(1:3, ncol = 1)) # column vector
 ```
 
 ```r
-str(matrix(1:3, nrow = 1)) # row vector
+str(matrix(1:3, nrow = 1)) # 行列の行ベクトル row vector
 ```
 
 ```
@@ -1037,14 +1048,18 @@ str(matrix(1:3, nrow = 1)) # row vector
 ```
 
 ```r
-str(array(1:3, 3))         # "array" vector
+str(array(1:3, 3))         # 配列 "array" vector
 ```
 
 ```
 ##  int [1:3(1d)] 1 2 3
 ```
 
+```
 While atomic vectors are most commonly turned into matrices, the dimension attribute can also be set on lists to make list-matrices or list-arrays: \index{arrays!list-arrays} \index{list-arrays}
+```
+
+アトムから行列への変換はよく利用されるが、下記例のように次元属性をリストに付与することでリスト-行列や、リスト-配列を作ることができる。\index{arrays!list-arrays} \index{list-arrays}
 
 
 ```r
@@ -1059,16 +1074,28 @@ l
 ## [2,] "a"       1
 ```
 
+```
 These are relatively esoteric data structures, but can be useful if you want to arrange objects into a grid-like structure. For example, if you're running models on a spatio-temporal grid, it might be natural to preserve the grid structure by storing the models in a 3d array. \index{arrays|)}
+```
 
-### Exercises
+リスト-行列やリスト-配列はあまり使われない(esoteric)データ構造ではあるがオブジェクトをグリッド上の構造に構成したい時は有用である。例えば、空間-時間グリッドの上でモデルを走らせる際、3次元配列にモデルを格納したグリッド構造を用いるのが自然だろう。
 
+### エクササイズ(Exercises)
+
+```
 1.  What does `dim()` return when applied to a vector?
 
 1.  If `is.matrix(x)` is `TRUE`, what will `is.array(x)` return?
 
 1.  How would you describe the following three objects? What makes them
     different to `1:5`?
+```
+
+1. `dim()`をベクトルに適用した場合、どのような結果が返ってくるか？
+
+1. `is.matrix(x)`が`TRUE`だった場合、`is.array(x)`はどのような結果となるか？
+
+1. 以下の3つのオブジェクトはどのように説明されるか？`1:5`との違いはなにか？
 
     
     ```r
