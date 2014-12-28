@@ -556,16 +556,16 @@ Each of these attributes has a specific accessor function to get and set values.
 
 * 名前(Names):構成要素の名前を示す文字型のベクトルである。[names](#vector-names)で述べる。
 
-* 次元(Dimensions):行列および配列の次元数を示す。[matrices and arrays](#matrices-and-arraysで述べる。
+* 次元(Dimensions):行列および配列の次元数を示す。[matrices and arrays](#matrices-and-arrays)で述べる。
 
 * クラス(Class):S3オブジェクトシステム(the S3 object system)を実装する際に用いる。[S3](#s3)で述べる。
 
 以上の属性情報を取得もしくは設定する際は専用の関数を用いる。たとえば`attr(x, "names")`、`attr(x, "dim")`、`attr(x, "class")`の代わりに`names(x)`、`dim(x)`、`class(x)`を使う。
 
-99999
 
-#### Names {#vector-names}
+#### 名前(Names) {#vector-names}
 
+```
 You can name a vector in three ways: \index{attributes|names}
 
 * When creating it: `x <- c(a = 1, b = 2, c = 3)`.
@@ -579,6 +579,21 @@ You can name a vector in three ways: \index{attributes|names}
 Names don't have to be unique. However, character subsetting, described in [subsetting](#lookup-tables), is the most important reason to use names and it is most useful when the names are unique.
 
 Not all elements of a vector need to have a name. If some names are missing, `names()` will return an empty string for those elements. If all names are missing, `names()` will return `NULL`.
+```
+
+ベクトルに名前をつけるには以下の3つの方法がある \index{attributes|names}。
+
+* ベクトル作成時に名前をつける: `x <- c(a = 1, b = 2, c = 3)`
+
+* 既存のベクトルに名前をつける: 
+`x <- 1:3; names(x) <- c("a", "b", "c")`. \indexc{names()}
+
+* ベクトルのa modified copyを作る:
+  `x <- setNames(1:3, c("a", "b", "c"))`. \indexc{setNames()}
+
+名前は一意である必要はない。しかし、名前をつける用途としては[subsetting](#lookup-tables)で述べているような文字列の一部を取り出すというケースが最も多いため、一意な名前をつけておくと便利である。
+
+全ての構成要素が名前を持つ必要はない。いくつかの構成要素において名前がない場合、`names()`はその要素については空の文字列を返す。全ての構成要素に名前がない場合は`names()`は`NULL`を返す。
 
 
 ```r
@@ -599,7 +614,13 @@ names(z)
 ## NULL
 ```
 
+```
 You can create a new vector without names using `unname(x)`, or remove names in place with `names(x) <- NULL`.
+```
+名前付きのベクトルから名前をつけていないベクトルを新しく作る場合は`unname(x)`を用いるか、`names(x) <- NULL`で名前を消去する。
+
+99999
+
 
 ### Factors
 
