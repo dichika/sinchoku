@@ -113,24 +113,33 @@ Rにおける最も基本的な型はベクトルである。ベクトルはア�
 注意(NB):`is.vector()`はそのオブジェクトがベクトルであるか否かを判定しない。その代わり、対象となるオブジェクトが名前以外の属性を持たない場合のみ`TRUE`を返す。ベクトルであるか否かを判定したい際は`is.atomic(x) || is.list(x)`を用いること。
 
 
+### アトム(Atomic vectors)
 
-### Atomic vectors
-
+```
 There are four common types of atomic vectors that I'll discuss in detail: logical, integer, double (often called numeric), and character. There are two rare types that I will not discuss further: complex and raw. \index{atomic vectors} \index{vectors!atomic|see{atomic vectors}}
 
 Atomic vectors are usually created with `c()`, short for combine: \indexc{c()}
+```
 
+アトムのうち、よく使われるものとして論理型(logical)、整数型(integer)、倍精度小数点型(double)(numericと呼ばれることも)、文字型(character)の4つがあり、これらについては詳述する。また稀に使われるものとして、複素数型(complex)、ロウ型(raw)の2つがあり、こちらについてはこれ以上は触れない。\index{atomic vectors} \index{vectors!atomic|see{atomic vectors}}
+
+アトムは`c()`によって作成することが多い。cはcombineの短縮形である。 \indexc{c()}
 
 ```r
 dbl_var <- c(1, 2.5, 4.5)
+# Lをつけることでdouble型ではなく整数型を指定できる
 # With the L suffix, you get an integer rather than a double
 int_var <- c(1L, 6L, 10L)
+# TRUE(T)もしくはFALSE(F)で論理型のベクトルを作成できる
 # Use TRUE and FALSE (or T and F) to create logical vectors
 log_var <- c(TRUE, FALSE, T, F)
 chr_var <- c("these are", "some strings")
 ```
 
+```
 Atomic vectors are always flat, even if you nest `c()`'s:
+```
+アトムはフラットな構造となっており、`c()`をネストにした場合でもネスト構造は保持されない。
 
 
 ```r
@@ -142,6 +151,7 @@ c(1, c(2, c(3, 4)))
 ```
 
 ```r
+#　以下と同様である
 # the same as
 c(1, 2, 3, 4)
 ```
@@ -150,7 +160,11 @@ c(1, 2, 3, 4)
 ## [1] 1 2 3 4
 ```
 
+```
 Missing values are specified with `NA`, which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`, or you can create `NA`s of a specific type with `NA_real_` (a double vector), `NA_integer_` and `NA_character_`. \indexc{NA}
+```
+
+欠損値は長さ1の論理型の値である`NA`として表現される。`NA`は`c()`の中で用いられると適切な型に変換されるが、`NA_real_` (倍精度小数点型のベクトル)、`NA_integer_`、`NA_character_`のように型を指定して作成することも可能である。\indexc{NA}
 
 #### Types and tests
 
