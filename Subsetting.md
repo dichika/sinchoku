@@ -39,7 +39,11 @@ This chapter helps you master subsetting by starting with the simplest type of s
 
 本章は、まずアトムから`[`でもってデータ抽出をするという簡単な例から始めることで、読者がデータ抽出をマスターできるよう導いていく。そして少しずつ知識の幅を広げていく。ベクトルの次は、配列やリストといったより複雑なデータ構造を対象とし、さらに`[[`や`$`といった他のデータ抽出演算子の説明に移る。そこで読者はオブジェクトに手を加える(to modify parts of an object)上で、どのようにデータ抽出とアサインメントを組み合わせれば良いかを学ぶことになる。最後に多くの応用例を示してこの章は終わりとする。
 
+```
 Subsetting is a natural complement to `str()`. `str()` shows you the structure of any object, and subsetting allows you to pull out the pieces that you're interested in. \index{subsetting}
+```
+
+データ抽出は`str()`と補完関係にある。`str()`はオブジェクトの構造を示す操作である一方、データ抽出はデータにおいて興味のある一部分を取り出してくるという操作であるからである。\index{subsetting}
 
 ##### Quiz
 
