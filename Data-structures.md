@@ -128,14 +128,14 @@ Atomic vectors are usually created with `c()`, short for combine: \indexc{c()}
 
 アトムのうち、よく使われるものとして論理型(logical)、整数型(integer)、倍精度小数点型(double)(numericと呼ばれることも)、文字型(character)の4つがあり、これらについては詳述する。また稀に使われるものとして、複素数型(complex)、ロウ型(raw)の2つがあり、こちらについてはこれ以上は触れない。\index{atomic vectors} \index{vectors!atomic|see{atomic vectors}}
 
-アトムは`c()`によって作成することが多い。cはcombineの短縮形である。 \indexc{c()}
+アトムは`c()`によって生成することが多い。cはcombineの短縮形である。 \indexc{c()}
 
 ```r
 dbl_var <- c(1, 2.5, 4.5)
 # Lをつけることでdouble型ではなく整数型を指定できる
 # With the L suffix, you get an integer rather than a double
 int_var <- c(1L, 6L, 10L)
-# TRUE(T)もしくはFALSE(F)で論理型のベクトルを作成できる
+# TRUE(T)もしくはFALSE(F)で論理型のベクトルを生成できる
 # Use TRUE and FALSE (or T and F) to create logical vectors
 log_var <- c(TRUE, FALSE, T, F)
 chr_var <- c("these are", "some strings")
@@ -322,7 +322,7 @@ Coercion often happens automatically. Most mathematical functions (`+`, `log`, `
 ```
 Lists are different from atomic vectors because their elements can be of any type, including lists. You construct lists by using `list()` instead of `c()`: \index{lists} \index{vectors!lists|see{lists}}
 ```
-リストはその構成要素が同一の型であることを要求しないという点でアトムとは異なる。そしてその構成要素にはリスト自身も含まれる。リストを作成する際は`c()`の代わりに`list()`を用いる。\index{lists} \index{vectors!lists|see{lists}}
+リストはその構成要素が同一の型であることを要求しないという点でアトムとは異なる。そしてその構成要素にはリスト自身も含まれる。リストを生成する際は`c()`の代わりに`list()`を用いる。\index{lists} \index{vectors!lists|see{lists}}
 
 
 ```r
@@ -583,7 +583,7 @@ Not all elements of a vector need to have a name. If some names are missing, `na
 
 ベクトルに名前をつけるには以下の3つの方法がある \index{attributes|names}。
 
-* ベクトル作成時に名前をつける: `x <- c(a = 1, b = 2, c = 3)`
+* ベクトル生成時に名前をつける: `x <- c(a = 1, b = 2, c = 3)`
 
 * 既存のベクトルに名前をつける: 
 `x <- 1:3; names(x) <- c("a", "b", "c")`. \indexc{names()}
@@ -877,7 +877,7 @@ Matrices and arrays are created with `matrix()` and `array()`, or by using the a
 
 `dim()`属性をアトムに加えることで多次元 __配列(array)__ のような挙動をさせることができる。この配列の特殊な形として 次元数が2となる __行列(matrix)__ が挙げられる。行列は統計学の数学的要素を語る上で書かせない要素である(the mathematical machinery of statistics)。なお、行列に比べると、配列を用いることは稀だが、知っておいて損は無い。\index{arrays|(} \index{matrices|see{arrays}}
 
-行列および配列は`matrix()`、`array()`を用いるか、`dim()`を設定することで作成できる。
+行列および配列は`matrix()`、`array()`を用いるか、`dim()`を設定することで生成できる。
 
 
 ```r
@@ -1020,7 +1020,7 @@ You can test if an object is a matrix or array using `is.matrix()` and `is.array
 Vectors are not the only 1-dimensional data structure. You can have matrices with a single row or single column, or arrays with a single dimension. They may print similarly, but will behave differently. The differences aren't too important, but it's useful to know they exist in case you get strange output from a function (`tapply()` is a frequent offender). As always, use `str()` to reveal the differences. \index{arrays!1d}
 ```
 
-ベクトルは1次元のデータ構造というだけではない。1つの行（または列）のみをもつ行列や、1次元の配列を作成することは可能である。これらは外観が同一だが、異なる挙動を示す。その違いはそこまで重要なものではないが、関数の出力に差異が出ることは知っておくと有用だろう(`tapply()`の出力において困ることが多い)。`str()`を用いることでベクトル、行列、配列は見分けることができる。\index{arrays!1d}
+ベクトルは1次元のデータ構造というだけではない。1つの行（または列）のみをもつ行列や、1次元の配列を生成することは可能である。これらは外観が同一だが、異なる挙動を示す。その違いはそこまで重要なものではないが、関数の出力に差異が出ることは知っておくと有用だろう(`tapply()`の出力において困ることが多い)。`str()`を用いることでベクトル、行列、配列は見分けることができる。\index{arrays!1d}
 
 
 ```r
@@ -1104,15 +1104,27 @@ These are relatively esoteric data structures, but can be useful if you want to 
     x3 <- array(1:5, c(5, 1, 1))
     ```
 
-## Data frames {#data-frames}
+## データフレーム(Data frames) {#data-frames}
 
+```
 A data frame is the most common way of storing data in R, and if [used systematically](http://vita.had.co.nz/papers/tidy-data.pdf) makes data analysis easier. Under the hood, a data frame is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list.  This means that a data frame has `names()`, `colnames()`, and `rownames()`, although `names()` and `colnames()` are the same thing. The `length()` of a data frame is the length of the underlying list and so is the same as `ncol()`; `nrow()` gives the number of rows. \index{data frames|(}
+```
 
+データフレームはRにおいてデータを格納する手段としては最も使われている方法である。また[システマティックに用いることで](http://vita.had.co.nz/papers/tidy-data.pdf)、データ分析がより楽になる。データフレームは長さが同一のベクトルのリストである。この構造により、データは2次元構造として表現され行列とリストの両方の性質を併せ持っている。これはデータフレームは`names()`、`colnames()`、`rownames()`を持っていることを意味する。ただしデータフレームにおいては`names()`と`colnames()`は同じものを指している。データフレームの`length()`はデータフレームを構成するリストの長さ、つまり`ncol()`と同一のものを指す。`nrow()`は行数を示す。 \index{data frames|(}
+
+```
 As described in [subsetting](#subsetting), you can subset a data frame like a 1d structure (where it behaves like a list), or a 2d structure (where it behaves like a matrix).
+```
 
-### Creation
+[subsetting](#subsetting)で後述するが、データフレームの一部を1次元のデータ構造(この場合リストのような挙動を示す)として取り出したり、2次元のデータ構造(この場合は行列のような挙動を示す)として取り出すことができる。
 
+### データフレームの生成(Creation)
+
+```
 You create a data frame using `data.frame()`, which takes named vectors as input:
+```
+
+`data.frame()`を用いることでデータフレームは生成できる。この場合の入力としては名前付きのベクトルを用いる。
 
 
 ```r
@@ -1126,7 +1138,11 @@ str(df)
 ##  $ y: Factor w/ 3 levels "a","b","c": 1 2 3
 ```
 
+```
 Beware `data.frame()`'s default behaviour which turns strings into factors. Use `stringAsFactors = FALSE` to suppress this behaviour: \indexc{stringsAsFactors}
+```
+
+`data.frame()`はデフォルトでは文字列を因子に変換してしまうことに注意してほしい。この挙動を抑制するには引数に`stringAsFactors = FALSE`を指定する。\indexc{stringsAsFactors}
 
 
 ```r
@@ -1143,9 +1159,13 @@ str(df)
 ##  $ y: chr  "a" "b" "c"
 ```
 
-### Testing and coercion
+### データフレームの判定および変換(Testing and coercion)
 
+```
 Because a `data.frame` is an S3 class, its type reflects the underlying vector used to build it: the list. To check if an object is a data frame, use `class()` or test explicitly with `is.data.frame()`:
+```
+
+`data.frame()`はS3クラスなので、その型には構成要素の型が反映されており、リストとして判定される。オブジェクトがデータフレームであるか否かを判定するには、`class()`または明示的に`is.data.frame()`を用いる。
 
 
 ```r
@@ -1172,6 +1192,7 @@ is.data.frame(df)
 ## [1] TRUE
 ```
 
+```
 You can coerce an object to a data frame with `as.data.frame()`:
 
 * A vector will create a one-column data frame.
@@ -1180,6 +1201,17 @@ You can coerce an object to a data frame with `as.data.frame()`:
   not all the same length.
   
 * A matrix will create a data frame with the same number of columns and rows as the matrix.
+```
+
+`as.data.frame()`を用いることでオブジェクトををデータフレームに変換できる。
+
+* ベクトルを変換した場合、1列のデータフレームとなる。
+
+* リストを変換した場合、各構成要素が列を構成するデータフレームとなる。長さが異なるリストで構成されている場合はエラーとなる。
+
+* 行列を変換した場合、その行数、列数が同一のデータフレームが生成される。
+
+99999
 
 ### Combining data frames
 
