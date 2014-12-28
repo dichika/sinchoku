@@ -804,12 +804,15 @@ Unfortunately, most data loading functions in R automatically convert character 
 
 残念なことにRのデータ読み込み関数群の多くは文字型ベクトルを自動的に因子に変換してしまう。これは最善手とは言いがたい。なぜならこれらの関数を用いる際に、とりうるレベルもしくはその順序を指定する方法が無いからである。この場合、データ読み込み関数群の引数に`stringsAsFactors = FALSE`を指定して、自動的に変換しないようにした上で、そのデータに関する知識(レベルの範囲や順序など)を用いて文字型ベクトルから因子にあらためて変換するようにした方が良い。グローバルオプション(global option)として`options(stringsAsFactors = FALSE)`を用いるという方法もあるが、筆者はこの方法を勧めない。グローバルオプションの変更は、外部パッケージや`source()`によって読み込まれた他のコードと組み合わせた場合に予期しない結果を招くことがあるからである。またグローバルオプションの指定はあるコードの一行を理解するのに必要なコードの量を増加させるため、コードを読みづらいものとしてしまうという難点もある。\indexc{stringsAsFactors}
 
-99999
-
+```
 While factors look (and often behave) like character vectors, they are actually integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behaviour. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case. \index{factors|)}
+```
 
-### Exercises
+因子は外見および挙動において文字型ベクトルと似ているが、その実態は整数値である。文字列のように扱う際には注意してほしい。`gsub()`や`grepl()`といった文字列を扱う関数の一部は因子を文字列に自動的に変換してくれるが、`nchar()`などの関数はエラーを返す。`c()`のように整数値として扱う関数もある。以上の理由から、因子を文字列として扱いたい場合は、明示的に文字型ベクトルから因子に変換するのがベストである。なお、Rの初期バージョンでは因子は文字型ベクトルに比べてメモリの消費量が少ないという利点があったが、現在はそのような差は無くなっている。\index{factors|)}
 
+### エクササイズ(Exercises)
+
+```
 1.  An early draft used this code to illustrate `structure()`:
 
     
@@ -824,16 +827,38 @@ While factors look (and often behave) like character vectors, they are actually 
     But when you print that object you don't see the comment attribute.
     Why? Is the attribute missing, or is there something else special about
     it? (Hint: try using help.) \index{attributes!comment}
+```
 
-1.  What happens to a factor when you modify its levels? 
+1. `structure()`の例を示すために書いた初期のコードを示す。
     
+    ```r
+    structure(1:5, comment = "my attribute")
+    ```
+    
+    ```
+    ## [1] 1 2 3 4 5
+    ```
+
+    しかしこのオブジェクトをprintすると、このオブジェクトの属性（コメント）は表示されない。
+    これはなぜか？属性が失われた、もしくはなにか特殊な事情があるのだろうか？（ヒント：ヘルプ参照）
+    \index{attributes!comment}
+
+```
+1.  What happens to a factor when you modify its levels? 
+```
+
+1. 以下のように因子のレベルを変更すると何が起きるだろうか？
     
     ```r
     f1 <- factor(letters)
     levels(f1) <- rev(levels(f1))
     ```
 
+```
 1.  What does this code do? How do `f2` and `f3` differ from `f1`?
+```
+
+1. 以下のコードの結果はどうなるだろうか？`f2`および`f3`と`f1`の違いはなんだろうか？
 
     
     ```r
@@ -842,19 +867,28 @@ While factors look (and often behave) like character vectors, they are actually 
     f3 <- factor(letters, levels = rev(letters))
     ```
 
-## Matrices and arrays {#matrices-and-arrays}
+## 行列および配列(Matrices and arrays) {#matrices-and-arrays}
 
+```
 Adding a `dim()` attribute to an atomic vector allows it to behave like a multi-dimensional __array__. A special case of the array is the __matrix__, which has two dimensions. Matrices are used commonly as part of the mathematical machinery of statistics. Arrays are much rarer, but worth being aware of. \index{arrays|(} \index{matrices|see{arrays}}
 
 Matrices and arrays are created with `matrix()` and `array()`, or by using the assignment form of `dim()`:
+```
+
+`dim()`属性をアトムに加えることで多次元 __配列(array)__ のような挙動をさせることができる。この配列の特殊な形として 次元数が2となる __行列(matrix)__ が挙げられる。行列は統計学の数学的要素を語る上で書かせない要素である(the mathematical machinery of statistics)。なお、行列に比べると、配列を用いることは稀だが、知っておいて損は無い。\index{arrays|(} \index{matrices|see{arrays}}
+
+行列および配列は`matrix()`、`array()`を用いるか、`dim()`を設定することで作成できる。
 
 
 ```r
+# 下記は次元（行および列）を指定するために2つのスカラーでもって指定している
 # Two scalar arguments to specify rows and columns
 a <- matrix(1:6, ncol = 3, nrow = 2)
+# 下記は一つのベクトルでもって次元を指定している
 # One vector argument to describe all dimensions
 b <- array(1:12, c(2, 3, 2))
 
+# dim()を指定することでオブジェクトを変形させることができる
 # You can also modify an object in place by setting dim()
 c <- 1:6
 dim(c) <- c(3, 2)
@@ -878,6 +912,7 @@ c
 ## [1,]    1    3    5
 ## [2,]    2    4    6
 ```
+99999
 
 `length()` and `names()` have high-dimensional generalisations:
 
