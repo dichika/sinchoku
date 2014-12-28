@@ -1,4 +1,9 @@
-# 01_データ構造(Data structures)
+---
+title: 01_データ構造(Data structures)
+output:
+  html_document:
+    keep_md: yes
+---
 
 # 01_データ構造(Data structures) {#data-structures}
 ```
@@ -312,9 +317,12 @@ Coercion often happens automatically. Most mathematical functions (`+`, `log`, `
 
 多くの場合、型変換は関数適用時に自動的に行われる。多くの数学的関数群(`+`, `log`, `abs`など)は値を倍精度小数点または整数型に変換し、多くの論理演算子(logical operations)は論理型に変換して解釈する。型変換により情報が失われる場合は、警告のメッセージが出力される。混乱を避けたい場合は(confusion is likely)、`as.character()`、`as.double()`、`as.integer()`、`as.logical()`といった関数を用いて明示的に変換すると良い。
 
-### Lists
+### リスト(Lists)
 
+```
 Lists are different from atomic vectors because their elements can be of any type, including lists. You construct lists by using `list()` instead of `c()`: \index{lists} \index{vectors!lists|see{lists}}
+```
+リストはその構成要素が同一の型であることを要求しないという点でアトムとは異なる。そしてその構成要素にはリスト自身も含まれる。リストを作成する際は`c()`の代わりに`list()`を用いる。\index{lists} \index{vectors!lists|see{lists}}
 
 
 ```r
@@ -330,7 +338,11 @@ str(x)
 ##  $ : num [1:2] 2.3 5.9
 ```
 
+```
 Lists are sometimes called __recursive__ vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors.
+```
+
+リスト は__再起的な(recursive)__ ベクトルと呼ばれることがある。これはリストはその構成要素にリストを含めることができるからである。これはベクトルとは根本的に異なる点である。
 
 
 ```r
@@ -353,7 +365,12 @@ is.recursive(x)
 ## [1] TRUE
 ```
 
+```
 `c()` will combine several lists into one. If given a combination of atomic vectors and lists, `c()` will coerce the vectors to lists before combining them. Compare the results of `list()` and `c()`:
+```
+
+`c()`は複数のリストを1つに結合する。アトムとリストが混在している場合、`c()`はアトムをリストに変換した上で結合する。以下に`list()`と`c()`をそれぞれ用いた結果を示す。
+
 
 
 ```r
@@ -382,9 +399,15 @@ str(y)
 ##  $ : num 4
 ```
 
+```
 The `typeof()` a list is `list`. You can test for a list with `is.list()` and coerce to a list with `as.list()`. You can turn a list into an atomic vector with `unlist()`. If the elements of a list have different types, `unlist()` uses the same coercion rules as `c()`.
 
 Lists are used to build up many of the more complicated data structures in R. For example, both data frames (described in [data frames](#data-frames)) and linear models objects (as produced by `lm()`) are lists:
+```
+
+リストに対して`typeof()`を適用した場合、`list`という結果が返る。あるオブジェクトがリストかどうかを判定するには`is.list()`が使える。また、リストに変換したい場合は`as.list()`を用いる。リストをアトムに変換する際は`unlist()`を使う。リストが異なる型の要素で構成されている場合、`unlist()`は`c()`と同じ変換ルールに従ってその構成要素を変換する。
+
+リストはより複雑なデータ構造を構築する際にその構成要素として用いられる。例えば、データフレーム([data frames](#data-frames)で述べる)および、`lm()`によって作られる線形モデル(linear models)オブジェクトの構成要素はいずれもリストである。
 
 
 ```r
@@ -404,8 +427,9 @@ is.list(mod)
 ## [1] TRUE
 ```
 
-### Exercises
+### エクササイズ(Exercises)
 
+```
 1. What are the six types of atomic vector? How does a list differ from an
    atomic vector?
 
@@ -415,6 +439,22 @@ is.list(mod)
 1. Test your knowledge of vector coercion rules by predicting the output of
    the following uses of `c()`:
 
+1.  Why do you need to use `unlist()` to convert a list to an 
+    atomic vector? Why doesn't `as.vector()` work? 
+
+1. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
+
+1. Why is the default missing value, `NA`, a logical vector? What's special
+   about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
+
+```
+
+1. アトムにおける6つのデータ型とはなにか？アトムとリストの違いはなにか？
+
+1. `is.vector()`と`is.numeric()`が`is.list()`および`is.character()`と根本的に異なる点はなにか？
+
+1. 以下の例において`c()`が出力する結果を予想して、ベクトルの変換ルールの理解度を確認しなさい
+
     
     ```r
     c(1, FALSE)
@@ -423,13 +463,13 @@ is.list(mod)
     c(TRUE, 1L)
     ```
 
-1.  Why do you need to use `unlist()` to convert a list to an 
-    atomic vector? Why doesn't `as.vector()` work? 
+1. なぜリストをアトムに変換する際に`unlist()`を用いる必要があるか？ なぜ `as.vector()` では駄目なのか？
 
-1. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
+1. なぜ `1 == "1"`および`-1 < FALSE` はTRUEとなるのか？なぜ`"one" < 2`はFALSEとなるのか？
 
-1. Why is the default missing value, `NA`, a logical vector? What's special
-   about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
+1. なぜ欠損値の初期値は論理型なのか？論理型の特殊な点は何か（ヒント：`c(FALSE, NA_character_)`について考えてみると良い）
+
+99999
 
 ## Attributes {#attributes}
 
