@@ -656,6 +656,7 @@ levels(x)
 ```
 
 ```r
+# levelに含まれない値を用いることはできない
 # You can't use values that are not in the levels
 x[2] <- "c"
 ```
@@ -675,6 +676,7 @@ x
 ```
 
 ```r
+# 注意:因子同士を結合することはできない
 # NB: you can't combine factors
 c(factor("a"), factor("b"))
 ```
@@ -683,7 +685,11 @@ c(factor("a"), factor("b"))
 ## [1] 1 1
 ```
 
+```
 Factors are useful when you know the possible values a variable may take, even if you don't see all values in a given dataset. Using a factor instead of a character vector makes it obvious when some groups contain no observations:
+```
+
+因子は変数のとりうる値がわかっている際には有用である。これはデータセットの中にとりうる全ての値が含まれていない場合にもいえる。例えば以下のように、因子を文字型ベクトルの代わりに用いることで、設定したグループのうちデータがないものが何か明確になる。
 
 
 ```r
@@ -709,10 +715,15 @@ table(sex_factor)
 ## 3 0
 ```
 
+```
 Sometimes when a data frame is read directly from a file, a column you'd thought would produce a numeric vector instead produces a factor. This is caused by a non-numeric value in the column, often a missing value encoded in a special way like `.` or `-`. To remedy the situation, coerce the vector from a factor to a character vector, and then from a character to a double vector. (Be sure to check for missing values after this process.) Of course, a much better plan is to discover what caused the problem in the first place and fix that; using the `na.strings` argument to `read.csv()` is often a good place to start.
+```
+
+データフレームをファイルから読み込んだ際、一部の列において、数値型のベクトルを期待していたのに因子になっている場合がある。これはその列に数値型ではない値が含まれていたからである。よくある例としては欠損値を`.`や`-`といった値で入力しているというものが挙げられる。対策としては因子を文字型ベクトルに変換した上でさらに倍精度小数点型に変換するという方法がある（この方法を適用した際には欠損値をチェックしておくこと。）もちろんこのような場当たり的な方法ではなく、原因を確認して解決するという方法が望ましいことは言うまでもない。欠損値を指定する文字列が把握できた場合は、`read.csv()`の引数である`na.strings`で対象と鳴る文字列を指定すると良い。
 
 
 ```r
+# ここではファイルの代わりにテキストを読みこんでいる
 # Reading in "text" instead of from a file here:
 z <- read.csv(text = "value\n12\n1\n.\n9")
 typeof(z$value)
@@ -731,6 +742,7 @@ as.double(z$value)
 ```
 
 ```r
+# 3 2 1 4は因子のレベルであり、今回読み込みたい値とは異なる
 # Oops, that's not right: 3 2 1 4 are the levels of a factor, 
 # not the values we read in!
 class(z$value)
@@ -741,6 +753,7 @@ class(z$value)
 ```
 
 ```r
+# 修正する
 # We can fix it now:
 as.double(as.character(z$value))
 ```
@@ -754,6 +767,7 @@ as.double(as.character(z$value))
 ```
 
 ```r
+# もしくは読み込み方を変更する
 # Or change how we read it in:
 z <- read.csv(text = "value\n12\n1\n.\n9", na.strings=".")
 typeof(z$value)
@@ -780,8 +794,10 @@ z$value
 ```
 
 ```r
+# これで完璧
 # Perfect! :)
 ```
+99999
 
 Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. Instead, use the argument `stringsAsFactors = FALSE` to suppress this behaviour, and then manually convert character vectors to factors using your knowledge of the data. A global option, `options(stringsAsFactors = FALSE)`, is available to control this behaviour, but I don't recommend using it. Changing a global option may have unexpected consequences when combined with other code (either from packages, or code that you're `source()`ing), and global options make code harder to understand because they increase the number of lines you need to read to understand how a single line of code will behave.  \indexc{stringsAsFactors}
 
