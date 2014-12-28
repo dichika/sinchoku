@@ -45,8 +45,9 @@ Subsetting is a natural complement to `str()`. `str()` shows you the structure o
 
 データ抽出は`str()`と補完関係にある。`str()`はオブジェクトの構造を示す操作である一方、データ抽出はデータにおいて興味のある一部分を取り出してくるという操作であるからである。\index{subsetting}
 
-##### Quiz
+##### クイズ(Quiz)
 
+```
 Take this short quiz to determine if you need to read this chapter. If the answers quickly come to mind, you can comfortably skip this chapter. Check your answers in [answers](#subsetting-answers).
 
 1.  What is the result of subsetting a vector with positive integers, 
@@ -60,7 +61,18 @@ Take this short quiz to determine if you need to read this chapter. If the answe
     `x <- 0`?
 
 1.  How can you use a named vector to relabel categorical variables?
+```
 
+以下のテストは本章を読む必要があるかどうかを判定するテストである。答えがすぐに頭に浮かぶようであれば本章はとばしても良い。答えは[answers](#data-structure-answers)を参照のこと。
+
+1. ベクトルから以下の条件でデータ抽出を行ったときの結果はどうなるか？条件:正の整数、負の整数、論理値、文字列
+
+1. `[`、`[[`、`$`をそれぞれリストに適用した際の違いはなにか？
+
+1. `x`が行列の場合、`x[] <- 0`の結果はどうなるか？`x <- 0`との違いはなにか？
+
+1. カテゴリカル変数のラベルを付け直す(relabel)際、名前付きベクトルをどのように使うとよいか？
+99999
 ##### Outline
 
 * [Data types](#data-types) starts by teaching you about `[`. You'll start
