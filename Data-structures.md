@@ -166,9 +166,13 @@ Missing values are specified with `NA`, which is a logical vector of length 1. `
 
 欠損値は長さ1の論理型の値である`NA`として表現される。`NA`は`c()`の中で用いられると適切な型に変換されるが、`NA_real_` (倍精度小数点型のベクトル)、`NA_integer_`、`NA_character_`のように型を指定して作成することも可能である。\indexc{NA}
 
-#### Types and tests
+#### 型とその判定(Types and tests)
 
+```
 Given a vector, you can determine its type with `typeof()`, or check if it's a specific type with an "is" function: `is.character()`, `is.double()`, `is.integer()`, `is.logical()`, or, more generally, `is.atomic()`. \indexc{typeof()}
+```
+
+あるベクトルの型を調べる際には`typeof()`を用いる。また、特定の型であるかどうかを判定する際は`is.character()`, `is.double()`, `is.integer()`, `is.logical()`, `is.atomic()`といったis関数群を用いる。 \indexc{typeof()}
 
 
 ```r
@@ -221,7 +225,12 @@ is.atomic(dbl_var)
 ## [1] TRUE
 ```
 
+```
 NB: `is.numeric()` is a general test for the "numberliness" of a vector and returns `TRUE` for both integer and double vectors. It is not a specific test for double vectors, which are often called numeric. \indexc{is.numeric()}
+```
+
+注意(NB):`is.numeric()`は対象の値が数値であるかどうかを判定する汎用的な関数であり、整数型、倍精度小数点型のいずれにおいても`TRUE`を返す。倍精度小数点型は、数値型(numeric)と呼ばれることが多いが`is.numeric()`は倍精度小数点型を判定するための関数ではないことに注意してほしい。
+
 
 
 ```r
@@ -240,11 +249,17 @@ is.numeric(dbl_var)
 ## [1] TRUE
 ```
 
-#### Coercion
+#### 型変換(Coercion)
 
+```
 All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be __coerced__ to the most flexible type. Types from least to most flexible are: logical, integer, double, and character. \index{coercion}
 
 For example, combining a character and an integer yields a character:
+```
+
+アトムはその構成要素が全て同一の型である必要がある。したがって、異なる型の要素を結合して1つのベクトルとする際、各要素は最も柔軟性の高い(flexible)型に __型変換(coerced)__ される。型を柔軟性の低い順に並べると、論理型、整数型、倍精度小数点型、文字型の順になる。
+
+例えば、文字型と整数型を結合した場合、結合後のベクトルは文字型となる。
 
 
 ```r
@@ -255,7 +270,11 @@ str(c("a", 1))
 ##  chr [1:2] "a" "1"
 ```
 
+```
 When a logical vector is coerced to an integer or double, `TRUE` becomes 1 and `FALSE` becomes 0. This is very useful in conjunction with `sum()` and `mean()`
+```
+
+論理型を整数型もしくは倍精度小数点型に変換すると、`TRUE`は1となり、`FALSE`は0となる。この性質は`sum()`および`mean()`と組み合わせると大変便利である。
 
 
 ```r
@@ -268,6 +287,7 @@ as.numeric(x)
 ```
 
 ```r
+# TRUEの数をカウント
 # Total number of TRUEs
 sum(x)
 ```
@@ -277,6 +297,7 @@ sum(x)
 ```
 
 ```r
+# TRUEの割合を算出
 # Proportion that are TRUE
 mean(x)
 ```
@@ -285,7 +306,11 @@ mean(x)
 ## [1] 0.3333333
 ```
 
+```
 Coercion often happens automatically. Most mathematical functions (`+`, `log`, `abs`, etc.) will coerce to a double or integer, and most logical operations (`&`, `|`, `any`, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information. If confusion is likely, explicitly coerce with `as.character()`, `as.double()`, `as.integer()`, or `as.logical()`. 
+```
+
+多くの場合、型変換は関数適用時に自動的に行われる。多くの数学的関数群(`+`, `log`, `abs`など)は値を倍精度小数点または整数型に変換し、多くの論理演算子(logical operations)は論理型に変換して解釈する。型変換により情報が失われる場合は、警告のメッセージが出力される。混乱を避けたい場合は(confusion is likely)、`as.character()`、`as.double()`、`as.integer()`、`as.logical()`といった関数を用いて明示的に変換すると良い。
 
 ### Lists
 
