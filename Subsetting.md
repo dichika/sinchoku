@@ -103,14 +103,22 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 
 * [データ抽出の応用(Applications)](#applications):この項では、データ分析において頻繁に遭遇する問題に対応するための8つの重要な、しかしあまり知られていない(obvious)応用例を学ぶ。
 
-## Data types {#data-types}
+## データ抽出の型(Data types) {#data-types}
 
+```
 It's easiest to learn how subsetting works for atomic vectors, and then how it generalises to higher dimensions and other more complicated objects. We'll start with `[`, the most commonly used operator. [Subsetting operators](#subsetting-operators) will cover `[[` and `$`, the two other main subsetting operators.
+```
 
-### Atomic vectors
+データ抽出について学ぶには、アトムに対するデータ抽出の仕組みについて知った上で、行列やリストといったより高次元のデータ構造やさらに複雑なオブジェクトに対して一般化していくのが最も簡単な方法である。本項では`[`という頻用される演算子の説明から始める。なお、`[[`および`$`については次項([データ抽出演算子(Subsetting operators)](#subsetting-operators))で説明する。
 
+### アトム(Atomic vectors)
+
+```
 Let's explore the different types of subsetting with a simple vector, `x`. \index{subsetting!atomic vectors} \index{atomic vectors!subsetting} \indexc{[}
+```
 
+シンプルなベクトル`x`からのデータ抽出について、どのようなタイプがあるか検討してみよう。\index{subsetting!atomic vectors} \index{atomic vectors!subsetting} \indexc{[}
+99999
 
 ```r
 x <- c(2.1, 4.2, 3.3, 5.4)
