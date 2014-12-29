@@ -98,9 +98,10 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 
 * [データ抽出演算子(Subsetting operators)](#subsetting-operators):この項では、`[[`および`$`といったデータ抽出演算子について知識を深める。特に簡潔性(simplyfying)と一貫性(preserving)に焦点を当てる。
 
-* In [データ抽出とアサインメント(Subsetting and assignment)](#subassignment):この項では、アサインメントとデータ抽出を組み合わせたオブジェクトの変更方法について学ぶ(to modify parts 
+* [データ抽出とアサインメント(Subsetting and assignment)](#subassignment):この項では、アサインメントとデータ抽出を組み合わせたオブジェクトの変更方法について学ぶ(to modify parts 
   of an object)。
 
+* [データ抽出の応用(Applications)](#applications):この項では、データ分析において頻繁に遭遇する問題に対応するための8つの重要な、しかしあまり知られていない(obvious)応用例を学ぶ。
 
 ## Data types {#data-types}
 
