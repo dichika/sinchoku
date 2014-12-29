@@ -118,17 +118,27 @@ Let's explore the different types of subsetting with a simple vector, `x`. \inde
 ```
 
 シンプルなベクトル`x`からのデータ抽出について、どのようなタイプがあるか検討してみよう。\index{subsetting!atomic vectors} \index{atomic vectors!subsetting} \indexc{[}
-99999
+
 
 ```r
 x <- c(2.1, 4.2, 3.3, 5.4)
 ```
 
+```
 Note that the number after the decimal point gives the original position in the vector.
 
 There are five things that you can use to subset a vector: 
+```
 
+ここで小数点の後につけている数字はベクトルの元の位置を示していることを覚えておいてほしい(2.1であれば小数点後の1がベクトルの1番目であることを示している)。
+ベクトルからデータ抽出する際に使う5つの方法をここに示す。
+
+```
 *   __Positive integers__ return elements at the specified positions: 
+    \index{subsetting!with positive integers}
+```
+
+*   __正の整数による指定(Positive integers)__ はその値で指定した位置の要素を返す: 
     \index{subsetting!with positive integers}
 
     
@@ -149,6 +159,7 @@ There are five things that you can use to subset a vector:
     ```
     
     ```r
+    # 重複したインデックスは値を重複して呼び出す
     # Duplicated indices yield duplicated values
     x[c(1, 1)]
     ```
@@ -158,6 +169,7 @@ There are five things that you can use to subset a vector:
     ```
     
     ```r
+    # 実数はは警告無く整数に丸められる
     # Real numbers are silently truncated to integers
     x[c(2.1, 2.9)]
     ```
@@ -166,7 +178,12 @@ There are five things that you can use to subset a vector:
     ## [1] 4.2 4.2
     ```
 
+```
 *   __Negative integers__ omit elements at the specified positions:
+    \index{subsetting!with negative integers}
+```
+
+*   __負の整数による指定(Negative integers)__ は指定した位置以外の値を返す:
     \index{subsetting!with negative integers}
 
     
@@ -178,7 +195,10 @@ There are five things that you can use to subset a vector:
     ## [1] 4.2 5.4
     ```
 
+```
     You can't mix positive and negative integers in a single subset:
+```
+なお、同一のデータ抽出操作内で正と負を混ぜた形での指定はできない。
 
     
     ```r
@@ -189,10 +209,15 @@ There are five things that you can use to subset a vector:
     ## Error in x[c(-1, 2)]:  負の添字と混在できるのは 0 という添字だけです
     ```
 
+```
 *   __Logical vectors__ select elements where the corresponding logical 
     value is `TRUE`. This is probably the most useful type of subsetting
     because you write the expression that creates the logical vector:
     \index{subsetting!with logical vectors}
+```
+
+*   __論理値による指定(Logical vectors)__ は`TRUE`が対応する 位置にある要素が抽出される。
+これはデータ抽出の方法の中で最も有用である。なぜなら以下の例のような形で論理型のベクトルを生成するような式を書きさえすればデータ抽出が可能になるからである。\index{subsetting!with logical vectors}
 
     
     ```r
@@ -211,8 +236,12 @@ There are five things that you can use to subset a vector:
     ## [1] 4.2 3.3 5.4
     ```
 
+```
     If the logical vector is shorter than the vector being subsetted, it 
     will be _recycled_ to be the same length.
+```
+
+もし指定する論理型のベクトルがデータ抽出しようとする対象のベクトルより短い場合は同じ長さになるように _リサイクル処理(recycled)_ がかけられる。
 
     
     ```r
@@ -224,6 +253,7 @@ There are five things that you can use to subset a vector:
     ```
     
     ```r
+    # 下記と同じ意味を表す
     # Equivalent to
     x[c(TRUE, FALSE, TRUE, FALSE)]
     ```
