@@ -571,9 +571,13 @@ There are also two additional subsetting operators that are needed for S4 object
 
 S4オブジェクトからデータ抽出を行う際の演算子としてこれまで紹介してきたものの他に2つ新しいものを紹介しておこう。`$`と同様の働きをもつ`@`と、`[[`と同様の働きをもつ`slot()`だ。`a`は指定したスロットが存在しない場合エラーを返すという点で`$`に比べると制限が強い。これらの演算子については[the OO field guide](#s4)で詳しく述べる。\index{subsetting!S4} \index{S4!subsetting} \indexc{@}
 
-### Exercises
+### エクササイズ(Exercises)
 
+```
 1.  Fix each of the following common data frame subsetting errors:
+```
+
+1.  データフレームからデータ抽出する際によく見られる下記のエラーを修正しなさい。
 
     
     ```r
@@ -583,11 +587,20 @@ S4オブジェクトからデータ抽出を行う際の演算子としてこれ
     mtcars[mtcars$cyl == 4 | 6, ]
     ```
 
+```
 1.  Why does `x <- 1:5; x[NA]` yield five missing values? (Hint: why is 
     it different from `x[NA_real_]`?)
+```
 
+なぜ`x <- 1:5; x[NA]`の結果は5つの欠損値(NA)となるのか？(ヒント：`x[NA_real_]`との違いを考える)
+
+```
 1.  What does `upper.tri()` return? How does subsetting a matrix with it 
     work? Do we need any additional subsetting rules to describe its behaviour?
+```
+
+1.  `upper.tri()`はどのような結果を返すか？この関数を用いた行列からのデータ抽出はどんな挙動を示すか？
+この挙動を説明するために追加のデータ抽出ルールが必要か？
 
     
     ```r
