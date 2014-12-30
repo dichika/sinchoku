@@ -978,9 +978,13 @@ str(x[NULL])
 ##  int(0)
 ```
 
+```
 The following table summarises the results of subsetting atomic vectors and lists with `[` and `[[` and different types of OOB value.
+```
 
-| Operator | Index       | Atomic      | List          |
+以下の表はアトムおよびリストから、各種添字を用いて`[`および`[[`によってデータ抽出した際の結果を示している。
+
+| 演算子(Operator) | 添字の種類(Index)       | アトムに適用した場合(Atomic)      | リストに適用した場合(List)          |
 |----------|-------------|-------------|---------------|
 | `[`      | OOB         | `NA`        | `list(NULL)`  |
 | `[`      | `NA_real_`  | `NA`        | `list(NULL)`  |
@@ -989,7 +993,11 @@ The following table summarises the results of subsetting atomic vectors and list
 | `[[`     | `NA_real_`  | Error       | `NULL`        |
 | `[[`     | `NULL`      | Error       | Error         |
 
+```
 If the input vector is named, then the names of OOB, missing, or `NULL` components will be `"<NA>"`.
+```
+
+入力ベクトルが名前付きだった場合、範囲外、欠損、`NULL`の名前は`"<NA>"`となる。
 
 
 
