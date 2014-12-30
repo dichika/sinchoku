@@ -1203,7 +1203,10 @@ info <- data.frame(
 )
 ```
 
+```
 We want to duplicate the info table so that we have a row for each value in `grades`. We can do this in two ways, either using `match()` and integer subsetting, or `rownames()` and character subsetting: \indexc{match()}
+```
+ここではinfoテーブルを`grades`の各行の値に紐づけたい。方法は2つあり、一方は`match()`と整数値によるデータ抽出を用いる方法、もう一つは`rownames()`と文字列によるデータ抽出を用いる方法である。\indexc{match()}
 
 
 ```r
@@ -1215,6 +1218,7 @@ grades
 ```
 
 ```r
+# matchを用いる方法
 # Using match
 id <- match(grades, info$grade)
 info[id, ]
@@ -1230,6 +1234,7 @@ info[id, ]
 ```
 
 ```r
+# rownamesを用いる方法
 # Using rownames
 rownames(info) <- info$grade
 info[as.character(grades), ]
