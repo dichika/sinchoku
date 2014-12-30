@@ -636,13 +636,21 @@ There are two other subsetting operators: `[[` and `$`. `[[` is similar to `[`, 
 
 データ抽出演算子は`[`の他に`[[`と`$`の2つがある。`[[`は`[`と似ているが、一つの値しか返さない、リストから値を抽出して構成要素のデータ構造として結果を返す、という点で異なる。`$`は文字列を用いた`[[`の有用な略記法である。 \indexc{[[} \indexc{\$}
 
-
+```
 You need `[[` when working with lists. This is because when `[` is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need `[[`:
+```
 
+リストからデータ抽出を行う場合は`[[`を用いる必要がある。なぜなら`[`はリストの形で結果を返し、リストに含まれるデータ構造の形(ベクトルなど)で返すわけではないからである。リストに含まれるデータ構造の形で結果を得たい場合は`[[`を用いる必要がある。
+
+```
 >  "If list `x` is a train carrying objects, then `x[[5]]` is
 > the object in car 5; `x[4:6]` is a train of cars 4-6." 
 >
 > --- @RLangTip
+```
+
+>  リスト`x`を列車に例えるなら`x[[5]]`は5つ目の車両の客を、`x[4:6]`は4-6番目の車両を示している。
+>  --- @RLangTip
 
 Because it can return only a single value, you must use `[[` with either a single positive integer or a string: \index{subsetting!lists} \index{lists!subsetting}
 
