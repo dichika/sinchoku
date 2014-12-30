@@ -652,7 +652,11 @@ You need `[[` when working with lists. This is because when `[` is applied to a 
 >  リスト`x`を列車に例えるなら`x[[5]]`は5つ目の車両の客を、`x[4:6]`は4-6番目の車両を示している。
 >  --- @RLangTip
 
+```
 Because it can return only a single value, you must use `[[` with either a single positive integer or a string: \index{subsetting!lists} \index{lists!subsetting}
+```
+
+`[[`は一つの値しか返さないため、一つの正の整数値もしくは文字列を用いる必要がある。 \index{subsetting!lists} \index{lists!subsetting}
 
 
 ```r
@@ -673,6 +677,7 @@ a[["a"]]
 ```
 
 ```r
+# ベクトルを指定した場合、再帰的に用いられる
 # If you do supply a vector it indexes recursively
 b <- list(a = list(b = list(c = list(d = 1))))
 b[[c("a", "b", "c", "d")]]
@@ -691,7 +696,11 @@ b[["a"]][["b"]][["c"]][["d"]]
 ## [1] 1
 ```
 
+```
 Because data frames are lists of columns, you can use `[[` to extract a column from data frames: `mtcars[[1]]`, `mtcars[["cyl"]]`. \index{subsetting!data frames} \index{data frames!subsetting}
+```
+
+データフレームは列方向に並んだリストであるため、データフレームから列単位でデータ抽出する際、以下のように`[[`を用いることができる:`mtcars[[1]]`, `mtcars[["cyl"]]`。\index{subsetting!data frames} \index{data frames!subsetting}
 
 S3 and S4 objects can override the standard behaviour of `[` and `[[` so they behave differently for different types of objects. The key difference is usually how you select between simplifying or preserving behaviours, and what the default is.
 
