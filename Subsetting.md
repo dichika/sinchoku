@@ -159,7 +159,7 @@ There are five things that you can use to subset a vector:
     ```
     
     ```r
-    # 重複したインデックスは値を重複して呼び出す
+    # 重複した添字は値を重複して呼び出す
     # Duplicated indices yield duplicated values
     x[c(1, 1)]
     ```
@@ -262,7 +262,11 @@ There are five things that you can use to subset a vector:
     ## [1] 2.1 3.3
     ```
 
+```
     A missing value in the index always yields a missing value in the output:
+```
+
+添字において欠損値(NA)を用いると出力結果にも欠損値が生じる。
 
     
     ```r
@@ -273,9 +277,13 @@ There are five things that you can use to subset a vector:
     ## [1] 2.1 4.2  NA
     ```
 
+```
 *   __Nothing__ returns the original vector. This is not useful 
    for vectors but is very useful for matrices, data frames, and arrays. It 
    can also be useful in conjunction with assignment.
+```
+
+*   __何も指定しない場合(Nothing)__ は元のベクトルを返す。これはベクトルに用いる際は有用ではないが、行列やデータフレーム、配列に適用する場合には非常に有用なものとなる。またアサインメントと組み合わせても同様に有用である。
 
     
     ```r
@@ -286,8 +294,12 @@ There are five things that you can use to subset a vector:
     ## [1] 2.1 4.2 3.3 5.4
     ```
 
+```
 *   __Zero__ returns a zero-length vector. This is not something you 
     usually do on purpose, but it can be helpful for generating test data.
+```
+
+*   __0による指定(Zero)__ は長さ0のベクトルを返す。この方法をわざわざ使うことは少ないが、テストデータを生成する際は有用である。
 
     
     ```r
@@ -298,51 +310,60 @@ There are five things that you can use to subset a vector:
     ## numeric(0)
     ```
 
+```
 If the vector is named, you can also use:
 
 *   __Character vectors__ to return elements with matching names.
     \index{subsetting!with character vectors}
+```
 
-    
-    ```r
+もしベクトルが名前付きのものであるなら、以下の指定も使える:
+
+*  __文字列ベクトルによる指定(Character vectors)__ は名前が一致する要素を返す。
+    \index{subsetting!with character vectors}
+
+
+```r
     (y <- setNames(x, letters[1:4]))
-    ```
-    
-    ```
-    ##   a   b   c   d 
-    ## 2.1 4.2 3.3 5.4
-    ```
-    
-    ```r
+```
+
+```
+##   a   b   c   d 
+## 2.1 4.2 3.3 5.4
+```
+
+```r
     y[c("d", "c", "a")]
-    ```
-    
-    ```
-    ##   d   c   a 
-    ## 5.4 3.3 2.1
-    ```
-    
-    ```r
+```
+
+```
+##   d   c   a 
+## 5.4 3.3 2.1
+```
+
+```r
+    # 整数添字による指定と同様に、同じ添字を繰り返して用いることもできる
     # Like integer indices, you can repeat indices
     y[c("a", "a", "a")]
-    ```
-    
-    ```
-    ##   a   a   a 
-    ## 2.1 2.1 2.1
-    ```
-    
-    ```r
+```
+
+```
+##   a   a   a 
+## 2.1 2.1 2.1
+```
+
+```r
+    # [を用いてデータ抽出する際は、名前は正確に一致している必要がある
     # When subsetting with [ names are always matched exactly
     z <- c(abc = 1, def = 2)
     z[c("a", "d")]
-    ```
-    
-    ```
-    ## <NA> <NA> 
-    ##   NA   NA
-    ```
+```
 
+```
+## <NA> <NA> 
+##   NA   NA
+```
+99999
 ### Lists
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.  \index{lists!subsetting} \index{subsetting!lists}
