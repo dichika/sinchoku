@@ -1255,17 +1255,23 @@ If you have multiple columns to match on, you'll need to first collapse them to 
 
 もし複数列がマッチするようなら、まず最初にそれらを1つずつの列に強制変換する必要がある(この際、`interaction()`、`paste()`、`plyr::id()`を用いる)。また、`merge()`や`plyr::join()`を用いるという手もある。これらの関数がどのように実装されているかソースコードを確認してみてほしい。
 
-### Random samples/bootstrap (integer subsetting)
+### ランダムサンプリング/ブートストラップ(整数値によるデータ抽出)(Random samples/bootstrap (integer subsetting))
 
+```
 You can use integer indices to perform random sampling or bootstrapping of a vector or data frame. `sample()` generates a vector of indices, then subsetting to access the values: \indexc{sample()} \index{sampling} \index{random sampling} \index{bootstrapping}
+```
+
+ベクトルやデータフレームに対してランダムサンプリングやブートストラップを行う際、整数値による添字が使える。`sample()`は添字ベクトルを生成するのでこれを用いて値にアクセスできる。 \indexc{sample()} \index{sampling} \index{random sampling} \index{bootstrapping}
 
 
 ```r
 df <- data.frame(x = rep(1:3, each = 2), y = 6:1, z = letters[1:6])
 
+# 再現性を保つために乱数の種を設定する
 # Set seed for reproducibility
 set.seed(10)
 
+# ランダムに並び替える
 # Randomly reorder
 df[sample(nrow(df)), ]
 ```
@@ -1281,6 +1287,7 @@ df[sample(nrow(df)), ]
 ```
 
 ```r
+# ランダムに3行抽出する
 # Select 3 random rows
 df[sample(nrow(df), 3), ]
 ```
@@ -1293,6 +1300,7 @@ df[sample(nrow(df), 3), ]
 ```
 
 ```r
+# ブートストラップで6行抽出する
 # Select 6 bootstrap replicates
 df[sample(nrow(df), 6, rep = T), ]
 ```
@@ -1307,7 +1315,11 @@ df[sample(nrow(df), 6, rep = T), ]
 ## 3.1 2 4 c
 ```
 
+```
 The arguments of `sample()` control the number of samples to extract, and whether sampling is performed with or without replacement.
+```
+
+`sample()`の引数では、サンプルサイズおよびサンプリングを復元的もしくは非復元的に行うかをコントロールできる。
 
 ### Ordering (integer subsetting)
 
