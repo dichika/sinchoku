@@ -96,7 +96,7 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 * [データ型(Data types)](#data-types) :この項では`[`の使い方から始める。
 アトムからデータ抽出する際に用いる6つのデータ型を学んだ上で、それらがリスト、行列、データフレーム、S3オブジェクトを対象とした場合にどのような挙動を示すかを学ぶ。
 
-* [データ抽出演算子(Subsetting operators)](#subsetting-operators):この項では、`[[`および`$`といったデータ抽出演算子について知識を深める。特に簡潔性(simplyfying)と一貫性(preserving)に焦点を当てる。
+* [データ抽出演算子(Subsetting operators)](#subsetting-operators):この項では、`[[`および`$`といったデータ抽出演算子について知識を深める。特に簡易化された形でのデータ抽出(simplyfying)もしくは元の構造を保った形でのデータ抽出(preserving)に焦点を当てる。
 
 * [データ抽出とアサインメント(Subsetting and assignment)](#subassignment):この項では、アサインメントとデータ抽出を組み合わせたオブジェクトの変更方法について学ぶ(to modify parts 
   of an object)。
@@ -708,9 +708,13 @@ S3 and S4 objects can override the standard behaviour of `[` and `[[` so they be
 
 S3およびS4オブジェクトにおいては`[`、`[[`はオーバーライドされており、オブジェクトのタイプによって異なる挙動を示す。主な違いとして、簡易化された形もしくは元の構造を保った形のどちらを選ぶか、デフォルトではどちらかというものがある。
 
-### Simplifying vs. preserving subsetting {#simplify-preserve}
+### 簡易化された形/元の構造を保った形でのデータ抽出(Simplifying vs. preserving subsetting) {#simplify-preserve}
 
+```
 It's important to understand the distinction between simplifying and preserving subsetting. Simplifying subsets returns the simplest possible data structure that can represent the output, and is useful interactively because it usually gives you what you want. Preserving subsetting keeps the structure of the output the same as the input, and is generally better for programming because the result will always be the same type. Omitting `drop = FALSE` when subsetting matrices and data frames is one of the most common sources of programming errors. (It will work for your test cases, but then someone will pass in a single column data frame and it will fail in an unexpected and unclear way.) \indexc{drop = FALSE} \index{subsetting!simplifying} \index{subsetting!preserving}
+```
+
+簡易化された形と元の構造を保った形でのデータ抽出の違いを理解しておくことは重要である。前者はその出力結果を最もシンプルな形で表現できるデータ構造でもって結果を返す。これは欲しい形で結果が得られるため、対話的にRを使っている(interactiveley)際に有用である。後者は、入力データと同じデータ構造で結果を返す。これは結果が常に入力と同じ形で返ってくるため、バッチ処理でRを使っている(programming)際に有用である。行列やデータフレームからデータ抽出を行う際、`drop = FALSE`を忘れてしまうというのはよくあるエラー原因の一つである。(テストケースではうまくいくものの、1列しかないデータフレームを渡すと予期しない形やエラー原因が不明確な形で失敗する。) \indexc{drop = FALSE} \index{subsetting!simplifying} \index{subsetting!preserving}
 
 Unfortunately, how you switch between simplifying and preserving differs for different data types, as summarised in the table below.
 
