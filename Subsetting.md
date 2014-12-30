@@ -111,7 +111,7 @@ It's easiest to learn how subsetting works for atomic vectors, and then how it g
 
 データ抽出について学ぶには、アトムに対するデータ抽出の仕組みについて知った上で、行列やリストといったより高次元のデータ構造やさらに複雑なオブジェクトに対して一般化していくのが最も簡単な方法である。本項では`[`という頻用される演算子の説明から始める。なお、`[[`および`$`については次項([データ抽出演算子(Subsetting operators)](#subsetting-operators))で説明する。
 
-### アトム(Atomic vectors)
+### アトムからのデータ抽出(Atomic vectors)
 
 ```
 Let's explore the different types of subsetting with a simple vector, `x`. \index{subsetting!atomic vectors} \index{atomic vectors!subsetting} \indexc{[}
@@ -363,13 +363,18 @@ If the vector is named, you can also use:
 ## <NA> <NA> 
 ##   NA   NA
 ```
-99999
-### Lists
 
+### リストからのデータ抽出(Lists)
+
+```
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.  \index{lists!subsetting} \index{subsetting!lists}
+```
 
-### Matrices and arrays {#matrix-subsetting}
+リストからのデータ抽出にはアトムからのデータ抽出と同様の方法を用いることができる。なお、`[`はリストをその結果として返す一方、`[[`や`$`は後ほど詳しく説明するが、そのリストの構成要素の形で結果を返す。
 
+### 行列や配列からのデータ抽出(Matrices and arrays){#matrix-subsetting}
+
+```
 You can subset higher-dimensional structures in three ways: \index{subsetting!arrays} \index{arrays!subsetting}
 
 * With multiple vectors.
@@ -377,6 +382,15 @@ You can subset higher-dimensional structures in three ways: \index{subsetting!ar
 * With a matrix.
 
 The most common way of subsetting matrices (2d) and arrays (>2d) is a simple generalisation of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
+```
+
+行列や配列といった高次元のデータ構造については以下の3つの方法でデータ抽出を行える。\index{subsetting!arrays} \index{arrays!subsetting}
+
+* 複数のベクトルによる指定
+* 一つのベクトルによる指定
+* 行列による指定
+
+行列(2次元)、配列(2次元以上)からのデータ抽出に際してもっともよく使う方法は、1次元(アトム)のデータからデータ抽出と同様のものである。つまり、1次元の添字を各次元に対して、カンマで区切って指定する。空白による指定がここでは重要になってくる。なぜなら空白による指定は、全ての行または列を返すからである。
 
 
 ```r
@@ -408,6 +422,7 @@ a[0, -2]
 ```
 ##      A C
 ```
+99999
 
 By default, `[` will simplify the results to the lowest possible dimensionality. See [simplifying vs. preserving](#simplify-preserve) to learn how to avoid this.
 
