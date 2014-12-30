@@ -914,7 +914,11 @@ mtcars[[var]]
 ##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
 ```
 
+```
 There's one important difference between `$` and `[[`. `$` does partial matching:
+```
+
+`$`と`[[`の違いで重要なものに`$`は名前の部分一致を許すというものがある。
 
 
 ```r
@@ -934,11 +938,19 @@ x[["a"]]
 ## NULL
 ```
 
+```
 If you want to avoid this behaviour you can set the global option `warnPartialMatchDollar` to `TRUE`. Use with caution: it may affect behaviour in other code you have loaded (e.g., from a package).
+```
 
-### Missing/out of bounds indices
+もし部分一致を許したくない場合は、グローバルオプションにおいて`warnPartialMatchDollar=TRUE`とするとよい。ただしグローバルオプションに設定すると、外部パッケージを使用する時など他のコードにも影響を及ぼすので注意して使うこと。
 
+### 欠損/範囲外の添字(Missing/out of bounds indices)
+
+```
 `[` and `[[` differ slightly in their behaviour when the index is out of bounds (OOB), for example, when you try to extract the fifth element of a length four vector, or subset a vector with `NA` or `NULL`: \index{subsetting!with NA \& NULL} \index{subsetting!out of bounds}
+```
+
+`[`および`[[`は添字が範囲外にある際の挙動が若干異なる。例えば、長さが4のベクトルにおいて5番目の要素を抽出しようとした場合、もしくは`NA`や`NULL`を用いてベクトルからデータ抽出を行おうとした場合をみてみよう。\index{subsetting!with NA \& NULL} \index{subsetting!out of bounds}
 
 
 ```r
