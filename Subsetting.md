@@ -1578,14 +1578,24 @@ subset(mtcars, gear == 5 & cyl == 4)
 ## 28 30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
 ```
 
-### Boolean algebra vs. sets (logical & integer subsetting)
+### ブール代数と集合(論理値および整数値を用いたデータ抽出)(Boolean algebra vs. sets (logical & integer subsetting))
 
+```
 It's useful to be aware of the natural equivalence between set operations (integer subsetting) and boolean algebra (logical subsetting). Using set operations is more effective when: \index{Boolean algebra} \index{set algebra}
+```
 
+集合演算子(整数値によるデータ抽出)とブール代数(論理値によるデータ抽出)の等価である点を知っておくと有用である。以下のような場面では集合演算を用いるとより効果的である。
+
+```
 * You want to find the first (or last) `TRUE`.
 
 * You have very few `TRUE`s and very many `FALSE`s; a set representation 
   may be faster and require less storage.
+```
+
+* 最初に(あるいは最後に)`TRUE`となるデータを見つけたい時
+
+* ごくわずかの `TRUE` と たくさんの`FALSE` が含まれている時。この時、集合演算を用いた方が計算が速く、要求ストレージ量も少なくすむ。
 
 `which()` allows you to convert a boolean representation to an integer representation. There's no reverse operation in base R but we can easily create one: \indexc{which()}
 
