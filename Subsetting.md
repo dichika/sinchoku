@@ -1184,9 +1184,13 @@ If you don't want names in the result, use `unname()` to remove them.
 
 もし名前付きの結果が欲しくない場合は`unname`を使うとよい。
 
-### Matching and merging by hand (integer subsetting) {#matching-merging}
+### マッチングおよび結合(整数値によるデータ抽出)Matching and merging by hand (integer subsetting) {#matching-merging}
 
+```
 You may have a more complicated lookup table which has multiple columns of information. Suppose we have a vector of integer grades, and a table that describes their properties: \index{matching \& merging}
+```
+
+複数の列をもつような、複雑なルックアップテーブルがある場合もある。ここでは整数値で成績を表したベクトルと、その成績の詳細を説明したテーブルがある例を考えてみよう。 \index{matching \& merging}
 
 
 ```r
