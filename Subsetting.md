@@ -554,14 +554,22 @@ str(df[, "x"]) # 行列と同様の方法
 ```
 ##  int [1:3] 1 2 3
 ```
-99999
-### S3 objects
 
+### S3オブジェクトからのデータ抽出(S3 objects)
+
+```
 S3 objects are made up of atomic vectors, arrays, and lists, so you can always pull apart an S3 object using the techniques described above and the knowledge you gain from `str()`. \index{subsetting!S3} \index{S3!subsetting}
+```
 
-### S4 objects
+S3オブジェクトはアトム、配列、リストで構成されている。したがって、S3オブジェクトの内容について情報を得る場合は、これまで解説してきたような方法および`str()`を用いると良い。 \index{S3!subsetting}
 
+### S4オブジェクトからのデータ抽出(S4 objects)
+
+```
 There are also two additional subsetting operators that are needed for S4 objects: `@` (equivalent to `$`), and `slot()` (equivalent to `[[`). `@` is more restrictive than `$` in that it will return an error if the slot does not exist. These are described in more detail in [the OO field guide](#s4). \index{subsetting!S4} \index{S4!subsetting} \indexc{@}
+```
+
+S4オブジェクトからデータ抽出を行う際の演算子としてこれまで紹介してきたものの他に2つ新しいものを紹介しておこう。`$`と同様の働きをもつ`@`と、`[[`と同様の働きをもつ`slot()`だ。`a`は指定したスロットが存在しない場合エラーを返すという点で`$`に比べると制限が強い。これらの演算子については[the OO field guide](#s4)で詳しく述べる。\index{subsetting!S4} \index{S4!subsetting} \indexc{@}
 
 ### Exercises
 
