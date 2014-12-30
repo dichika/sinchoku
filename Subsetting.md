@@ -1497,9 +1497,13 @@ df[setdiff(names(df), "z")]
 ## 3 3 1
 ```
 
-### Selecting rows based on a condition (logical subsetting)
+### 条件に応じて行を抽出する(論理値を用いたデータ抽出)(Selecting rows based on a condition (logical subsetting))
 
+```
 Because it allows you to easily combine conditions from multiple columns, logical subsetting is probably the most commonly used technique for extracting rows out of a data frame. \index{subsetting!with logical vectors}
+```
+
+論理値によるデータ抽出は、データフレームから行を抽出する際にもっともよく使われる方法である。なぜならば、論理値を用いることで複数列の抽出条件を組み合わせることが用意になるからである。\index{subsetting!with logical vectors}
 
 
 ```r
@@ -1525,7 +1529,11 @@ mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
 ## 28 30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
 ```
 
+```
 Remember to use the vector boolean operators `&` and `|`, not the short-circuiting scalar operators `&&` and `||` which are more useful inside if statements. Don't forget [De Morgan's laws][demorgans], which can be useful to simplify negations:
+```
+
+この際、if文の中でよく使われるショートサーキットスカラー演算子の`&&`および`||`ではなくベクトルブール演算子(`&`および`|`)を用いることを覚えておいてほしい。
 
 * `!(X & Y)` is the same as `!X | !Y`
 * `!(X | Y)` is the same as `!X & !Y`
