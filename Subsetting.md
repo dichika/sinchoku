@@ -1739,38 +1739,71 @@ When first learning subsetting, a common mistake is to use `x[which(y)]` instead
 
 データ抽出に不慣れな頃によくあるミスとして`x[y]`の代わりに`x[which(y)]`を用いてしまうというものがある。この場合、`which()`は何の意味ももたない。論理値から整数値を用いたデータ抽出に変換しているものの結果はいずれにせよ同じである。また`x[-which(y)]` は `x[!y]` と等価 __ではない__ ことにも注意しておきたい。もし `y` が全てFALSEだった場合、`which(y)`は `integer(0)` という結果を返し、`-integer(0)` と `integer(0)` は同じであるため、本来なら全ての値が結果として返ってくるところ、空の結果が返ってくるという結果になる。一般的に論理値から整数値によるデータ抽出は、最初もしくは最後の`TRUE`となる値を得たいといった場面以外では避けた方が良い。
 
-### Exercises
+### エクササイズ(Exercises)
 
+```
 1.  How would you randomly permute the columns of a data frame? (This is an
     important technique in random forests.) Can you simultaneously permute 
     the rows and columns in one step?
+```
 
+1.  どのようにすればデータフレームの列をランダムに並べ替えることができるか？(これはランダムフォレストを実装する上で必要なテクニックである。)また一度に行と列を並べ替えることはできるか？
+
+```
 1.  How would you select a random sample of `m` rows from a data frame? 
     What if the sample had to be contiguous (i.e., with an initial row, a 
     final row, and every row in between)?
-    
+```
+
+1.  データフレームから`m`個の行をランダムサンプリングするにはどうしたらよいか？さらにランダムサンプリングしてくる行が全て隣接してひと固まりに取得できるようにするにはどうしたらよいか?
+
+```
 1.  How could you put the columns in a data frame in alphabetical order?
+```
 
-## Answers {#subsetting-answers}
+1.  データフレームの列名をアルファベット順に並べるにはどうしたらよいか?
 
+## 解答(Answers) {#subsetting-answers}
+
+```
 1.  Positive integers select elements at specific positions, negative integers
     drop elements; logical vectors keep elements at positions corresponding to
     `TRUE`; character vectors select elements with matching names.
-   
+```
+
+1.  正の整数値は指定した位置の要素を抽出し、負の整数値は指定した位置の要素を除く。論理値ベクトルは`TRUE`に対応した位置の要素を抽出し、文字列ベクトルは名前が一致した要素を抽出する。
+
+```
 1.  `[` selects sub-lists. It always returns a list; if you use it with a
     single positive integer, it returns a list of length one. `[[` selects 
     an element within a list. `$` is a convenient shorthand: `x$y` is
     equivalent to `x[["y"]]`.
+```
 
+1.  `[`はサブリストを抽出する。これは通常リストである。例えば正の整数値1つで添字を指定した場合、長さ1のリストを返す。`[[`はリスト内部の要素を返す。`$`は`[[`の便利な省略形である。例えば`x$y` は X[["y"]]と等価である。
+
+```
 1.  Use `drop = FALSE` if you are subsetting a matrix, array, or data frame 
     and you want to preserve the original dimensions. You should almost 
     always use it when subsetting inside a function.
-   
+```
+
+1.  行列、配列、データフレームからデータ抽出を行い、なおかつ元の次元数を保ちたい場合は `drop = FALSE` を用いる。ほとんど全ての場合、関数内で利用する。
+
+```
 1.  If `x` is a matrix, `x[] <- 0` will replace every element with 0, 
     keeping the same number of rows and columns. `x <- 0` completely 
     replaces the matrix with the value 0.
-    
+```
+
+1.  `x`が行列の場合、`x[] <- 0`は行数及び列数を保ったまま全ての要素を0に置き換える。`x <- 0` は行列そのものを0という値に置き換えてしまう。
+
+```
 1.  A named character vector can act as a simple lookup table: 
     `c(x = 1, y = 2, z = 3)[c("y", "z", "x")]`
+```
 
+1.  名前付きのベクトルは、以下のように簡単なルックアップテーブルとして使える。
+    `c(x = 1, y = 2, z = 3)[c("y", "z", "x")]`
+    
 [demorgans]: http://en.wikipedia.org/wiki/De_Morgan's_laws
