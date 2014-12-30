@@ -1001,13 +1001,17 @@ If the input vector is named, then the names of OOB, missing, or `NULL` componen
 
 
 
-### Exercises
+### エクササイズ(Exercises)
 
+```
 1.  Given a linear model, e.g., `mod <- lm(mpg ~ wt, data = mtcars)`, extract
     the residual degrees of freedom. Extract the R squared from the model
     summary (`summary(mod)`)
 
 <!-- FIXME: more examples -->
+```
+
+1.  `mod <- lm(mpg ~ wt, data = mtcars)`のような線形モデルが与えられた場合、残差自由度はどのように抽出するか。また、`summary(mod)`によって得られたモデルのサマリーからR2値を取り出すにはどうするか？
 
 ## Subsetting and assignment {#subassignment}
 
