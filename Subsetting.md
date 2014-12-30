@@ -608,17 +608,34 @@ S4オブジェクトからデータ抽出を行う際の演算子としてこれ
     x[upper.tri(x)]
     ```
 
+```
 1.  Why does `mtcars[1:20]` return a error? How does it differ from the 
     similar `mtcars[1:20, ]`?
+```
 
+1.  なぜ`mtcars[1:20]`はエラーを返すのか？`mtcars[1:20, ]`との違いは何か？
+
+```
 1.  Implement your own function that extracts the diagonal entries from a
     matrix (it should behave like `diag(x)` where `x` is a matrix).
+```
 
+1.  行列の対角要素を取り出す関数(`diag(x)`と同様の挙動を示すような)を定義しなさい。
+
+```
 1.  What does `df[is.na(df)] <- 0` do? How does it work?
+```
 
-## Subsetting operators {#subsetting-operators}
+1.  `df[is.na(df)] <- 0`の結果はどうなるか？どのような挙動をしているか？
 
+## データ抽出演算子(Subsetting operators) {#subsetting-operators}
+
+```
 There are two other subsetting operators: `[[` and `$`. `[[` is similar to `[`, except it can only return a single value and it allows you to pull pieces out of a list. `$` is a useful shorthand for `[[` combined with character subsetting. \indexc{[[} \indexc{\$}
+```
+
+データ抽出演算子は`[`の他に`[[`と`$`の2つがある。`[[`は`[`と似ているが、一つの値しか返さない、リストから値を抽出して構成要素のデータ構造として結果を返す、という点で異なる。`$`は文字列を用いた`[[`の有用な略記法である。 \indexc{[[} \indexc{\$}
+
 
 You need `[[` when working with lists. This is because when `[` is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need `[[`:
 
