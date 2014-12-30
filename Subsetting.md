@@ -1271,7 +1271,7 @@ df <- data.frame(x = rep(1:3, each = 2), y = 6:1, z = letters[1:6])
 # Set seed for reproducibility
 set.seed(10)
 
-# ランダムに並び替える
+# ランダムに並べ替える
 # Randomly reorder
 df[sample(nrow(df)), ]
 ```
@@ -1321,9 +1321,13 @@ The arguments of `sample()` control the number of samples to extract, and whethe
 
 `sample()`の引数では、サンプルサイズおよびサンプリングを復元的もしくは非復元的に行うかをコントロールできる。
 
-### Ordering (integer subsetting)
+### 並べ替え(整数値によるデータ抽出)(Ordering (integer subsetting))
 
+```
 `order()` takes a vector as input and returns an integer vector describing how the subsetted vector should be ordered: \indexc{order()} \index{sorting}
+```
+
+`order()`はベクトルを入力にとり、データ抽出の対象となるベクトルの並び順についての整数値ベクトルを返す。 \indexc{order()} \index{sorting}
 
 
 ```r
@@ -1343,12 +1347,21 @@ x[order(x)]
 ## [1] "a" "b" "c"
 ```
 
+```
 To break ties, you can supply additional variables to `order()`, and you can change from ascending to descending order using `decreasing = TRUE`.  By default, any missing values will be put at the end of the vector; however, you can remove them with `na.last = NA` or put at the front with `na.last = FALSE`.
+```
 
+同順を無くすために、`order()`に対して複数の変数を追加できる、そしてその上で引数を`decreasing=TRUE`とすると昇順から降順に変更できる。またデフォルトでは欠損値はベクトルの最後に並ぶようになっているが、引数に`na.last = NA`と指定することでそれを除くことができる。欠損値をベクトルの最初に並べたい場合は`na.last = FALSE`と指定する。
+
+```
 For two or more dimensions, `order()` and integer subsetting makes it easy to order either the rows or columns of an object:
+```
+
+2次元以上のデータ構造に適用する場合、`order()`と整数値によるデータ抽出を用いることでオブジェクトの行及び列の並べ替えが楽になる。
 
 
 ```r
+# dfをランダムに並べ替える
 # Randomly reorder df
 df2 <- df[sample(nrow(df)), 3:1]
 df2
@@ -1392,7 +1405,11 @@ df2[, order(names(df2))]
 ## 5 3 2 e
 ```
 
+```
 More concise, but less flexible, functions are available for sorting vectors, `sort()`, and data frames, `plyr::arrange()`. \indexc{sort()}
+```
+
+柔軟性は減るもののより操作が簡潔な関数としてベクトルの場合は`sort()`、データフレームの場合は`plyr::arrange()`がある。 \indexc{sort()}
 
 ### Expanding aggregated counts (integer subsetting)
 
