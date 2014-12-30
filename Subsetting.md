@@ -716,19 +716,30 @@ It's important to understand the distinction between simplifying and preserving 
 
 簡易化された形と元の構造を保った形でのデータ抽出の違いを理解しておくことは重要である。前者はその出力結果を最もシンプルな形で表現できるデータ構造でもって結果を返す。これは欲しい形で結果が得られるため、対話的にRを使っている(interactiveley)際に有用である。後者は、入力データと同じデータ構造で結果を返す。これは結果が常に入力と同じ形で返ってくるため、バッチ処理でRを使っている(programming)際に有用である。行列やデータフレームからデータ抽出を行う際、`drop = FALSE`を忘れてしまうというのはよくあるエラー原因の一つである。(テストケースではうまくいくものの、1列しかないデータフレームを渡すと予期しない形やエラー原因が不明確な形で失敗する。) \indexc{drop = FALSE} \index{subsetting!simplifying} \index{subsetting!preserving}
 
+```
 Unfortunately, how you switch between simplifying and preserving differs for different data types, as summarised in the table below.
+```
 
-|             | Simplifying               | Preserving                                   |
+残念ながら、簡易化された形と元の構造を保った形でのデータ抽出の切り替え方は以下の表に示すようにデータ型によって異なる。
+
+|             | 簡易化された形(Simplifying)               | 元の構造を保った形(Preserving)                                   |
 |-------------|---------------------------|----------------------------------------------|
-| Vector      | `x[[1]]`                  | `x[1]`                                       |
-| List        | `x[[1]]`                  | `x[1]`                                       |
-| Factor      | `x[1:4, drop = T]`        | `x[1:4]`                                     |
-| Array       | `x[1, ]` __or__ `x[, 1]`  | `x[1, , drop = F]` __or__ `x[, 1, drop = F]` |
-| Data frame  | `x[, 1]` __or__ `x[[1]]`  | `x[, 1, drop = F]` __or__ `x[1]`             |
+| ベクトル(Vector)      | `x[[1]]`                  | `x[1]`                                       |
+| リスト(List)        | `x[[1]]`                  | `x[1]`                                       |
+| 因子(Factor)      | `x[1:4, drop = T]`        | `x[1:4]`                                     |
+| 配列(Array)       | `x[1, ]` __or__ `x[, 1]`  | `x[1, , drop = F]` __or__ `x[, 1, drop = F]` |
+| データフレーム(Data frame)  | `x[, 1]` __or__ `x[[1]]`  | `x[, 1, drop = F]` __or__ `x[1]`             |
 
+```
 Preserving is the same for all data types: you get the same type of output as input. Simplifying behaviour varies slightly between different data types, as described below:
+```
+元の構造を保った形でのデータ抽出の結果は全てのデータ型で同一である、つまり入力と同じ型の出力が得られる。簡易化された形でのデータ抽出は、以下に示すようにデータ型によってやや異なる。
 
+```
 *   __Atomic vector__: removes names.
+```
+
+*  __アトムの場合(Atomic vector)__: 名前が除いた形で返す。
 
     
     ```r
@@ -749,7 +760,11 @@ Preserving is the same for all data types: you get the same type of output as in
     ## [1] 1
     ```
 
+```
 *   __List__: return the object inside the list, not a single element list.
+```
+
+*   __リストの場合(List)__: リストではなくリストに格納されているオブジェクトのデータ構造で返す。
 
     
     ```r
@@ -770,7 +785,11 @@ Preserving is the same for all data types: you get the same type of output as in
     ##  num 1
     ```
 
+```
 *   __Factor__: drops any unused levels.
+```
+
+*   __因子の場合(Factor)__: 使われていないレベルを削除して返す。
 
     
     ```r
@@ -792,8 +811,12 @@ Preserving is the same for all data types: you get the same type of output as in
     ## Levels: a
     ```
 
+```
 *   __Matrix__ or __array__: if any of the dimensions has length 1, 
     drops that dimension.
+```
+
+*   __行列(Matrix)__ または __配列(arrayの場合)__:いずれかの次元において長さが1になる場合その次元は削除した形で結果が返される。 
 
     
     ```r
@@ -814,8 +837,12 @@ Preserving is the same for all data types: you get the same type of output as in
     ## [1] 1 3
     ```
 
+```
 *   __Data frame__: if output is a single column, returns a vector instead of 
     a data frame.
+```
+
+*   __データフレームの場合(Data frame)__: 出力結果が1列になる場合、データフレームの代わりにベクトルが返る。
 
     
     ```r
@@ -853,15 +880,22 @@ Preserving is the same for all data types: you get the same type of output as in
     ##  int [1:2] 1 2
     ```
 
-### `$`
+### `$`演算子(`$`)
 
+```
 `$` is a shorthand operator, where `x$y` is equivalent to `x[["y", exact = FALSE]]`.  It's often used to access variables in a data frame, as in `mtcars$cyl` or `diamonds$carat`. \indexc{\$} \indexc{[[}
 
 One common mistake with `$` is to try and use it when you have the name of a column stored in a variable:
+```
+
+`$`は省略型の演算子であり、`x$y`は`x[["y", exact = FALSE]]`と等価である。これは、`mtcars$cyl`や`diamonds$carat`のようにデータフレーム内で変数にアクセスする際によく使われる。\indexc{\$} \indexc{[[}
+
+よくある間違いとして、アクセスしたい列名を変数に入れて`$変数`という形でアクセスしようとしまうというものがある。
 
 
 ```r
 var <- "cyl"
+# この例は機能しない。なぜならmtcars$var は mtcars[["var"]]と解釈されるからである。
 # Doesn't work - mtcars$var translated to mtcars[["var"]]
 mtcars$var
 ```
@@ -871,6 +905,7 @@ mtcars$var
 ```
 
 ```r
+# この場合$の代わりに[[を用いる
 # Instead use [[
 mtcars[[var]]
 ```
