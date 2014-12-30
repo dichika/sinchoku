@@ -1249,7 +1249,11 @@ info[as.character(grades), ]
 ## 1.1     1      Poor  TRUE
 ```
 
+```
 If you have multiple columns to match on, you'll need to first collapse them to a single column (with `interaction()`, `paste()`, or `plyr::id()`).  You can also use `merge()` or `plyr::join()`, which do the same thing for you --- read the source code to see how. \indexc{merge()}
+```
+
+もし複数列がマッチするようなら、まず最初にそれらを1つずつの列に強制変換する必要がある(この際、`interaction()`、`paste()`、`plyr::id()`を用いる)。また、`merge()`や`plyr::join()`を用いるという手もある。これらの関数がどのように実装されているかソースコードを確認してみてほしい。
 
 ### Random samples/bootstrap (integer subsetting)
 
