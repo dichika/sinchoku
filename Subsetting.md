@@ -1597,7 +1597,11 @@ It's useful to be aware of the natural equivalence between set operations (integ
 
 * ごくわずかの `TRUE` と たくさんの`FALSE` が含まれている時。この時、集合演算を用いた方が計算が速く、要求ストレージ量も少なくすむ。
 
+```
 `which()` allows you to convert a boolean representation to an integer representation. There's no reverse operation in base R but we can easily create one: \indexc{which()}
+```
+
+`which()` はブール表現を、整数値による表現に変換する関数である。この逆の処理を行う関数はRの基本実装には含まれていないが、以下のように簡単に実装できる。\indexc{which()}
 
 
 ```r
@@ -1622,7 +1626,11 @@ unwhich(which(x), 10)
 ##  [1] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
 ```
 
+```
 Let's create two logical vectors and their integer equivalents and then explore the relationship between boolean and set operations.
+```
+
+ここで2つの論理値ベクトルを生成し、これと等価な整数値に変換し、ブール演算と集合演算の関係を確認してみよう。
 
 
 ```r
@@ -1725,7 +1733,11 @@ setdiff(union(x2, y2), intersect(x2, y2))
 ## [1] 2 4 6 8 5
 ```
 
+```
 When first learning subsetting, a common mistake is to use `x[which(y)]` instead of `x[y]`.  Here the `which()` achieves nothing: it switches from logical to integer subsetting but the result will be exactly the same. Also beware that `x[-which(y)]` is __not__ equivalent to `x[!y]`: if `y` is all FALSE, `which(y)` will be `integer(0)` and `-integer(0)` is still `integer(0)`, so you'll get no values, instead of all values. In general, avoid switching from logical to integer subsetting unless you want, for example, the first or last `TRUE` value.
+```
+
+データ抽出に不慣れな頃によくあるミスとして`x[y]`の代わりに`x[which(y)]`を用いてしまうというものがある。この場合、`which()`は何の意味ももたない。論理値から整数値を用いたデータ抽出に変換しているものの結果はいずれにせよ同じである。また`x[-which(y)]` は `x[!y]` と等価 __ではない__ ことにも注意しておきたい。もし `y` が全てFALSEだった場合、`which(y)`は `integer(0)` という結果を返し、`-integer(0)` と `integer(0)` は同じであるため、本来なら全ての値が結果として返ってくるところ、空の結果が返ってくるという結果になる。一般的に論理値から整数値によるデータ抽出は、最初もしくは最後の`TRUE`となる値を得たいといった場面以外では避けた方が良い。
 
 ### Exercises
 
