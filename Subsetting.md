@@ -387,7 +387,7 @@ The most common way of subsetting matrices (2d) and arrays (>2d) is a simple gen
 行列や配列といった高次元のデータ構造については以下の3つの方法でデータ抽出を行える。\index{subsetting!arrays} \index{arrays!subsetting}
 
 * 複数のベクトルによる指定
-* 一つのベクトルによる指定
+* 単数のベクトルによる指定
 * 行列による指定
 
 行列(2次元)、配列(2次元以上)からのデータ抽出に際してもっともよく使う方法は、1次元(アトム)のデータからデータ抽出と同様のものである。つまり、1次元の添字を各次元に対して、カンマで区切って指定する。空白による指定がここでは重要になってくる。なぜなら空白による指定は、全ての行または列を返すからである。
@@ -422,11 +422,16 @@ a[0, -2]
 ```
 ##      A C
 ```
-99999
 
+```
 By default, `[` will simplify the results to the lowest possible dimensionality. See [simplifying vs. preserving](#simplify-preserve) to learn how to avoid this.
 
 Because matrices and arrays are implemented as vectors with special attributes, you can subset them with a single vector. In that case, they will behave like a vector. Arrays in R are stored in column-major order:
+```
+
+デフォルトでは`[`はとりうる次元数の中で最も低次元な形で結果を返す。これを避けたい場合は[simplifying vs. preserving](#simplify-preserve)を参照してほしい。
+
+行列や配列は内部的には特殊な属性をもったベクトルとして実装されているため、単数のベクトルを用いてデータ抽出を行うことができる。この場合、ベクトルのような挙動を示す。なお、Rにおける配列は列指向の順序で格納されている。
 
 
 ```r
@@ -450,7 +455,10 @@ vals[c(4, 15)]
 ## [1] "4,1" "5,3"
 ```
 
+```
 You can also subset higher-dimensional data structures with an integer matrix (or, if named, a character matrix). Each row in the matrix specifies the location of one value, where each column corresponds to a dimension in the array being subsetted. This means that you use a 2 column matrix to subset a matrix, a 3 column matrix to subset a 3d array, and so on. The result is a vector of values:
+```
+高次元のデータ構造に対して、整数値の行列(名前付きの行列であるなら文字列行列)でもってデータ抽出を行うこともできる。データ抽出に用いる行列の各行は値の位置を示しており、各列はデータ抽出を適用する次元に対応している。これは行列に対するデータ抽出においては2列の行列を用いて、3次元の配列に対しては3列の行列を用いる、n次元の配列に対してはn列の行列を用いる、ということを意味する。結果はベクトルの形で返ってくる。
 
 
 ```r
@@ -467,9 +475,13 @@ vals[select]
 ## [1] "1,1" "3,1" "2,4"
 ```
 
-### Data frames {#df-subsetting}
+### データフレームからのデータ抽出(Data frames) {#df-subsetting}
 
+```
 Data frames possess the characteristics of both lists and matrices: if you subset with a single vector, they behave like lists; if you subset with two vectors, they behave like matrices. \index{subsetting!data frames} \index{data frames!subsetting}
+```
+
+データフレームはリストと行列双方の特性を併せ持つ。もし単数のベクトルでデータ抽出を行う場合、データフレームはリストのような挙動を示す。その一方、もし2つのベクトルを用いた場合は行列のような挙動を示す。\index{subsetting!data frames} \index{data frames!subsetting}
 
 
 ```r
@@ -494,7 +506,9 @@ df[c(1, 3), ]
 ```
 
 ```r
+# データフレームから列を指定して抽出するには2つの方法がある
 # There are two ways to select columns from a data frame
+# リストと同様の方法
 # Like a list:
 df[c("x", "z")]
 ```
@@ -507,6 +521,7 @@ df[c("x", "z")]
 ```
 
 ```r
+# 行列と同様の方法
 # Like a matrix
 df[, c("x", "z")]
 ```
@@ -519,10 +534,12 @@ df[, c("x", "z")]
 ```
 
 ```r
+# 一列のみを抽出する際、リストと同様の方法ではデータフレームの構造を維持した結果が返るが
+# 行列と同様の方法では構成要素(ここではベクトル)を返す、という大きな違いがある
 # There's an important difference if you select a single 
 # column: matrix subsetting simplifies by default, list 
 # subsetting does not.
-str(df["x"])
+str(df["x"]) # リストと同様の方法
 ```
 
 ```
@@ -531,13 +548,13 @@ str(df["x"])
 ```
 
 ```r
-str(df[, "x"])
+str(df[, "x"]) # 行列と同様の方法
 ```
 
 ```
 ##  int [1:3] 1 2 3
 ```
-
+99999
 ### S3 objects
 
 S3 objects are made up of atomic vectors, arrays, and lists, so you can always pull apart an S3 object using the techniques described above and the knowledge you gain from `str()`. \index{subsetting!S3} \index{S3!subsetting}
