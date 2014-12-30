@@ -1446,9 +1446,13 @@ df[rep(1:nrow(df), df$n), ]
 ## 3   1  6 1
 ```
 
-### Removing columns from data frames (character subsetting)
+### データフレームから列を削除する(文字列を用いたデータ抽出)(Removing columns from data frames (character subsetting))
 
+```
 There are two ways to remove columns from a data frame. You can set individual columns to NULL: \index{data frames!remove columns}
+```
+
+データフレームから列を削除するには2つの方法がある。まず、対象列に対してNULLを代入するというものがある。\index{data frames!remove columns}
 
 
 ```r
@@ -1456,7 +1460,11 @@ df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
 df$z <- NULL
 ```
 
+```
 Or you can subset to return only the columns you want:
+```
+
+または必要な列のみ返すように抽出するという方法もある。
 
 
 ```r
@@ -1471,7 +1479,11 @@ df[c("x", "y")]
 ## 3 3 1
 ```
 
+```
 If you know the columns you don't want, use set operations to work out which colums to keep:
+```
+
+不要な列がわかっている場合は集合演算子を用いて必要な列のみを残すようにすることもできる。
 
 
 ```r
