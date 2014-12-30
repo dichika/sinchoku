@@ -1413,7 +1413,11 @@ More concise, but less flexible, functions are available for sorting vectors, `s
 
 ### Expanding aggregated counts (integer subsetting)
 
+```
 Sometimes you get a data frame where identical rows have been collapsed into one and a count column has been added. `rep()` and integer subsetting make it easy to uncollapse the data by subsetting with a repeated row index:
+```
+
+ときに同一行を一つの行にまとめ、同一行がいくつあったかを示すカウント列が追加されたデータフレームに出会うことがある。この場合、`rep()`と整数値を用いたデータ抽出を組み合わせて、反復した行の添字に指定することによりそのようなデータを展開することができる。
 
 
 ```r
