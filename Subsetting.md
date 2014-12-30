@@ -1533,14 +1533,26 @@ mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
 Remember to use the vector boolean operators `&` and `|`, not the short-circuiting scalar operators `&&` and `||` which are more useful inside if statements. Don't forget [De Morgan's laws][demorgans], which can be useful to simplify negations:
 ```
 
-この際、if文の中でよく使われるショートサーキットスカラー演算子の`&&`および`||`ではなくベクトルブール演算子(`&`および`|`)を用いることを覚えておいてほしい。
+この際、if文の中でよく使われるショートサーキットスカラー演算子の`&&`および`||`ではなくベクトルブール演算子(`&`および`|`)を用いることを覚えておいてほしい。[ド・モルガンの法則(De Morgan's laws)[demorgans)も忘れてはいけない。これは否定条件をシンプルに表現する際に役に立つ。
 
+```
 * `!(X & Y)` is the same as `!X | !Y`
 * `!(X | Y)` is the same as `!X & !Y`
+```
 
+* `!(X & Y)` は `!X | !Y` と同一である
+* `!(X | Y)` は `!X & !Y` と同一である
+
+```
 For example, `!(X & !(Y | Z))` simplifies to `!X | !!(Y|Z)`, and then to `!X | Y | Z`.
+```
 
+例えば、`!(X & !(Y | Z))`は`!X | !!(Y|Z)`とも書け、これはさらに `!X | Y | Z` とシンプルに表現できる。
+```
 `subset()` is a specialised shorthand function for subsetting data frames, and saves some typing because you don't need to repeat the name of the data frame. You'll learn how it works in [non-standard evaluation](#nse). \indexc{subset()}
+```
+
+`subset()` はデータフレームからのデータ抽出に特化した関数である。この関数を用いることで、データフレームの名前を反復して使用することを避けられるようになりタイピング量を減らすことができる。この関数がどのような挙動を示すかについては[non-standard evaluation](#nse)を参照してほしい. \indexc{subset()}
 
 
 ```r
