@@ -702,7 +702,11 @@ Because data frames are lists of columns, you can use `[[` to extract a column f
 
 データフレームは列方向に並んだリストであるため、データフレームから列単位でデータ抽出する際、以下のように`[[`を用いることができる:`mtcars[[1]]`, `mtcars[["cyl"]]`。\index{subsetting!data frames} \index{data frames!subsetting}
 
+```
 S3 and S4 objects can override the standard behaviour of `[` and `[[` so they behave differently for different types of objects. The key difference is usually how you select between simplifying or preserving behaviours, and what the default is.
+```
+
+S3およびS4オブジェクトにおいては`[`、`[[`はオーバーライドされており、オブジェクトのタイプによって異なる挙動を示す。主な違いとして、簡易化された形もしくは元の構造を保った形のどちらを選ぶか、デフォルトではどちらかというものがある。
 
 ### Simplifying vs. preserving subsetting {#simplify-preserve}
 
