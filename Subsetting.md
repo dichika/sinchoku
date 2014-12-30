@@ -1013,9 +1013,13 @@ If the input vector is named, then the names of OOB, missing, or `NULL` componen
 
 1.  `mod <- lm(mpg ~ wt, data = mtcars)`のような線形モデルが与えられた場合、残差自由度はどのように抽出するか。また、`summary(mod)`によって得られたモデルのサマリーからR2値を取り出すにはどうするか？
 
-## Subsetting and assignment {#subassignment}
+## データ抽出とアサインメント(Subsetting and assignment) {#subassignment}
 
+```
 All subsetting operators can be combined with assignment to modify selected values of the input vector. \index{subsetting!subassignment} \index{assignment!subassignment}
+```
+
+データ抽出演算子はアサインメントと組み合わせることで、入力ベクトルにおいて選択した値を変更することができる。\index{subsetting!subassignment} \index{assignment!subassignment}
 
 
 ```r
@@ -1029,6 +1033,7 @@ x
 ```
 
 ```r
+# 左辺と右辺の長さは一致している必要がある
 # The length of the LHS needs to match the RHS
 x[-1] <- 4:1
 x
@@ -1039,6 +1044,7 @@ x
 ```
 
 ```r
+# 添字が重複していても警告はでないことに注意
 # Note that there's no checking for duplicate indices
 x[c(1, 1)] <- 2:3
 x
@@ -1049,6 +1055,7 @@ x
 ```
 
 ```r
+# 整数の添字とNAを組み合わせることはできない
 # You can't combine integer indices with NA
 x[c(1, NA)] <- c(1, 2)
 ```
@@ -1058,6 +1065,8 @@ x[c(1, NA)] <- c(1, 2)
 ```
 
 ```r
+# 論理値とNAを組み合わせることはできる
+# NAはFALSEとして扱われる
 # But you can combine logical indices with NA
 # (where they're treated as false).
 x[c(T, F, NA)] <- 1
@@ -1069,6 +1078,7 @@ x
 ```
 
 ```r
+# これは条件を設定してベクトルを変更する際に有用である
 # This is mostly useful when conditionally modifying vectors
 df <- data.frame(a = c(1, 10, NA))
 df$a[df$a < 5] <- 0
@@ -1079,7 +1089,11 @@ df$a
 ## [1]  0 10 NA
 ```
 
+```
 Subsetting with nothing can be useful in conjunction with assignment because it will preserve the original object class and structure. Compare the following two expressions. In the first, `mtcars` will remain as a data frame. In the second, `mtcars` will become a list.
+```
+
+添字を指定しないデータ抽出をアサインメントと組み合わせると有用である。なえなら元のオブジェクトのクラスおよびデータ構造を保持するからである。以下の2つの式を比較してみてほしい。1つ目では`mtcars`はデータフレームのままだが、2つ目ではリストになってしまう。
 
 
 ```r
@@ -1087,7 +1101,11 @@ mtcars[] <- lapply(mtcars, as.integer)
 mtcars <- lapply(mtcars, as.integer)
 ```
 
+```
 With lists, you can use subsetting + assignment + `NULL` to remove components from a list. To add a literal `NULL` to a list, use `[` and `list(NULL)`: \index{lists!removing an element}
+```
+
+リストを扱う際、データ抽出+アサインメント+`NULL`を組み合わせて用いることでリストから要素を削除することができる。`NULL`リテラルをリストに加えるためには`[`および`list(NULL)`を用いるとよい。
 
 
 ```r
@@ -1113,13 +1131,21 @@ str(y)
 ##  $ b: NULL
 ```
 
-## Applications {#applications}
+## 応用例(Applications) {#applications}
 
+```
 The basic principles described above give rise to a wide variety of useful applications. Some of the most important are described below. Many of these basic techniques are wrapped up into more concise functions (e.g., `subset()`, `merge()`, `plyr::arrange()`), but it is useful to understand how they are implemented with basic subsetting. This will allow you to adapt to new situations that are not dealt with by existing functions.
+```
 
-### Lookup tables (character subsetting) {#lookup-tables}
+これまで紹介してきた基本則は有用な応用例として様々な形で現れる。重要な例をいくつか以下に示した。これらの基本テクニックはより簡単な形の関数(例 `subset()`, `merge()`, `plyr::arrange()`)として実装されているが、どのような実装をされているかを理解しておくことは有用である。そうすることで既存の関数では対応できないような場面に遭遇しても応用がきくからである。
 
+### ルックアップテーブル(文字列によるデータ抽出)(Lookup tables (character subsetting)) {#lookup-tables}
+
+```
 Character matching provides a powerful way to make lookup tables. Say you want to convert abbreviations: \index{lookup tables}
+```
+
+文字列によるマッチングはルックアップテーブルを作成するにあたって非常にパワフルな技術である。ここでは略称を変換するルックアップテーブルを作ってみよう。 \index{lookup tables}
 
 
 ```r
@@ -1142,6 +1168,7 @@ unname(lookup[x])
 ```
 
 ```r
+# 出力値をより少ないものとした例
 # Or with fewer output values
 c(m = "Known", f = "Known", u = "Unknown")[x]
 ```
@@ -1151,7 +1178,11 @@ c(m = "Known", f = "Known", u = "Unknown")[x]
 ##   "Known"   "Known" "Unknown"   "Known"   "Known"   "Known"   "Known"
 ```
 
+```
 If you don't want names in the result, use `unname()` to remove them.
+```
+
+もし名前付きの結果が欲しくない場合は`unname`を使うとよい。
 
 ### Matching and merging by hand (integer subsetting) {#matching-merging}
 
