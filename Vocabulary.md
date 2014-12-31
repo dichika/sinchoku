@@ -22,10 +22,12 @@ I came up with this list by looking through all the functions in the base, stats
 
 
 ```r
+# まず最初に知っておくべき関数
 # The first functions to learn
 ?
 str
 
+# 重要な演算子および代入演算子
 # Important operators and assignment
 %in%, match
 =, <-, <<-
@@ -33,12 +35,14 @@ $, [, [[, head, tail, subset
 with
 assign, get
 
+# 比較
 # Comparison 
 all.equal, identical
 !=, ==, >, >=, <, <=
 is.na, complete.cases
 is.finite
 
+# 基本的な数学関数
 # Basic math
 *, +, -, /, ^, %%, %/%
 abs, sign
@@ -54,20 +58,24 @@ range
 mean, median, cor, sd, var
 rle
 
+# 関数定義に関連した関数
 # Functions to do with functions
 function
 missing
 on.exit
 return, invisible
 
+# 論理演算および集合演算
 # Logical & sets 
 &, |, !, xor
 all, any
 intersect, union, setdiff, setequal
 which
 
+# ベクトルと行列
 # Vectors and matrices
 c, matrix
+# データ型の自動変換の優先順位 文字列 > 数値 > 論理
 # automatic coercion rules character > numeric > logical
 length, dim, ncol, nrow
 cbind, rbind
@@ -77,6 +85,7 @@ diag
 sweep
 as.matrix, data.matrix
 
+# ベクトルの生成
 # Making vectors 
 c
 rep, rep_len
@@ -86,12 +95,14 @@ sample
 choose, factorial, combn
 (is/as).(character/numeric/logical/...)
 
+# リストとデータフレーム
 # Lists & data.frames 
 list, unlist
 data.frame, as.data.frame
 split
 expand.grid
 
+# 制御構文
 # Control flow 
 if, &&, || (short circuiting)
 for, while
@@ -99,6 +110,7 @@ next, break
 switch
 ifelse
 
+# apply関数群
 # Apply & friends
 lapply, sapply, vapply
 apply
@@ -107,16 +119,18 @@ replicate
 ```
 
 
-## Common data structures
+## よく使われるデータ構造(Common data structures)
 
 
 ```r
+# 時間
 # Date time
 ISOdate, ISOdatetime, strftime, strptime, date
 difftime
 julian, months, quarters, weekdays
 library(lubridate)
 
+# 文字列操作
 # Character manipulation 
 grep, agrep
 gsub
@@ -128,6 +142,7 @@ substr
 paste
 library(stringr)
 
+# 因子
 # Factors 
 factor, levels, nlevels
 reorder, relevel
@@ -135,6 +150,7 @@ cut, findInterval
 interaction
 options(stringsAsFactors = FALSE)
 
+# 配列操作
 # Array manipulation
 array
 dim
@@ -143,10 +159,11 @@ aperm
 library(abind)
 ```
 
-## Statistics
+## 統計学関連(Statistics)
 
 
 ```r
+# 順序および表作成
 # Ordering and tabulating 
 duplicated, unique
 merge
@@ -154,6 +171,7 @@ order, rank, quantile
 sort
 table, ftable
 
+# 線形モデル
 # Linear models 
 fitted, predict, resid, rstandard
 lm, glm
@@ -163,14 +181,17 @@ formula, ~, I
 anova, coef, confint, vcov
 contrasts
 
+# 検定関係
 # Miscellaneous tests
 apropos("\\.test$")
 
+# 乱数
 # Random variables 
 (q, p, d, r) * (beta, binom, cauchy, chisq, exp, f, gamma, geom, 
   hyper, lnorm, logis, multinom, nbinom, norm, pois, signrank, t, 
   unif, weibull, wilcox, birthday, tukey)
 
+# 線形代数
 # Matrix algebra 
 crossprod, tcrossprod
 eigen, qr, svd
@@ -179,7 +200,7 @@ rcond
 solve
 ```
 
-## Working with R
+## Rを制御する関数群(Working with R)
 
 
 ```r
