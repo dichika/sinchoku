@@ -12,9 +12,13 @@ An important part of being fluent in R is having a good working vocabulary. Belo
 
 Rを使いこなすための重要なステップとして良いワーキングボキャブラリーを持つというのがある。以下に、そのようなボキャブラリーを構成する関数を列挙した。それぞれの関数に対して深く踏み込む必要はないが、存在は頭に入れておくと良い。もし以下のリストの中に全く聞いたことのない関数があれば、そのドキュメントを読んでおくことを強く勧める。\index{vocabulary}
 
+```
 I came up with this list by looking through all the functions in the base, stats, and utils packages, and extracting those that I think are most useful. The list also includes a few pointers to particularly important functions in other packages, and some of the more important `options()`.
+```
 
-## The basics
+以下のリストはbase、stats, utilsパッケージの中から筆者が最も有用だと思う関数を抜き出してきている。また、このリストは他パッケージにおいて極めて重要な関数群へのポインタにもなっており、重要な`options()`の一部も紹介している。
+
+## 基本的な関数群(The basics)
 
 
 ```r
