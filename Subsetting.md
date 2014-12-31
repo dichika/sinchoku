@@ -31,13 +31,13 @@ Rのデータ抽出演算子はパワフルかつ速い。データ抽出の文�
 
 * ベクトル、リスト、因子、行列、データフレームといった異なるオブジェクトに対して適用した場合の挙動の違い
 
-* データ抽出とアサインメント(assignment)との組み合わせ
+* データ抽出と代入(assignment)との組み合わせ
 
 ```
 This chapter helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge, first to more complicated data types (like arrays and lists), and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
 ```
 
-本章は、まずアトムから`[`でもってデータ抽出をするという簡単な例から始めることで、読者がデータ抽出をマスターできるよう導いていく。そして少しずつ知識の幅を広げていく。ベクトルの次は、配列やリストといったより複雑なデータ構造を対象とし、さらに`[[`や`$`といった他のデータ抽出演算子の説明に移る。そこで読者はオブジェクトに手を加える(to modify parts of an object)上で、どのようにデータ抽出とアサインメントを組み合わせれば良いかを学ぶことになる。最後に多くの応用例を示してこの章は終わりとする。
+本章は、まずアトムから`[`でもってデータ抽出をするという簡単な例から始めることで、読者がデータ抽出をマスターできるよう導いていく。そして少しずつ知識の幅を広げていく。ベクトルの次は、配列やリストといったより複雑なデータ構造を対象とし、さらに`[[`や`$`といった他のデータ抽出演算子の説明に移る。そこで読者はオブジェクトに手を加える(to modify parts of an object)上で、どのようにデータ抽出と代入を組み合わせれば良いかを学ぶことになる。最後に多くの応用例を示してこの章は終わりとする。
 
 ```
 Subsetting is a natural complement to `str()`. `str()` shows you the structure of any object, and subsetting allows you to pull out the pieces that you're interested in. \index{subsetting}
@@ -98,7 +98,7 @@ Take this short quiz to determine if you need to read this chapter. If the answe
 
 * [データ抽出演算子(Subsetting operators)](#subsetting-operators):この項では、`[[`および`$`といったデータ抽出演算子について知識を深める。特に簡易化された形でのデータ抽出(simplyfying)もしくは元の構造を保った形でのデータ抽出(preserving)に焦点を当てる。
 
-* [データ抽出とアサインメント(Subsetting and assignment)](#subassignment):この項では、アサインメントとデータ抽出を組み合わせたオブジェクトの変更方法について学ぶ(to modify parts 
+* [データ抽出と代入(Subsetting and assignment)](#subassignment):この項では、代入とデータ抽出を組み合わせたオブジェクトの変更方法について学ぶ(to modify parts 
   of an object)。
 
 * [データ抽出の応用(Applications)](#applications):この項では、データ分析において頻繁に遭遇する問題に対応するための8つの重要な、しかしあまり知られていない(obvious)応用例を学ぶ。
@@ -283,7 +283,7 @@ There are five things that you can use to subset a vector:
    can also be useful in conjunction with assignment.
 ```
 
-*   __何も指定しない場合(Nothing)__ は元のベクトルを返す。これはベクトルに用いる際は有用ではないが、行列やデータフレーム、配列に適用する場合には非常に有用なものとなる。またアサインメントと組み合わせても同様に有用である。
+*   __何も指定しない場合(Nothing)__ は元のベクトルを返す。これはベクトルに用いる際は有用ではないが、行列やデータフレーム、配列に適用する場合には非常に有用なものとなる。また代入と組み合わせても同様に有用である。
 
     
     ```r
@@ -1013,13 +1013,13 @@ If the input vector is named, then the names of OOB, missing, or `NULL` componen
 
 1.  `mod <- lm(mpg ~ wt, data = mtcars)`のような線形モデルが与えられた場合、残差自由度はどのように抽出するか。また、`summary(mod)`によって得られたモデルのサマリーからR2値を取り出すにはどうするか？
 
-## データ抽出とアサインメント(Subsetting and assignment) {#subassignment}
+## データ抽出と代入(Subsetting and assignment) {#subassignment}
 
 ```
 All subsetting operators can be combined with assignment to modify selected values of the input vector. \index{subsetting!subassignment} \index{assignment!subassignment}
 ```
 
-データ抽出演算子はアサインメントと組み合わせることで、入力ベクトルにおいて選択した値を変更することができる。\index{subsetting!subassignment} \index{assignment!subassignment}
+データ抽出演算子は代入と組み合わせることで、入力ベクトルにおいて選択した値を変更することができる。\index{subsetting!subassignment} \index{assignment!subassignment}
 
 
 ```r
@@ -1093,7 +1093,7 @@ df$a
 Subsetting with nothing can be useful in conjunction with assignment because it will preserve the original object class and structure. Compare the following two expressions. In the first, `mtcars` will remain as a data frame. In the second, `mtcars` will become a list.
 ```
 
-添字を指定しないデータ抽出をアサインメントと組み合わせると有用である。なえなら元のオブジェクトのクラスおよびデータ構造を保持するからである。以下の2つの式を比較してみてほしい。1つ目では`mtcars`はデータフレームのままだが、2つ目ではリストになってしまう。
+添字を指定しないデータ抽出を代入と組み合わせると有用である。なえなら元のオブジェクトのクラスおよびデータ構造を保持するからである。以下の2つの式を比較してみてほしい。1つ目では`mtcars`はデータフレームのままだが、2つ目ではリストになってしまう。
 
 
 ```r
@@ -1105,7 +1105,7 @@ mtcars <- lapply(mtcars, as.integer)
 With lists, you can use subsetting + assignment + `NULL` to remove components from a list. To add a literal `NULL` to a list, use `[` and `list(NULL)`: \index{lists!removing an element}
 ```
 
-リストを扱う際、データ抽出+アサインメント+`NULL`を組み合わせて用いることでリストから要素を削除することができる。`NULL`リテラルをリストに加えるためには`[`および`list(NULL)`を用いるとよい。
+リストを扱う際、データ抽出+代入+`NULL`を組み合わせて用いることでリストから要素を削除することができる。`NULL`リテラルをリストに加えるためには`[`および`list(NULL)`を用いるとよい。
 
 
 ```r
