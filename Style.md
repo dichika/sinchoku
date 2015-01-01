@@ -66,14 +66,20 @@ If files need to be run in sequence, prefix them with numbers:
 >  
 > --- Phil Karlton
 
+```
 Variable and function names should be lowercase. Use an underscore (`_`) to separate words within a name. Generally, variable names should be nouns and function names should be verbs. Strive for names that are concise and meaningful (this is not easy!).
+```
+
+変数および関数名は小文字でつけるべきである。名前と名前の間にはアンダースコア(`_`)を入れる。一般的に変数名には名詞を、関数名には動詞を用いる。名前は簡潔かつ意味をもつものになるよう努める(しかし、簡単なことではない)。
 
 
 ```r
+# 良い
 # Good
 day_one
 day_1
 
+# 悪い
 # Bad
 first_day_of_the_month
 DayOne
