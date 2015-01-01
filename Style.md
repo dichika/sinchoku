@@ -123,20 +123,28 @@ average <- mean(feet / 12 + inches, na.rm = TRUE)
 average<-mean(feet/12+inches,na.rm=TRUE)
 ```
 
+```
 There's a small exception to this rule: `:`, `::` and `:::` don't need spaces around them.
+```
+ただし、例外として`:`、`::`、`:::`の場合はスペースを入れない。
 
 
 ```r
+# 良い
 # Good
 x <- 1:10
 base::get
 
+# 悪い
 # Bad
 x <- 1 : 10
 base :: get
 ```
-
+```
 Place a space before left parentheses, except in a function call.
+```
+
+関数呼び出しの場合を除いて、左カッコの前にスペースを挿入する。
 
 
 ```r
@@ -149,7 +157,11 @@ if(debug)do(x)
 plot (x, y)
 ```
 
+```
 Extra spacing (i.e., more than one space in a row) is ok if it improves alignment of equal signs or assignments (`<-`).
+```
+
+`=`や`<-`の並びを整えるためのスペース追加は許容される。
 
 
 ```r
@@ -159,18 +171,24 @@ list(
 )
 ```
 
+```
 Do not place spaces around code in parentheses or square brackets (unless there's a comma, in which case see above).
+```
+
+カッコ`()`や角カッコ`[]`に囲まれるコードの前後にスペースを入れてはいけない。ただし、コンマがある場合はその後にスペースを入れる。
 
 
 ```r
+# 良い
 # Good
 if (debug) do(x)
 diamonds[5, ]
 
+# 悪い
 # Bad
-if ( debug ) do(x)  # No spaces around debug
-x[1,]   # Needs a space after the comma
-x[1 ,]  # Space goes after comma not before
+if ( debug ) do(x)  # debugの前後にはスペースを入れない(No spaces around debug)
+x[1,]   # コンマの後にスペースを入れる(Needs a space after the comma)
+x[1 ,]  # コンマの前にはスペースを入れないSpace goes after comma not before
 ```
 
 ### Curly braces
