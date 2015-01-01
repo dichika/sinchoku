@@ -25,7 +25,7 @@ The formatR package, by Yihui Xie, makes it easier to clean up poorly formatted 
 
 Yihui Xieが開発したformatRパッケージは、整形されていないコードを整形してくれる。もちろん全てに手が回るものではないが、手軽にコードを極めてひどい状態から少しは良い状態にまではもっていってくれる。なおformatRを利用する際は[the notes on the wiki](https://github.com/yihui/formatR/wiki)を一読しておいてほしい。
 
-## Notation and naming
+## 表記および命名(Notation and naming)
 
 ### File names
 
