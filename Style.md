@@ -27,29 +27,43 @@ Yihui Xieが開発したformatRパッケージは、整形されていないコ�
 
 ## 表記および命名(Notation and naming)
 
-### File names
+### ファイル名(File names)
 
+```
 File names should be meaningful and end in `.R`.
+```
+ファイル名は意味をもったものにすること。
+そして、拡張子は`.R`と大文字のRにすること。
 
-    # Good
+
+    # 良い
+       #  Good
     fit-models.R
     utility-functions.R
 
+    # 悪い
     # Bad
     foo.r
     stuff.r
-
+```
 If files need to be run in sequence, prefix them with numbers:
-
+```
+連続して実行したいファイルについては、先頭に数字を入れること。
     0-download.R
     1-parse.R
     2-explore.R
 
-### Object names
+### オブジェクト名(Object names)
 
+```
 > "There are only two hard things in Computer Science: cache invalidation and 
 > naming things." 
 >
+> --- Phil Karlton
+```
+
+> コンピュータサイエンスにおいて頭を悩ますことが2つある。キャッシュ無効化そして「命名」だ
+>  
 > --- Phil Karlton
 
 Variable and function names should be lowercase. Use an underscore (`_`) to separate words within a name. Generally, variable names should be nouns and function names should be verbs. Strive for names that are concise and meaningful (this is not easy!).
