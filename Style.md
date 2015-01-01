@@ -87,19 +87,24 @@ dayone
 djm1
 ```
 
+```
 Where possible, avoid using names of existing functions and variables. This will cause confusion for the readers of your code.
+```
+
+可能なら、既存の関数や変数と同じ名前は避ける。コードを読む側が混乱するからである。
 
 
 ```r
+# 悪い
 # Bad
 T <- FALSE
 c <- 10
 mean <- function(x) sum(x)
 ```
 
-## Syntax
+## 文法(Syntax)
 
-### Spacing
+### スペースの入れ方(Spacing)
 
 Place spaces around all infix operators (`=`, `+`, `-`, `<-`, etc.). The same rule applies when using `=` in function calls. Always put a space after a comma, and never before (just like in regular English).
 
