@@ -191,11 +191,19 @@ x[1,]   # コンマの後にスペースを入れる(Needs a space after the com
 x[1 ,]  # コンマの前にはスペースを入れないSpace goes after comma not before
 ```
 
-### Curly braces
+### 波カッコ(Curly braces)
 
+```
 An opening curly brace should never go on its own line and should always be followed by a new line. A closing curly brace should always go on its own line, unless it's followed by `else`.
+```
 
+波カッコを開く場合、それまでのコードに続けて挿入し、残りのコードは改行して続ける。波カッコを閉じる際は改行して挿入する。ただし`else`が続く場合は改行しない。
+
+```
 Always indent the code inside curly braces.
+```
+
+波カッコに囲まれているコードはインデントで整列させること。
 
 
 ```r
@@ -224,7 +232,11 @@ else {
 }
 ```
 
+```
 It's ok to leave very short statements on the same line:
+```
+
+ただしコードが短い場合はそのまま同じ行に続けても良い。
 
 
 ```r
