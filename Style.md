@@ -17,7 +17,11 @@ Good coding style is like using correct punctuation. You can manage without it, 
 Good style is important because while your code only has one author, it'll usually have multiple readers. This is especially true when you're writing code with others. In that case, it's a good idea to agree on a common style up-front. Since no style is strictly better than another, working with others may mean that you'll need to sacrifice some preferred aspects of your style.
 ```
 
+コードは一人で書いていても、それを読む人はたいていの場合複数になる。その意味で良いコーディングスタイルを身につけておくことは大切である。特に他者とコードを書いていく場合にそのことはいえる。この場合、前もって共通のコーディングスタイルを用いるようにしておくのが良いだろう。なお、他のコーディングスタイルより明らかに優れたものはないため、他者とコードを書いていく際は、自分が用いるコーディングスタイルの良い部分を多少はあきらめて他者のものとすり合わせる必要がある。
+
+```
 The formatR package, by Yihui Xie, makes it easier to clean up poorly formatted code. It can't do everything, but it can quickly get your code from terrible to pretty good. Make sure to read [the notes on the wiki](https://github.com/yihui/formatR/wiki) before using it.
+```
 
 ## Notation and naming
 
