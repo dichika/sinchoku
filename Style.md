@@ -106,13 +106,19 @@ mean <- function(x) sum(x)
 
 ### スペースの入れ方(Spacing)
 
+```
 Place spaces around all infix operators (`=`, `+`, `-`, `<-`, etc.). The same rule applies when using `=` in function calls. Always put a space after a comma, and never before (just like in regular English).
+```
+
+演算子（`=`、`+`,、`-`、`<-`など)全般を用いる際は前後にスペースを入れること。これは関数呼び出しにおいて、`=`を用いる際にもいえる。通常、コンマの後にスペースを入れるが、前には入れない。これは英語における用法と同様である。
 
 
 ```r
+# 良い
 # Good
 average <- mean(feet / 12 + inches, na.rm = TRUE)
 
+# 悪い
 # Bad
 average<-mean(feet/12+inches,na.rm=TRUE)
 ```
