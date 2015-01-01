@@ -23,6 +23,8 @@ Good style is important because while your code only has one author, it'll usual
 The formatR package, by Yihui Xie, makes it easier to clean up poorly formatted code. It can't do everything, but it can quickly get your code from terrible to pretty good. Make sure to read [the notes on the wiki](https://github.com/yihui/formatR/wiki) before using it.
 ```
 
+Yihui Xieが開発したformatRパッケージは、整形されていないコードを整形してくれる。もちろん全てに手が回るものではないが、手軽にコードを極めてひどい状態から少しは良い状態にまではもっていってくれる。なおformatRを利用する際は[the notes on the wiki](https://github.com/yihui/formatR/wiki)を一読しておいてほしい。
+
 ## Notation and naming
 
 ### File names
