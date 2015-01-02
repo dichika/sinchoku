@@ -98,28 +98,43 @@ infix 関数とはなにか? それはどのように書けるか? replacement �
 
 関数がどのように終了するかにかかわらず、cleanup アクションが起きるようにするにはどのような関数を使えばよいか?
 
-##### Outline
+##### 概要(Outline)
 
-* [Function components](#function-components) describes the three main 
-  components of a function.
+```
+* [Function components](#function-components) describes the three main components of a function.
+```
 
-* [Lexical scoping](#lexical-scoping) teaches you how R finds values from 
-  names, the process of lexical scoping.
+* [関数の構成要素(Function components)](#function-components):この項では関数を構成する3つの要素について説明する。
 
-* [Every operation is a function call](#all-calls) shows you that everything
-  that happens in R is a result of a function call, even if it doesn't look 
-  like it.
+```
+* [Lexical scoping](#lexical-scoping) teaches you how R finds values from names, the process of lexical scoping.
+```
 
-* [Function arguments](#function-arguments) discusses the three ways of 
-  supplying arguments to a function, how to call a function given a list of 
-  arguments, and the impact of lazy evaluation.
+* [レキシカルスコープ(Lexical scoping)](#lexical-scoping):この項ではRが名前から値を見つける仕組み、レキシカルスコープについて説明する。
 
-* [Special calls](#special-calls) describes two special types of function: 
-  infix and replacement functions.
-  
-* [Return values](#return-values) discusses how and when functions return
-  values, and how you can ensure that a function does something before it
-  exits.
+```
+* [Every operation is a function call](#all-calls) shows you that everything that happens in R is a result of a function call, even if it doesn't look like it.
+```
+
+* [全ての操作は関数呼び出しである(Every operation is a function call)](#all-calls):この項ではRにおいて全ては関数呼び出しの結果であること(一見そうはみえなくても)を示す。
+
+```
+* [Function arguments](#function-arguments) discusses the three ways of supplying arguments to a function, how to call a function given a list of arguments, and the impact of lazy evaluation.
+```
+
+* [関数の引数(Function arguments)](#function-arguments) :この項では関数に引数を渡す3つの方法、引数リストを渡した関数の呼び出し方、そして遅延評価の威力について議論する。
+
+```
+* [Special calls](#special-calls) describes two special types of function: infix and replacement functions.
+```  
+
+* [特殊な関数呼び出し(Special calls)](#special-calls):この項では、infix関数およびreplacement関数という2つの特殊な関数について説明する。
+
+```
+* [Return values](#return-values) discusses how and when functions return values, and how you can ensure that a function does something before it exits.
+```
+
+* [関数の返り値(Return values)](#return-values):この項では関数がどのように、そしていつ値を返すかについて議論する。また関数がその処理を終える際に一定の処理を実行する方法についても示す。
 
 ##### Prerequisites
 
@@ -450,8 +465,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
+##  [1] 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3
+## [36] 4 3 3 3 4 3 3 3 3 3 3 4 3 3 3
 ```
 
 ```r
@@ -1257,7 +1272,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bbe8948"
+## [1] "0x7fe94b95a1b0"
 ```
 
 ```r
@@ -1266,7 +1281,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9536355a8"
+## [1] "0x7fe94b93f3b0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
