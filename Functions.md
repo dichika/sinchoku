@@ -411,7 +411,12 @@ g()
 rm(x, g)
 ```
 
+```
 The same rules apply if a function is defined inside another function: look inside the current function, then where that function was defined, and so on, all the way up to the global environment, and then on to other loaded packages. Run the following code in your head, then confirm the output by running the R code.
+```
+
+関数が別の関数内で定義された時も同じルールが適用される。まずは関数内で名前を探し、そこになければその関数が定義された関数内で名前を探し、といった形で大域的環境に到達するまで探し続ける。以下のコードを頭の中で実行した上で、実際にRで実行してその結果を確認してほしい。
+
 
 
 ```r
@@ -428,7 +433,11 @@ h()
 rm(x, h)
 ```
 
+```
 The same rules apply to closures, functions created by other functions. Closures will be described in more detail in [functional programming](#functional-programming); here we'll just look at how they interact with scoping. The following function, `j()`, returns a function.  What do you think this function will return when we call it? \index{closures!scoping}
+```
+
+クロージャ、すなわち関数によって生成された関数についても同じルールが適用される。クロージャの詳細については[functional programming](#functional-programming)で解説する。ここではクロージャがスコープとどう関係してくるのかについて見るにとどめる。以下の関数`j()`は関数を返す。`j()`が返す関数を呼び出す時、この呼び出された関数は何を返すだろうか? \index{closures!scoping}
 
 
 ```r
@@ -443,7 +452,11 @@ k()
 rm(j, k)
 ```
 
+```
 This seems a little magical (how does R know what the value of `y` is after the function has been called). It works because `k` preserves the environment in which it was defined and because the environment includes the value of `y`. [Environments](#environments) gives some pointers on how you can dive in and figure out what values are stored in the environment associated with each function.
+```
+
+これはちょっとばかり魔法のようにみえる。どうやってRは関数が呼び出された後に`y`の値を知ったのだろうか。これは`k`がそれが定義された環境を保存していたからであり、その環境の中に`y`の値が含まれていたからである。[Environments](#environments)では、関数に結びつけられた環境の中に値がどのようにして保存されているかについて深く理解するための指針を示す。
 
 ### Functions vs. variables
 
@@ -576,8 +589,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 4 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 4 4 3 4 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3
+##  [1] 3 4 3 3 3 3 4 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3
 ```
 
 ```r
@@ -1383,7 +1396,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b9360f0"
+## [1] "0x7fe9525b7ba8"
 ```
 
 ```r
@@ -1392,7 +1405,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b923db8"
+## [1] "0x7fe951448208"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
