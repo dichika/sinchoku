@@ -341,7 +341,12 @@ R has two types of scoping: __lexical scoping__, implemented automatically at th
 
 Rには2種類のスコープがある。__レキシカルスコープ(lexical scoping)__ と __ダイナミックスコープ()dynamic scoping)__ である。前者は言語レベルで自動的に実装されており、後者は対話型分析を進める際にタイピングの量を減らせるよう関数の中で用いられている。レキシカルスコープは関数生成に深く関係しているため、ここではレキシカルスコープについて話を進める。ダイナミックスコープについては[scoping issues](#scoping-issues)で詳細を述べる。
 
+```
 Lexical scoping looks up symbol values based on how functions were nested when they were created, not how they are nested when they are called. With lexical scoping, you don't need to know how the function is called to figure out where the value of a variable will be looked up. You just need to look at the function's definition.
+```
+
+レキシカルスコープはシンボルに紐づけられた値を探す際、
+関数が生成された時どのようにネストされていたかに基づいて探す。関数が呼び出された時のネストに基づくわけではない。レキシカルスコープの上では、変数の値が探される場所を理解するために関数がどのように呼ばれるかを知る必要はない。関数の定義のみに注意すればよい。
 
 The "lexical" in lexical scoping doesn't correspond to the usual English definition ("of or relating to words or the vocabulary of a language as distinguished from its grammar and construction") but comes from the computer science term "lexing", which is part of the process that converts code represented as text to meaningful pieces that the programming language understands.
 
@@ -547,8 +552,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 4 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3
 ```
 
 ```r
@@ -1354,7 +1359,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b51b820"
+## [1] "0x7fe95b8372d8"
 ```
 
 ```r
@@ -1363,7 +1368,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94baa4d50"
+## [1] "0x7fe95b2979b0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
