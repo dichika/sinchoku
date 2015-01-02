@@ -136,21 +136,45 @@ infix 関数とはなにか? それはどのように書けるか? replacement �
 
 * [関数の返り値(Return values)](#return-values):この項では関数がどのように、そしていつ値を返すかについて議論する。また関数がその処理を終える際に一定の処理を実行する方法についても示す。
 
-##### Prerequisites
+##### 本章のコードを実行するにあたり必要なもの(Prerequisites)
 
+```
 The only package you'll need is `pryr`, which is used to explore what happens when modifying vectors in place. Install it with `install.packages("pryr")`.
+```
 
-## Function components {#function-components}
+本章のコードを実行するために必要なパッケージとして`pryr`がある。これはベクトルを変更した際に何が起きているかを把握するために必要なものである。`install.packages("pryr")`でインストールしておくこと。
 
+## 関数の構成要素(Function components) {#function-components}
+
+```
 All R functions have three parts: \index{functions!body} \index{functions!formals} \index{functions!environment}
+```
 
+Rの関数は以下の3つの要素で構成されている。\index{functions!body} \index{functions!formals} \index{functions!environment}
+
+```
 * the `body()`, the code inside the function.
+```
 
+* `body()`:関数内のコード
+
+```
 * the `formals()`, the list of arguments which controls how you can call the function.
+```
 
+* `formals()`:関数の呼び出しをコントロールする引数のリスト
+
+```
 * the `environment()`, the "map" of the location of the function's variables.
+```
 
+* `environment()`:関数における変数の位置を示す"地図"
+
+```
 When you print a function in R, it shows you these three important components. If the environment isn't displayed, it means that the function was created in the global environment. \indexc{formals()} \indexc{body()} \index{environments!of a function}
+```
+
+Rにおいて関数をプリントすると、以上の3つの要素を表示する。`environment()`が表示されない時は、大域的環境(global environment)において関数が生成されていることを示す。 \indexc{formals()} \indexc{body()} \index{environments!of a function}
 
 
 ```r
@@ -465,8 +489,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3
-## [36] 4 3 3 3 4 3 3 3 3 3 3 4 3 3 3
+##  [1] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3 4 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1272,7 +1296,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b95a1b0"
+## [1] "0x7fe95b860d48"
 ```
 
 ```r
@@ -1281,7 +1305,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b93f3b0"
+## [1] "0x7fe95b884a80"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
