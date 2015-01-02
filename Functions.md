@@ -458,9 +458,13 @@ This seems a little magical (how does R know what the value of `y` is after the 
 
 これはちょっとばかり魔法のようにみえる。どうやってRは関数が呼び出された後に`y`の値を知ったのだろうか。これは`k`がそれが定義された環境を保存していたからであり、その環境の中に`y`の値が含まれていたからである。[Environments](#environments)では、関数に結びつけられた環境の中に値がどのようにして保存されているかについて深く理解するための指針を示す。
 
-### Functions vs. variables
+### 関数と変数(Functions vs. variables)
 
+```
 The same principles apply regardless of the type of associated value --- finding functions works exactly the same way as finding variables:
+```
+
+これまでと同じ原則は、シンボルに紐づけられた値の型によらず適用される、つまり変数の値を探す時のルールは、関数にも当てはまる。
 
 
 ```r
@@ -480,7 +484,11 @@ m()
 rm(l, m)
 ```
 
+```
 For functions, there is one small tweak to the rule. If you are using a name in a context where it's obvious that you want a function (e.g., `f(3)`), R will ignore objects that are not functions while it is searching. In the following example `n` takes on a different value depending on whether R is looking for a function or a variable.
+```
+
+ただし、関数の場合は一つだけ小さな違いがある。明らかに関数を呼び出したいとわかっている局面(例えば`f(3)`のような)では、関数ではないオブジェクトはその探索の対象から外れる。以下の例では`n`はRが関数を呼び出したいか変数を呼び出したいかによって異なる値に結びつけられる。
 
 
 ```r
@@ -589,8 +597,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 3 4 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3
+##  [1] 3 3 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 4 3 4 3 3 3
 ```
 
 ```r
@@ -1396,7 +1404,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9525b7ba8"
+## [1] "0x7fe954ac3418"
 ```
 
 ```r
@@ -1405,7 +1413,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe951448208"
+## [1] "0x7fe95b861d48"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
