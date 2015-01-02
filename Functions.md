@@ -250,35 +250,61 @@ Primitive functions are only found in the `base` package, and since they operate
 
 プリミティブ関数は`base`パッケージの中にのみ含まれており、低レベル層において挙動するため、コピーを作る必要がないという点で通常のRコードよりも効率的であり、引数のマッチングにおいても通常とは異なるルールをもつ(例:`switch()`、`call()`)。しかしこれはRにおける他の関数とは異なる動作コストにつながる。したがってRの開発コアチームは他に選択肢がない場合を除いてそれらの関数を通常使っていない。
 
-### Exercises
+### エクササイズ(Exercises)
 
-1.  What function allows you to tell if an object is a function? What function
-    allows you to tell if a function is a primitive function?
+```
+1.  What function allows you to tell if an object is a function? What function allows you to tell if a function is a primitive function?
+```
 
+オブジェクトが関数であるかどうかを判定する関数はなにか? またプリミティブ関数かどうかを判定する関数はなにか?
+
+```
 1.  This code makes a list of all functions in the base package. 
+```
+
+以下のコードを実行するとbaseパッケージに含まれる関数のリストを取得する。
     
     
     ```r
     objs <- mget(ls("package:base"), inherits = TRUE)
     funs <- Filter(is.function, objs)
     ```
-
+```
     Use it to answer the following questions:
 
     a. Which base function has the most arguments?
     
-    a. How many base functions have no arguments? What's special about those
-       functions?
+    a. How many base functions have no arguments? What's special about those functions?
        
     a. How could you adapt the code to find all primitive functions?
+```
+これを使って以下の質問にこたえよ。
 
+a. もっとも引数の多い関数はどれか?
+
+a. 引数を全く持たない関数はいくつあるか? これらの関数の特殊な点はなにか?
+
+a. 全てのプリミティブ関数を探すには上記コードをどのように変更すればよいか?
+
+```
 1. What are the three important components of a function?
+```
 
+1. 関数を構成する3つの重要な要素とはなにか?
+
+```
 1. When does printing a function not show what environment it was created in?
+```
 
-## Lexical scoping {#lexical-scoping}
+1. 関数をプリントした際、自身が生成された環境を返さないのはどういうときか?
 
+## レキシカルスコープ(Lexical scoping) {#lexical-scoping}
+
+```
 Scoping is the set of rules that govern how R looks up the value of a symbol. In the example below, scoping is the set of rules that R applies to go from the symbol `x` to its value `10`: \index{scoping!lexical|see{lexical scoping}} \index{lexical scoping}
+```
+
+スコープはRがシンボルに紐づけられた値を探索する際のルールを指す。以下に示す例の場合、スコープはRがシンボル`x`に紐づけられた値`10`を探すために適用されるルールを指す。
 
 
 ```r
@@ -290,13 +316,25 @@ x
 ## [1] 10
 ```
 
+```
 Understanding scoping allows you to:
+```
 
+スコープを理解することで以下が可能になる。
+
+```
 * build tools by composing functions, as described in 
   [functional programming](#functional-programming).
+```
 
-* overrule the usual evaluation rules and do non-standard evaluation, as 
-  described in [non-standard evaluation](#nse).
+* 関数を組み合わせてツールを開発することができる(詳細は[functional programming](#functional-programming)で述べる)。
+
+```
+* overrule the usual evaluation rules and do non-standard evaluation, as described in [non-standard evaluation](#nse).
+```
+
+通常の評価ルールを範囲を超えて、non-standard evalution を用いることができる。これについては[non-standard evaluation](#nse)で述べる。
+
 
 R has two types of scoping: __lexical scoping__, implemented automatically at the language level, and __dynamic scoping__, used in select functions to save typing during interactive analysis. We discuss lexical scoping here because it is intimately tied to function creation. Dynamic scoping is described in more detail in [scoping issues](#scoping-issues).
 
@@ -506,8 +544,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 4 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 4 4 4 3 3 3 3
+##  [1] 3 3 3 3 3 4 3 3 3 3 4 3 3 4 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
+## [36] 3 3 4 3 3 4 3 3 4 3 3 3 3 3 3
 ```
 
 ```r
@@ -1313,7 +1351,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9537371b8"
+## [1] "0x7fe95b8368f0"
 ```
 
 ```r
@@ -1322,7 +1360,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9537c96e0"
+## [1] "0x7fe95b34ad48"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
