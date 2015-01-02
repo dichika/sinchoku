@@ -204,7 +204,12 @@ Rにおける他のオブジェクトと同様、関数もまた追加の`attrib
 
 ### プリミティブ関数(Primitive functions)
 
+```
 There is one exception to the rule that functions have three components. Primitive functions, like `sum()`, call C code directly with `.Primitive()` and contain no R code. Therefore their `formals()`, `body()`, and `environment()` are all `NULL`:  \index{primitive functions} \index{functions!primitive|see{primitive functions}} \index{.Primitive@\texttt{.Primitive()}|see{Primitive functions}}
+```
+
+関数は3つの要素を持つというルールには1つ例外がある。`sum()`のようなプリミティブ関数は`.Primitive()`でもってC言語のコードを直接呼び出し、Rのコードをその中に持たない。そのため、formals()`、`body()`および`environment()`は全て`NULL`を返す。 \index{primitive functions} \index{functions!primitive|see{primitive functions}} \index{.Primitive@\texttt{.Primitive()}|see{Primitive functions}}
+
 
 
 ```r
@@ -239,7 +244,11 @@ environment(sum)
 ## NULL
 ```
 
+```
 Primitive functions are only found in the `base` package, and since they operate at a low level, they can be more efficient (primitive replacement functions don't have to make copies), and can have different rules for argument matching (e.g., `switch` and `call`).  This, however, comes at a cost of behaving differently from all other functions in R. Hence the R core team generally avoids creating them unless there is no other option.
+```
+
+プリミティブ関数は`base`パッケージの中にのみ含まれており、低レベル層において挙動するため、コピーを作る必要がないという点で通常のRコードよりも効率的であり、引数のマッチングにおいても通常とは異なるルールをもつ(例:`switch()`、`call()`)。しかしこれはRにおける他の関数とは異なる動作コストにつながる。したがってRの開発コアチームは他に選択肢がない場合を除いてそれらの関数を通常使っていない。
 
 ### Exercises
 
@@ -497,8 +506,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 4 4 3 3 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 4 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 4 4 4 3 3 3 3
 ```
 
 ```r
@@ -1304,7 +1313,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b967d40"
+## [1] "0x7fe9537371b8"
 ```
 
 ```r
@@ -1313,7 +1322,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b94e888"
+## [1] "0x7fe9537c96e0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
