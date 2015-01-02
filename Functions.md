@@ -335,8 +335,11 @@ Understanding scoping allows you to:
 
 通常の評価ルールを範囲を超えて、non-standard evalution を用いることができる。これについては[non-standard evaluation](#nse)で述べる。
 
-
+```
 R has two types of scoping: __lexical scoping__, implemented automatically at the language level, and __dynamic scoping__, used in select functions to save typing during interactive analysis. We discuss lexical scoping here because it is intimately tied to function creation. Dynamic scoping is described in more detail in [scoping issues](#scoping-issues).
+```
+
+Rには2種類のスコープがある。__レキシカルスコープ(lexical scoping)__ と __ダイナミックスコープ()dynamic scoping)__ である。前者は言語レベルで自動的に実装されており、後者は対話型分析を進める際にタイピングの量を減らせるよう関数の中で用いられている。レキシカルスコープは関数生成に深く関係しているため、ここではレキシカルスコープについて話を進める。ダイナミックスコープについては[scoping issues](#scoping-issues)で詳細を述べる。
 
 Lexical scoping looks up symbol values based on how functions were nested when they were created, not how they are nested when they are called. With lexical scoping, you don't need to know how the function is called to figure out where the value of a variable will be looked up. You just need to look at the function's definition.
 
@@ -544,8 +547,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 4 3 3 3 3 4 3 3 4 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
-## [36] 3 3 4 3 3 4 3 3 4 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1351,7 +1354,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b8368f0"
+## [1] "0x7fe95b51b820"
 ```
 
 ```r
@@ -1360,7 +1363,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b34ad48"
+## [1] "0x7fe94baa4d50"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
