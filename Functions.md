@@ -1,4 +1,9 @@
-# 06_関数(Functions)
+---
+title: 06_関数(Functions)
+output:
+  html_document:
+    keep_md: yes
+---
 
 # 関数(Functions)
 
@@ -8,7 +13,11 @@ Functions are a fundamental building block of R: to master many of the more adva
 
 関数はRの基礎をなす部品の一つである。この本で紹介している多くの発展的テクニックをマスターするには関数の理解が必須である。読者は既にR上で多くの関数をつくってきており、関数の挙動について基本的な部分についてはおさえているものと想定している。本章の目的は読者が実務で身につけてきた知識を、関数とは何か、関数とはどのように動くのかという点で強固な理解に導くことにある。本章ではいくつかの面白いトリックやテクニックを紹介している。だが、多くは発展的テクニックを身につける上での基礎として重要なものである。
 
+```
 The most important thing to understand about R is that functions are objects in their own right. You can work with them exactly the same way you work with any other type of object. This theme will be explored in depth in [functional programming](#functional-programming).
+```
+
+Rを理解する上でもっとも大切なことは関数そのものがオブジェクトということである。他のオブジェクトと全く同じやり方で関数を扱うことができる。この話題については[functional programming](#functional-programming)で深堀りする。
 
 ##### Quiz
 
@@ -411,8 +420,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 4 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3
-## [36] 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 4 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3
+## [36] 3 4 3 3 3 3 3 3 3 4 3 3 3 3 3
 ```
 
 ```r
@@ -932,8 +941,8 @@ f(ls())
 ```
 
 ```
-##  [1] "add"     "adders"  "adders2" "args"    "f"       "funs"    "g"      
-##  [8] "h"       "i"       "objs"    "x"       "y"
+##  [1] "add"     "adders"  "adders2" "args"    "f"       "fn"      "funs"   
+##  [8] "g"       "h"       "i"       "objs"    "trgrow"  "x"       "y"
 ```
 
 More technically, an unevaluated argument is called a __promise__, or (less commonly) a thunk. A promise is made up of two parts: \index{promises} \index{thunks|see{promises}}
@@ -1218,7 +1227,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fb2d34e6210"
+## [1] "0x7fe94b954220"
 ```
 
 ```r
@@ -1227,7 +1236,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fb2d3497208"
+## [1] "0x7fe94b93be78"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
