@@ -345,10 +345,13 @@ Rには2種類のスコープがある。__レキシカルスコープ(lexical s
 Lexical scoping looks up symbol values based on how functions were nested when they were created, not how they are nested when they are called. With lexical scoping, you don't need to know how the function is called to figure out where the value of a variable will be looked up. You just need to look at the function's definition.
 ```
 
-レキシカルスコープはシンボルに紐づけられた値を探す際、
-関数が生成された時どのようにネストされていたかに基づいて探す。関数が呼び出された時のネストに基づくわけではない。レキシカルスコープの上では、変数の値が探される場所を理解するために関数がどのように呼ばれるかを知る必要はない。関数の定義のみに注意すればよい。
+レキシカルスコープはシンボルに紐づけられた値を探す際、関数が生成された時どのようにネストされていたかに基づいて探す。関数が呼び出された時のネストに基づくわけではない。レキシカルスコープの上では、変数の値が探される場所を理解するために関数がどのように呼ばれるかを知る必要はない。関数の定義のみに注意すればよい。
 
+```
 The "lexical" in lexical scoping doesn't correspond to the usual English definition ("of or relating to words or the vocabulary of a language as distinguished from its grammar and construction") but comes from the computer science term "lexing", which is part of the process that converts code represented as text to meaningful pieces that the programming language understands.
+```
+
+レキシカルスコープにおける"レキシカル"は、通常の英単語の定義(「文法や構文とは区別される言語における単語群」)ではなく、コンピュータサイエンスの用語"字句解析(lexing)"に由来している。字句解析とはテキストとして表現されているコードをプログラミング言語が理解できるような意味をもつ単位に変換するプロセスを意味する。
 
 There are four basic principles behind R's implementation of lexical scoping:
 
@@ -552,8 +555,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 4 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3
+##  [1] 3 3 4 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1359,7 +1362,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b8372d8"
+## [1] "0x7fe95b9615a8"
 ```
 
 ```r
@@ -1368,7 +1371,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b2979b0"
+## [1] "0x7fe95b34d020"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
