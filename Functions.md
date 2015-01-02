@@ -202,7 +202,7 @@ Like all objects in R, functions can also possess any number of additional `attr
 
 Rにおける他のオブジェクトと同様、関数もまた追加の`attributes`を持つことができる。base Rにおける属性の一つとして"srcref"がある。これは"source reference"の短縮形であり、関数が生成されるのに用いられたソースコードを指し示す。`body()`とは異なり、そこにはコードのコメント及び他の書式も含んでいる。関数には他の属性も追加できる。例えば、`class()`をセットして、任意の`print()`メソッドを追加できる。
 
-### Primitive functions
+### プリミティブ関数(Primitive functions)
 
 There is one exception to the rule that functions have three components. Primitive functions, like `sum()`, call C code directly with `.Primitive()` and contain no R code. Therefore their `formals()`, `body()`, and `environment()` are all `NULL`:  \index{primitive functions} \index{functions!primitive|see{primitive functions}} \index{.Primitive@\texttt{.Primitive()}|see{Primitive functions}}
 
@@ -497,8 +497,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 4 4 3 3 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1304,7 +1304,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b964c18"
+## [1] "0x7fe94b967d40"
 ```
 
 ```r
@@ -1313,7 +1313,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b94e4e0"
+## [1] "0x7fe94b94e888"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
