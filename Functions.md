@@ -196,7 +196,11 @@ The assignment forms of `body()`, `formals()`, and `environment()` can also be u
 
 `body()`、`formals()`、`environment()`への代入形は関数を変更する際にも用いられる。
 
+```
 Like all objects in R, functions can also possess any number of additional `attributes()`. One attribute used by base R is "srcref", short for source reference, which points to the source code used to create the function. Unlike `body()`, this contains code comments and other formatting. You can also add attributes to a function. For example, you can set the `class()` and add a custom `print()` method. \index{functions!attributes}
+```
+
+Rにおける他のオブジェクトと同様、関数もまた追加の`attributes`を持つことができる。base Rにおける属性の一つとして"srcref"がある。これは"source reference"の短縮形であり、関数が生成されるのに用いられたソースコードを指し示す。`body()`とは異なり、そこにはコードのコメント及び他の書式も含んでいる。関数には他の属性も追加できる。例えば、`class()`をセットして、任意の`print()`メソッドを追加できる。
 
 ### Primitive functions
 
@@ -493,8 +497,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 4 3 3 3 4 3 4 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
 ```
 
 ```r
@@ -1300,7 +1304,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b34c820"
+## [1] "0x7fe94b964c18"
 ```
 
 ```r
@@ -1309,7 +1313,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94de15288"
+## [1] "0x7fe94b94e4e0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
