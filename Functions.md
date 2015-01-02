@@ -19,13 +19,25 @@ The most important thing to understand about R is that functions are objects in 
 
 Rを理解する上でもっとも大切なことは関数そのものがオブジェクトということである。他のオブジェクトと全く同じやり方で関数を扱うことができる。この話題については[functional programming](#functional-programming)で深堀りする。
 
-##### Quiz
+##### クイズ(Quiz)
 
+```
 Answer the following questions to see if you can safely skip this chapter. You can find the answers at the end of the chapter in [answers](#function-answers).
+```
 
+以下のテストは本章を読む必要があるかどうかを判定するテストである。答えがすぐに頭に浮かぶようであれば本章はとばしても良い。答えは[answers](#function-answers)を参照のこと。
+
+```
 1.  What are the three components of a function?
+```
 
+関数を構成する3つの要素とはなにか?
+
+```
 1.  What does the following code return?
+```
+
+以下のコードはどのような結果を返すか?
 
     
     ```r
@@ -38,21 +50,32 @@ Answer the following questions to see if you can safely skip this chapter. You c
     f1(1)()
     ```
     
+```
 1.  How would you more typically write this code?
+```
+
+以下のコードはどのようにしたらより典型的な形に書き直せるだろうか?
 
     
     ```r
     `+`(1, `*`(2, 3))
     ```
-    
+```    
 1.  How could you make this call easier to read?
+```
+
+以下のコードはどのようにしたら読みやすくなるだろうか?
 
     
     ```r
     mean(, TRUE, x = c(1:10, NA))
     ```
 
+```
 1.  Does the following function throw an error when called? Why/why not?
+```
+
+以下の関数は呼び出し時にエラーとなるだろうか?その理由を述べよ。
 
     
     ```r
@@ -62,11 +85,18 @@ Answer the following questions to see if you can safely skip this chapter. You c
     f2(10, stop("This is an error!"))
     ```
 
-1.  What is an infix function? How do you write it? What's a replacement 
-    function? How do you write it?
+```
+1.  What is an infix function? How do you write it? What's a replacement function? How do you write it?
+```
 
+infix 関数とはなにか? それはどのように書けるか? replacement 関数とはなにか? それはどのように書けるか?
+
+```
 1.  What function do you use to ensure that a cleanup action occurs 
     regardless of how a function terminates?
+```
+
+関数がどのように終了するかにかかわらず、cleanup アクションが起きるようにするにはどのような関数を使えばよいか?
 
 ##### Outline
 
@@ -420,8 +450,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 4 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3
-## [36] 3 4 3 3 3 3 3 3 3 4 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
 ```
 
 ```r
@@ -1227,7 +1257,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b954220"
+## [1] "0x7fe94bbe8948"
 ```
 
 ```r
@@ -1236,7 +1266,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b93be78"
+## [1] "0x7fe9536355a8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
