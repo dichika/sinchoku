@@ -353,15 +353,25 @@ The "lexical" in lexical scoping doesn't correspond to the usual English definit
 
 レキシカルスコープにおける"レキシカル"は、通常の英単語の定義(「文法や構文とは区別される言語における単語群」)ではなく、コンピュータサイエンスの用語"字句解析(lexing)"に由来している。字句解析とはテキストとして表現されているコードをプログラミング言語が理解できるような意味をもつ単位に変換するプロセスを意味する。
 
+```
 There are four basic principles behind R's implementation of lexical scoping:
 
 * name masking
 * functions vs. variables
 * a fresh start
 * dynamic lookup
+```
 
+Rにおけるレキシカルスコープの実装については以下の4つの原則がある。
+
+* ネームマスキング(name masking)
+* 関数と変数(functions vs. variables)
+* フレッシュスタート(a fresh start)
+* ダイナミックルックアップ(dynamic lookup)
+
+```
 You probably know many of these principles already, although you might not have thought about them explicitly. Test your knowledge by mentally running through the code in each block before looking at the answers.
-
+```
 ### Name masking
 
 The following example illustrates the most basic principle of lexical scoping, and you should have no problem predicting the output.
@@ -555,8 +565,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 4 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 4 3 3 3
+## [36] 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3
 ```
 
 ```r
@@ -1362,7 +1372,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b9615a8"
+## [1] "0x7fe953736e10"
 ```
 
 ```r
@@ -1371,7 +1381,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b34d020"
+## [1] "0x7fe94bbc7280"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
