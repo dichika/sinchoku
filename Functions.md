@@ -372,6 +372,9 @@ Rにおけるレキシカルスコープの実装については以下の4つの
 ```
 You probably know many of these principles already, although you might not have thought about them explicitly. Test your knowledge by mentally running through the code in each block before looking at the answers.
 ```
+
+読者はこれらの多くについて既にご存知かもしれないが、明示的には把握していないだろう。以下に示す解説を読む前に各ブロックのコードを頭の中で実行して、自身の知識をテストしてみてほしい。
+
 ### Name masking
 
 The following example illustrates the most basic principle of lexical scoping, and you should have no problem predicting the output.
@@ -565,8 +568,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 4 3 3 3
-## [36] 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3
+##  [1] 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3
 ```
 
 ```r
@@ -1372,7 +1375,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953736e10"
+## [1] "0x7fe95b884608"
 ```
 
 ```r
@@ -1381,7 +1384,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bbc7280"
+## [1] "0x7fe954a16ae8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
