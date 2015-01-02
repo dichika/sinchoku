@@ -190,7 +190,11 @@ environment(f)
 #> <environment: R_GlobalEnv>
 ```
 
+```
 The assignment forms of `body()`, `formals()`, and `environment()` can also be used to modify functions.
+```
+
+`body()`、`formals()`、`environment()`への代入形は関数を変更する際にも用いられる。
 
 Like all objects in R, functions can also possess any number of additional `attributes()`. One attribute used by base R is "srcref", short for source reference, which points to the source code used to create the function. Unlike `body()`, this contains code comments and other formatting. You can also add attributes to a function. For example, you can set the `class()` and add a custom `print()` method. \index{functions!attributes}
 
@@ -489,8 +493,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3 4 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 4 3 3 3 4 3 4 3 3 3 3 3 3
 ```
 
 ```r
@@ -1296,7 +1300,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b860d48"
+## [1] "0x7fe95b34c820"
 ```
 
 ```r
@@ -1305,7 +1309,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b884a80"
+## [1] "0x7fe94de15288"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
