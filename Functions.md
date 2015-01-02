@@ -375,9 +375,13 @@ You probably know many of these principles already, although you might not have 
 
 読者はこれらの多くについて既にご存知かもしれないが、明示的には把握していないだろう。以下に示す解説を読む前に各ブロックのコードを頭の中で実行して、自身の知識をテストしてみてほしい。
 
-### Name masking
+### ネームマスキング(Name masking)
 
+```
 The following example illustrates the most basic principle of lexical scoping, and you should have no problem predicting the output.
+```
+
+以下に示す例はレキシカルスコープの最も基本的な原則を示している。このコードの実行例については容易に結果が予想できるだろう。
 
 
 ```r
@@ -390,7 +394,11 @@ f()
 rm(f)
 ```
 
+```
 If a name isn't defined inside a function, R will look one level up.
+```
+
+関数内で名前が定義されていない場合、Rは1つ上のレベルで名前を探す。
 
 
 ```r
@@ -568,8 +576,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3
+##  [1] 4 4 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 4 4 3 4 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3
 ```
 
 ```r
@@ -1375,7 +1383,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b884608"
+## [1] "0x7fe94b9360f0"
 ```
 
 ```r
@@ -1384,7 +1392,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe954a16ae8"
+## [1] "0x7fe94b923db8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
