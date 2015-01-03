@@ -519,7 +519,7 @@ However, using the same name for functions and other objects will make for confu
 What happens to the values in between invocations of a function? What will happen the first time you run this function? What will happen the second time? (If you haven't seen `exists()` before: it returns `TRUE` if there's a variable of that name, otherwise it returns `FALSE`.)
 ```
 
-関数呼び出しの間にそれに紐づけられた値には何が起きているのだろうか? 初めて関数を呼び出した際には何が起きるのだろうか? さらに二度目に呼び出した時は? (なお、下記コード内で用いられている`exists()`は、指定された名前に紐づけられた変数が存在する場合は`TRUE`を返し、存在しない場合は`FALSE`を返す関数である。)
+関数を複数回呼び出す間にそれに紐づけられた値には何が起きているのだろうか? 下記コード内の関数を最初に呼び出した際には何が起きるのだろうか? さらに二度目に呼び出した時は? (なお、下記コード内で用いられている`exists()`は、指定された名前に紐づけられた変数が存在する場合は`TRUE`を返し、存在しない場合は`FALSE`を返す関数である。)
 
 
 ```r
@@ -534,8 +534,12 @@ j <- function() {
 j()
 rm(j)
 ```
-
+```
 You might be surprised that it returns the same value, `1`, every time. This is because every time a function is called, a new environment is created to host execution. A function has no way to tell what happened the last time it was run; each invocation is completely independent. (We'll see some ways to get around this in [mutable state](#mutable-state).)
+```
+
+読者は、上記関数が初回も2回目以降も同じ値、つまり`1`を返すことに驚いたかもしれない。これは関数が呼び出されるたびに、その呼び出しに対して新しい環境が生成されるからである。関数は前回と今回の呼び出しを区別することはできない。つまり関数呼び出しは完全に独立しているのである。(この話題の取り扱いについては[mutable state](#mutable-state)でも触れる。)
+
 
 ### Dynamic lookup
 
@@ -604,8 +608,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1411,7 +1415,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b0e52d8"
+## [1] "0x7fe94b975a78"
 ```
 
 ```r
@@ -1420,7 +1424,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b9379a8"
+## [1] "0x7fe94b967d40"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
