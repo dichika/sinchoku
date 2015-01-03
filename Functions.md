@@ -541,9 +541,13 @@ You might be surprised that it returns the same value, `1`, every time. This is 
 読者は、上記関数が初回も2回目以降も同じ値、つまり`1`を返すことに驚いたかもしれない。これは関数が呼び出されるたびに、その呼び出しに対して新しい環境が生成されるからである。関数は前回と今回の呼び出しを区別することはできない。つまり関数呼び出しは完全に独立しているのである。(この話題の取り扱いについては[mutable state](#mutable-state)でも触れる。)
 
 
-### Dynamic lookup
+### ダイナミックルックアップ(Dynamic lookup)
 
+```
 Lexical scoping determines where to look for values, not when to look for them. R looks for values when the function is run, not when it's created. This means that the output of a function can be different depending on objects outside its environment: 
+```
+
+レキシカルスコープは値をどこから探すかは決定するが、いつ探すかは決定しない。Rは関数が実行された際に値を探す、関数が生成された時ではない。これは関数の]外部環境の状態に依存して、関数の出力結果が異なることを意味する。
 
 
 ```r
@@ -608,8 +612,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 3 3 4
+## [36] 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
 ```
 
 ```r
@@ -1415,7 +1419,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b975a78"
+## [1] "0x7fe953962db0"
 ```
 
 ```r
@@ -1424,7 +1428,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b967d40"
+## [1] "0x7fe95b34e548"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
