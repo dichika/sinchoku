@@ -613,7 +613,11 @@ This doesn't work because R relies on lexical scoping to find _everything_, even
 
 しかしこれは機能しない。なぜならRは_全て_(｀+｀演算子ですら)のオブジェクトの探索においてレキシカルスコープに依存しているからである。通常Rで演算を行う場合は、Rのbaseパッケージやその他のパッケージに定義された関数を用いざるをえないため、完全に自己完結した関数を作るのは不可能である。
 
+```
 You can use this same idea to do other things that are extremely ill-advised. For example, since all of the standard operators in R are functions, you can override them with your own alternatives.  If you ever are feeling particularly evil, run the following code while your friend is away from their computer:
+```
+
+これはちょっとした意地悪にも応用できる。例えば、Rにおける基本演算子は全て関数であり、独自定義でオーバーライドすることができる。もし読者が意地悪したくなった時は、友人がコンピュータから離れた隙に以下のコードを実行すると良い。
 
 
 ```r
@@ -628,15 +632,18 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
-## [36] 3 3 4 3 3 3 3 3 3 3 4 3 3 3 3
+##  [1] 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
 rm("(")
 ```
 
+```
 This will introduce a particularly pernicious bug: 10% of the time, 1 will be added to any numeric calculation inside parentheses. This is another good reason to regularly restart with a clean R session!
+```
+このコードを実行すると、非常に悪質なバグをもたらす。10回に1回、カッコに囲まれたあらゆる演算結果に対して1が加えられた結果を返す。こういうことがあるので、Rのセッションは常にまっさらの状態から始めるようにしておいた方が良い。
 
 ### Exercises
 
@@ -1435,7 +1442,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bba2af0"
+## [1] "0x7fe94b94e4e0"
 ```
 
 ```r
@@ -1444,7 +1451,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95366d808"
+## [1] "0x7fe94b94b1b8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
