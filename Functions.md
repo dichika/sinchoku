@@ -569,9 +569,17 @@ f()
 ## [1] 20
 ```
 
+```
 You generally want to avoid this behaviour because it means the function is no longer self-contained. This is a common error --- if you make a spelling mistake in your code, you won't get an error when you create the function, and you might not even get one when you run the function, depending on what variables are defined in the global environment.
+```
 
+一般的にこの挙動は避けたいものだろう。なぜならこの場合、関数はそれのみで完結するものではなくなるからだ。コードを書いている時にスペルミスをした場合、関数を生成した時にはエラーは出ない。大域的環境に定義されている変数によっては関数を実行した時にすらエラーは出ないかもしれない。これはよくあるエラーの原因である。
+
+```
 One way to detect this problem is the `findGlobals()` function from `codetools`. This function lists all the external dependencies of a function: \indexc{findGlobals()}
+```
+
+この問題を検出するために、`codetools`パッケージの`findGlobals()`という関数を用いるという方法がある。この関数は、関数が依存する外部環境を全てリストアップする。 \indexc{findGlobals()}
 
 
 ```r
@@ -583,7 +591,11 @@ codetools::findGlobals(f)
 ## [1] "+" "x"
 ```
 
+```
 Another way to try and solve the problem would be to manually change the environment of the function to the `emptyenv()`, an environment which contains absolutely nothing:
+```
+
+この問題を解決する別の方法として、関数の環境を`emptyenv()`で何も含まない環境に変えてしまうというものが考えられる。
 
 
 ```r
@@ -595,7 +607,11 @@ f()
 ## Error in f():  関数 "+" を見つけることができませんでした
 ```
 
+```
 This doesn't work because R relies on lexical scoping to find _everything_, even the `+` operator. It's never possible to make a function completely self-contained because you must always rely on functions defined in base R or other packages.
+```
+
+しかしこれは機能しない。なぜならRは_全て_(｀+｀演算子ですら)のオブジェクトの探索においてレキシカルスコープに依存しているからである。通常Rで演算を行う場合は、Rのbaseパッケージやその他のパッケージに定義された関数を用いざるをえないため、完全に自己完結した関数を作るのは不可能である。
 
 You can use this same idea to do other things that are extremely ill-advised. For example, since all of the standard operators in R are functions, you can override them with your own alternatives.  If you ever are feeling particularly evil, run the following code while your friend is away from their computer:
 
@@ -612,8 +628,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 3 3 4
-## [36] 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
+## [36] 3 3 4 3 3 3 3 3 3 3 4 3 3 3 3
 ```
 
 ```r
@@ -1419,7 +1435,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953962db0"
+## [1] "0x7fe94bba2af0"
 ```
 
 ```r
@@ -1428,7 +1444,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b34e548"
+## [1] "0x7fe95366d808"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
