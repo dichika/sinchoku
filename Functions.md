@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 3 4 3
-## [36] 3 3 3 3 3 3 3 4 3 3 3 4 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 4 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3
+## [36] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -877,11 +877,15 @@ sapply(x, function(x) x[2])
 Remembering that everything that happens in R is a function call will help you in [metaprogramming](#metaprogramming).
 ```
 
-なp、Rにおいて起きる全てのことは関数呼び出しであるという事実を覚えておくと、この後の[metaprogramming](#metaprogramming)の章の理解の助けとなるだろう。
+なお、Rにおいて起きる全てのことは関数呼び出しであるという事実を覚えておくと、この後の[metaprogramming](#metaprogramming)の章の理解の助けとなるだろう。
 
-## Function arguments {#function-arguments}
+## 関数の引数(Function arguments) {#function-arguments}
 
+````
 It's useful to distinguish between the formal arguments and the actual arguments of a function. The formal arguments are a property of the function, whereas the actual or calling arguments can vary each time you call the function. This section discusses how calling arguments are mapped to formal arguments, how you can call a function given a list of arguments, how default arguments work, and the impact of lazy evaluation.
+```
+
+関数の仮引数と実引数の区別をつけておくことは有用である。仮引数は関数のプロパティである一方、実引数(もしくは呼び出し時引数)は関数が呼び出されるたびに変わる。この節では実引数が仮引数にどのようにマップされているか、どのようにして関数に引数リストを渡して関数を呼び出すか、デフォルトの引数はどのように機能するか、遅延評価のインパクトとはどのようなものか、について議論する。
 
 ### Calling functions
 
@@ -1490,7 +1494,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9553ca6e8"
+## [1] "0x7fe953e052e8"
 ```
 
 ```r
@@ -1499,7 +1503,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95493b278"
+## [1] "0x7fe94b975a78"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
