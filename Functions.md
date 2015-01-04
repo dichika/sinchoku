@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
+##  [1] 4 4 4 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 4 3 3 3 3 3 3 3 4 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
 ```
 
 ```r
@@ -797,7 +797,11 @@ x[3]
 ## [1] 3
 ```
 
+```
 It is possible to override the definitions of these special functions, but this is almost certainly a bad idea. However, there are occasions when it might be useful: it allows you to do something that would have otherwise been impossible. For example, this feature makes it possible for the `dplyr` package to translate R expressions into SQL expressions. [Domain specific languages](#dsl) uses this idea to create domain specific languages that allow you to concisely express new concepts using existing R constructs.
+```
+
+これらの特殊な関数の定義のオーバーライドは可能であるが、あまり良い考えとはいえない。しかし、有用な場合もあり、オーバーライドなしには実現できないようなこともある。例えば、`dplyr`パッケージの中でRの式をSQLの式に翻訳する際にこのテクニックは使われている。[Domain specific languages](#dsl)の章ではこのテクニックを用いて、DSL(Domain Specific Language)を作っている。こうすることでRの既存の構造物を利用して新しいコンセプトの表現が実現できている。
 
 It's more often useful to treat special functions as ordinary functions. For example, we could use `sapply()` to add 3 to every element of a list by first defining a function `add()`, like this: \indexc{sapply()}
 
@@ -1466,7 +1470,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95185d8e8"
+## [1] "0x7fe951d3ce70"
 ```
 
 ```r
@@ -1475,7 +1479,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953e7f6e0"
+## [1] "0x7fe953d6a150"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
