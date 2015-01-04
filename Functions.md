@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
 ```
 
 ```r
@@ -645,9 +645,13 @@ This will introduce a particularly pernicious bug: 10% of the time, 1 will be ad
 ```
 このコードを実行すると、非常に悪質なバグをもたらす。10回に1回、カッコに囲まれたあらゆる演算結果に対して1が加えられた結果を返す。こういうことがあるので、Rのセッションは常にまっさらの状態から始めるようにしておいた方が良い。
 
-### Exercises
+### エクササイズ(Exercises)
 
+```
 1. What does the following code return? Why? What does each of the three `c`'s mean?
+```
+
+1. 以下のコードはどのような結果を返すだろうか? なぜそう思うか理由も述べよ? 3つの`c`のそれぞれが意味するものも併せて答えよ。
 
     
     ```r
@@ -655,11 +659,18 @@ This will introduce a particularly pernicious bug: 10% of the time, 1 will be ad
     c(c = c)
     ```
 
+```
 2. What are the four principles that govern how R looks for values?
+```
 
+2. Rが値を探す時に従う4つの原則とはなにか?
+
+```
 3. What does the following function return? Make a prediction before 
    running the code yourself.
+```
 
+3. 以下のコードはどのような結果を返すか? コードを実行する前にその結果を予想してみてほしい。
     
     ```r
     f <- function(x) {
@@ -674,16 +685,29 @@ This will introduce a particularly pernicious bug: 10% of the time, 1 will be ad
     f(10)
     ```
 
-## Every operation is a function call {#all-calls}
+## 全ての操作は関数呼び出しである(Every operation is a function call) {#all-calls}
 
+```
 > "To understand computations in R, two slogans are helpful:
 >
 > * Everything that exists is an object.
 > * Everything that happens is a function call."
 >
 > --- John Chambers
+```
 
+> "Rにおける演算を理解するには以下の2つを覚えておくとよい:
+>
+> * 全てはオブジェクトとして存在する。
+> * R内で起きること全ては関数呼び出しである。"
+>
+> --- John Chambers
+
+```
 The previous example of redefining `(` works because every operation in R is a function call, whether or not it looks like one. This includes infix operators like `+`, control flow operators like `for`, `if`, and `while`, subsetting operators like `[]` and `$`, and even the curly brace `{`. This means that each pair of statements in the following example is exactly equivalent.  Note that `` ` ``, the backtick, lets you refer to functions or variables that have otherwise reserved or illegal names: \index{reserved names} \indexc{`} \index{backticks|see{\texttt{`}}}
+```
+
+先の例(`(`の再定義)は、Rにおける全ての操作が関数呼び出しである(一見そうは見えなくても)からできることであったこれはinfix演算子である`+`やcontrol flow演算子である`for`や`if`、`while`、データ抽出演算子である`[]`や`$`、そして中カッコの`{`についてもいえることである。これは以下に示すコード例がそれぞれ等価であることを意味している。なお、例の中で用いているバックティック`` ` ``は予約語として登録されている、または不正な名前になる関数や変数を参照するためのものである。 \index{reserved names} \indexc{`} \index{backticks|see{\texttt{`}}}
 
 
 ```r
@@ -1442,7 +1466,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b94e4e0"
+## [1] "0x7fe95185d8e8"
 ```
 
 ```r
@@ -1451,7 +1475,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b94b1b8"
+## [1] "0x7fe953e7f6e0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
