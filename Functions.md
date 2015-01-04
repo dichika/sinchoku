@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 4 4 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 4 3 3 3 3 3 3 3 4 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
+##  [1] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 3 4 3
+## [36] 3 3 3 3 3 3 3 4 3 3 3 4 3 3 3
 ```
 
 ```r
@@ -801,9 +801,13 @@ x[3]
 It is possible to override the definitions of these special functions, but this is almost certainly a bad idea. However, there are occasions when it might be useful: it allows you to do something that would have otherwise been impossible. For example, this feature makes it possible for the `dplyr` package to translate R expressions into SQL expressions. [Domain specific languages](#dsl) uses this idea to create domain specific languages that allow you to concisely express new concepts using existing R constructs.
 ```
 
-これらの特殊な関数の定義のオーバーライドは可能であるが、あまり良い考えとはいえない。しかし、有用な場合もあり、オーバーライドなしには実現できないようなこともある。例えば、`dplyr`パッケージの中でRの式をSQLの式に翻訳する際にこのテクニックは使われている。[Domain specific languages](#dsl)の章ではこのテクニックを用いて、DSL(Domain Specific Language)を作っている。こうすることでRの既存の構造物を利用して新しいコンセプトの表現が実現できている。
+これらの特殊関数の定義のオーバーライドは可能であるが、あまり良い考えとはいえない。しかし、有用な場合もあり、オーバーライドなしには実現できないようなこともある。例えば、`dplyr`パッケージの中でRの式をSQLの式に翻訳する際にこのテクニックは使われている。[Domain specific languages](#dsl)の章ではこのテクニックを用いて、DSL(Domain Specific Language)を作っている。こうすることでRの既存の構造物を利用して新しいコンセプトの表現が実現できている。
 
+```
 It's more often useful to treat special functions as ordinary functions. For example, we could use `sapply()` to add 3 to every element of a list by first defining a function `add()`, like this: \indexc{sapply()}
+```
+
+オーバーライドしてしまうより、特殊関数を通常の関数として扱うことの方がケースとしては多い。例えば、`add()`という関数を定義して、それを`sapply()`に渡し、リストの各要素に3ずつ加える場合を考えてみよう。
 
 
 ```r
@@ -815,7 +819,11 @@ sapply(1:10, add, 3)
 ##  [1]  4  5  6  7  8  9 10 11 12 13
 ```
 
+```
 But we can also get the same effect using the built-in `+` function.
+```
+
+この例は以下のように組み込みの`+`を通常の関数と同じように用いることでわざわざ`add()`を定義する手間が省ける。
 
 
 ```r
@@ -834,9 +842,17 @@ sapply(1:5, "+", 3)
 ## [1] 4 5 6 7 8
 ```
 
+```
 Note the difference between `` `+` `` and `"+"`.  The first one is the value of the object called `+`, and the second is a string containing the character `+`.  The second version works because `lapply` can be given the name of a function instead of the function itself: if you read the source of `lapply()`, you'll see the first line uses `match.fun()` to find functions given their names.
+```
 
+なお、`+`と`"+"`の違いに注意してほしい。前者は関数としての`+`に結びつけられた値が呼び出されるが、後者は文字列としての`+`に結びつけられた値つまり+という文字列が呼び出される。では上記の例において、なぜ`sapply()`に渡す関数として`"+"`を指定した場合でも動いているのだろうか。それは`sapply()`に対して関数そのものの代わりに関数の名前を渡すようになっているからである。
+
+```
 A more useful application is to combine `lapply()` or `sapply()` with subsetting:
+```
+
+より有用な応用例として`lapply()`もしくは`sapply()`とデータ抽出を組み合わせるというものがある。
 
 
 ```r
@@ -857,7 +873,11 @@ sapply(x, function(x) x[2])
 ## [1]  2  5 11
 ```
 
+```
 Remembering that everything that happens in R is a function call will help you in [metaprogramming](#metaprogramming).
+```
+
+なp、Rにおいて起きる全てのことは関数呼び出しであるという事実を覚えておくと、この後の[metaprogramming](#metaprogramming)の章の理解の助けとなるだろう。
 
 ## Function arguments {#function-arguments}
 
@@ -1470,7 +1490,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe951d3ce70"
+## [1] "0x7fe9553ca6e8"
 ```
 
 ```r
@@ -1479,7 +1499,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953d6a150"
+## [1] "0x7fe95493b278"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
