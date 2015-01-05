@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 3 3 3
-## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 4 3 3
+## [36] 4 4 3 3 3 4 3 4 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -944,9 +944,17 @@ str(f(1, 3, b = 1))
 ## Error in f(1, 3, b = 1):  引数 3 が複数の仮引数に一致します
 ```
 
+```
 Generally, you only want to use positional matching for the first one or two arguments; they will be the most commonly used, and most readers will know what they are. Avoid using positional matching for less commonly used arguments, and only use readable abbreviations with partial matching. (If you are writing code for a package that you want to publish on CRAN you can not use partial matching, and must use complete names.) Named arguments should always come after unnamed arguments. If a function uses `...` (discussed in more detail below), you can only specify arguments listed after `...` with their full name.
+```
 
+一般的に、１-2つ目の引数については位置によるマッチングを選ぶだろう。これらの引数はよく使われるものであり、多くの読者もその引数が意味するものを知っているからである。しかし、あまり使われない引数に対しては位置によるマッチングを用いることを避け、部分的なマッチングと併せて可読的な短縮形を用いるべきである。(CRANに公開するパッケージのコードを書く場合は、部分的なマッチを使わずに、完全な名前による引数指定をすべきである。)名前付き引数は、名前なし引数の後に置くべきである。もし関数の中で`...`(これについては後ほど詳しく述べる)を用いる場合は、その後にくる引数についてはフルネームで指定する必要がある。
+
+```
 These are good calls:
+```
+
+以下は良い関数呼び出しの例である。
 
 
 ```r
@@ -954,14 +962,22 @@ mean(1:10)
 mean(1:10, trim = 0.05)
 ```
 
+```
 This is probably overkill:
+```
+
+これは不必要に書き過ぎている。
 
 
 ```r
 mean(x = 1:10)
 ```
 
+```
 And these are just confusing:
+```
+
+これらは混乱を招く。
 
 
 ```r
@@ -1500,7 +1516,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b861ee8"
+## [1] "0x7fe953736ee0"
 ```
 
 ```r
@@ -1509,7 +1525,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe95b85d6e0"
+## [1] "0x7fe9526d2810"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
