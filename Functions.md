@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 4 3 3
-## [36] 4 4 3 3 3 4 3 4 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -922,7 +922,7 @@ str(f(2, 3, abcdef = 1))
 ```
 
 ```r
-# 長い名前の非k数は短縮できる
+# 長い名前の引数は短縮できる
 # Can abbreviate long argument names:
 str(f(2, 3, a = 1))
 ```
@@ -987,16 +987,24 @@ mean(1:10, 0.05)
 mean(, TRUE, x = c(1:10, NA))
 ```
 
-### Calling a function given a list of arguments
+### 引数リストを渡した場合の関数呼び出し(Calling a function given a list of arguments)
 
+```
 Suppose you had a list of function arguments: \indexc{do.call()}
+```
+
+関数の引数リストがあると仮定する。 \indexc{do.call()}
 
 
 ```r
 args <- list(1:10, na.rm = TRUE)
 ```
 
+```
 How could you then send that list to `mean()`?  You need `do.call()`:
+```
+
+このリストをどのように`mean()`に渡したらよいだろう? この時、`do.call()`を用いる。
 
 
 ```r
@@ -1008,6 +1016,7 @@ do.call(mean, list(1:10, na.rm = TRUE))
 ```
 
 ```r
+# 以下と等価である
 # Equivalent to
 mean(1:10, na.rm = TRUE)
 ```
@@ -1016,9 +1025,14 @@ mean(1:10, na.rm = TRUE)
 ## [1] 5.5
 ```
 
-### Default and missing arguments
+### デフォルト引数および引数の欠損(Default and missing arguments)
 
+```
 Function arguments in R can have default values. \index{functions!default values}
+```
+
+Rにおける関数の引数はデフォルトの値を持てる。 \index{functions!default values}
+
 
 
 ```r
@@ -1032,7 +1046,11 @@ f()
 ## [1] 1 2
 ```
 
+```
 Since arguments in R are evaluated lazily (more on that below), the default value can be defined in terms of other arguments:
+```
+
+Rにおける引数は遅延評価される(これについては後ほど述べる)ため、引数の初期値は他の関数とともに評価される。
 
 
 ```r
@@ -1516,7 +1534,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953736ee0"
+## [1] "0x7fe94bab4db0"
 ```
 
 ```r
@@ -1525,7 +1543,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9526d2810"
+## [1] "0x7fe94baa3870"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
