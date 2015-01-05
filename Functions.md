@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 4 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3
-## [36] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 4 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 3 3 3
+## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -887,9 +887,13 @@ It's useful to distinguish between the formal arguments and the actual arguments
 
 関数の仮引数と実引数の区別をつけておくことは有用である。仮引数は関数のプロパティである一方、実引数(もしくは呼び出し時引数)は関数が呼び出されるたびに変わる。この節では実引数が仮引数にどのようにマップされているか、どのようにして関数に引数リストを渡して関数を呼び出すか、デフォルトの引数はどのように機能するか、遅延評価のインパクトとはどのようなものか、について議論する。
 
-### Calling functions
+### 関数の呼び出し(Calling functions)
 
+```
 When calling a function you can specify arguments by position, by complete name, or by partial name. Arguments are matched first by exact name (perfect matching), then by prefix matching, and finally by position. \index{functions!arguments}
+```
+
+関数を呼び出すとき、その引数は位置、名前(場合によっては部分的な名前)で特定する。引数はまず正確な名前(perfect matching)でマッチされ、その次のプレフィックスマッチ(prefix matching)、最後に位置でのマッチングという順で実行される。 \index{functions!arguments}
 
 
 ```r
@@ -918,6 +922,7 @@ str(f(2, 3, abcdef = 1))
 ```
 
 ```r
+# 長い名前の非k数は短縮できる
 # Can abbreviate long argument names:
 str(f(2, 3, a = 1))
 ```
@@ -930,6 +935,7 @@ str(f(2, 3, a = 1))
 ```
 
 ```r
+# ただし以下の場合は短縮すると曖昧なためエラーになる
 # But this doesn't work because abbreviation is ambiguous
 str(f(1, 3, b = 1))
 ```
@@ -1494,7 +1500,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953e052e8"
+## [1] "0x7fe95b861ee8"
 ```
 
 ```r
@@ -1503,7 +1509,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b975a78"
+## [1] "0x7fe95b85d6e0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
