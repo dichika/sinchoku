@@ -632,7 +632,7 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
@@ -1050,7 +1050,7 @@ f()
 Since arguments in R are evaluated lazily (more on that below), the default value can be defined in terms of other arguments:
 ```
 
-Rにおける引数は遅延評価される(これについては後ほど述べる)ため、引数の初期値は他の関数とともに評価される。
+Rにおける引数は遅延評価される(これについては後ほど述べる)ため、引数の初期値は他の引数を用いて評価することもできる。
 
 
 ```r
@@ -1072,7 +1072,11 @@ g(10)
 ## [1] 10 20
 ```
 
+```
 Default arguments can even be defined in terms of variables created within the function. This is used frequently in base R functions, but I think it is bad practice, because you can't understand what the default values will be without reading the complete source code.
+```
+
+デフォルト引数は関数の中で生成された変数に入れて評価することさえ可能である。これはRのbaseパッケージの関数ではよく使われているテクニックだが、個人的には悪い習慣であると思われる。なぜならデフォルト引数として与えられた値がどうなるか、ソースコードを全て読むまで理解できないからである。
 
 
 ```r
@@ -1534,7 +1538,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bab4db0"
+## [1] "0x7fe955108350"
 ```
 
 ```r
@@ -1543,7 +1547,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94baa3870"
+## [1] "0x7fe953e7de88"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
