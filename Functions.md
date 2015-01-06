@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 4 3 3 3 4 3
-## [36] 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3
+##  [1] 3 4 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1141,7 +1141,11 @@ i(1, 2)
 ## [1] FALSE FALSE
 ```
 
+```
 Sometimes you want to add a non-trivial default value, which might take several lines of code to compute. Instead of inserting that code in the function definition, you could use `missing()` to conditionally compute it if needed. However, this makes it hard to know which arguments are required and which are optional without carefully reading the documentation. Instead, I usually set the default value to `NULL` and use `is.null()` to check if the argument was supplied.
+```
+
+少なくない数の初期値を設定した場合、実行に数行費やす場合もあるだろう。そのような事態を避けるためにも、初期値は引数に与えるのではなく、`missing()`を用いて必要な時にのみ実行するように変更すると良い。しかし、こうしてしまうと、ドキュメントを注意深く読まない限り、どの引数が必須のもので、どの引数がオプションなのかがわかりにくくなってしまう。筆者はそのような場合への対応として、初期値に`NULL`を与え、引数の有無をチェックするには`is.null()`を用いている。
 
 ### Lazy evaluation {#lazy-evaluation}
 
@@ -1542,7 +1546,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9536a0278"
+## [1] "0x7fe94b94b0e8"
 ```
 
 ```r
@@ -1551,7 +1555,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bba33a8"
+## [1] "0x7fe94b935478"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
