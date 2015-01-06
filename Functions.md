@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3
 ```
 
 ```r
@@ -1147,9 +1147,13 @@ Sometimes you want to add a non-trivial default value, which might take several 
 
 少なくない数の初期値を設定した場合、実行に数行費やす場合もあるだろう。そのような事態を避けるためにも、初期値は引数に与えるのではなく、`missing()`を用いて必要な時にのみ実行するように変更すると良い。しかし、こうしてしまうと、ドキュメントを注意深く読まない限り、どの引数が必須のもので、どの引数がオプションなのかがわかりにくくなってしまう。筆者はそのような場合への対応として、初期値に`NULL`を与え、引数の有無をチェックするには`is.null()`を用いている。
 
-### Lazy evaluation {#lazy-evaluation}
+### 遅延評価(Lazy evaluation) {#lazy-evaluation}
 
+```
 By default, R function arguments are lazy --- they're only evaluated if they're actually used: \index{lazy evaluation} \index{functions!lazy evaluation}
+```
+
+Rの関数における引数は遅延評価される。つまり、その引数が必要とされる時になって評価される。 \index{lazy evaluation} \index{functions!lazy evaluation}
 
 
 ```r
@@ -1163,7 +1167,9 @@ f(stop("This is an error!"))
 ## [1] 10
 ```
 
+```
 If you want to ensure that an argument is evaluated you can use `force()`: \indexc{force()}
+```
 
 
 ```r
@@ -1546,7 +1552,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b94b0e8"
+## [1] "0x7fe94baa4e88"
 ```
 
 ```r
@@ -1555,7 +1561,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94b935478"
+## [1] "0x7fe94baca080"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
