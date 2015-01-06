@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 4 3 3 3 4 3
+## [36] 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3
 ```
 
 ```r
@@ -1099,7 +1099,11 @@ h(10)
 ## [1]  10 121
 ```
 
+```
 You can determine if an argument was supplied or not with the `missing()` function. \indexc{missing()}
+```
+
+`missing()`によって、引数が未指定かどうかを判定することができる。 \indexc{missing()}
 
 
 ```r
@@ -1538,7 +1542,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe955108350"
+## [1] "0x7fe9536a0278"
 ```
 
 ```r
@@ -1547,7 +1551,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe953e7de88"
+## [1] "0x7fe94bba33a8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
