@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3
+##  [1] 3 4 3 3 4 3 3 3 4 3 4 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 4 3 3 3 3 4 3 3 3 3 4 3 3 3
 ```
 
 ```r
@@ -1171,6 +1171,8 @@ f(stop("This is an error!"))
 If you want to ensure that an argument is evaluated you can use `force()`: \indexc{force()}
 ```
 
+もし、引数をすぐに評価したい場合は`force()`を用いるとよい。
+
 
 ```r
 f <- function(x) {
@@ -1184,7 +1186,11 @@ f(stop("This is an error!"))
 ## Error in force(x): This is an error!
 ```
 
+```
 This is important when creating closures with `lapply()` or a loop:
+```
+
+これは`lapply()`やループでもってクロージャを生成する時に重要なテクニックである。
 
 
 ```r
@@ -1207,7 +1213,11 @@ adders[[10]](10)
 ## [1] 20
 ```
 
+```
 `x` is lazily evaluated the first time that you call one of the adder functions. At this point, the loop is complete and the final value of `x` is 10.  Therefore all of the adder functions will add 10 on to their input, probably not what you wanted!  Manually forcing evaluation fixes the problem:
+```
+
+addersのいずれか(例えばadders[[1]])を呼び出して初めて、`x`は評価される。この時点で`lapply()`におけるループは終了しており、`x`の値は10である。したがって、このaddersは入力値に対して、常に10を足すという関数になってしまう。しかし期待していたのはadders[[1]]なら1を足し、adders[[10]]ならば10を足すという結果である。この問題には強制評価を行うことで対処する。
 
 
 ```r
@@ -1231,7 +1241,11 @@ adders2[[10]](10)
 ## [1] 20
 ```
 
+```
 This code is exactly equivalent to
+```
+
+このコードは下記コードと等価である。
 
 
 ```r
@@ -1552,7 +1566,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94baa4e88"
+## [1] "0x7fe94bab4e80"
 ```
 
 ```r
@@ -1561,7 +1575,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94baca080"
+## [1] "0x7fe9536a12e0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
