@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 4 3 4 3 3 3 3 3 4 3
+##  [1] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3
+## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1294,16 +1294,29 @@ f(ls())
 ##  [8] "g"       "h"       "i"       "objs"    "trgrow"  "x"       "y"
 ```
 
+```
 More technically, an unevaluated argument is called a __promise__, or (less commonly) a thunk. A promise is made up of two parts: \index{promises} \index{thunks|see{promises}}
+```
 
-* The expression which gives rise to the delayed computation. (It can be 
-  accessed with `substitute()`. See [non-standard evaluation](#nse) for more 
-  details.)
+さらに踏み込んだ解説をすると、未評価の引数は__プロミス__もしくはあまり一般的ではないがサンクと呼ばれる。プロミスは以下の2つで構成されている。 \index{promises} \index{thunks|see{promises}}
 
-* The environment where the expression was created and where it should be 
-  evaluated.
+```
+* The expression which gives rise to the delayed computation. (It can be accessed with `substitute()`. See [non-standard evaluation](#nse) for more details.)
+```
 
+* 遅延評価の対象となる式(これは`substitute()`でアクセスできる)。詳しくは[non-standard evaluation](#nse)を参照のこと。
+
+```
+* The environment where the expression was created and where it should be evaluated.
+```
+
+* 式が生成された環境および式が評価されるべき環境
+
+```
 The first time a promise is accessed the expression is evaluated in the environment where it was created. This value is cached, so that subsequent access to the evaluated promise does not recompute the value (but the original expression is still associated with the value, so `substitute()` can continue to access it). You can find more information about a promise using `pryr::promise_info()`. This uses some C++ code to extract information about the promise without evaluating it, which is impossible to do in pure R code.
+```
+
+プロミスに初めてアクセスした時、式は生成された環境において評価される。この値はキャッシュされ、その後のアクセスに対して改めて評価するようなことはない(しかし、元の式は値に紐づいているので、`substitute()`はその値に対して継続してアクセスすることができる)。プロミスについてより情報が欲しいなら`pryr::promise_info()`を使うと良い。この関数は従来のRコードではアクセスできないプロミスについての情報を取り出すためにC++を用いている。
 
 Laziness is useful in if statements --- the second statement below will be evaluated only if the first is true. If it wasn't, the statement would return an error because `NULL > 0` is a logical vector of length 0 and not a valid input to `if`. \indexc{if}
 
@@ -1576,7 +1589,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bbf03b0"
+## [1] "0x7feab5615948"
 ```
 
 ```r
@@ -1585,7 +1598,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bbe3cf0"
+## [1] "0x7feab5618670"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
