@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 4 3 3 3 4 3 4 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 4 3 3 3 3 4 3 3 3 3 4 3 3 3
+##  [1] 3 3 4 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 4 3 4 3 3 3 3 3 4 3
 ```
 
 ```r
@@ -1255,9 +1255,17 @@ add <- function(x) {
 }
 ```
 
+```
 because the force function is defined as `force <- function(x) x`. However, using this function clearly indicates that you're forcing evaluation, not that you've accidentally typed `x`.
+```
 
+なぜなら`force()`は、`force <- function(x) x`と定義されているからである。しかし、この関数を使うことで、タイプミスで`x`と書いたのではなく、強制評価させたいという意思表示ができる。
+
+```
 Default arguments are evaluated inside the function. This means that if the expression depends on the current environment the results will differ depending on whether you use the default value or explicitly provide one.
+```
+
+デフォルト引数は関数の中で評価される。これはデフォルト引数として与える式が環境に依存するものである場合(以下の例における`ls()`)、デフォルト引数として与えられたか、それとも明示的に指定したかによって結果が異なってくることを意味する。
 
 
 ```r
@@ -1266,6 +1274,7 @@ f <- function(x = ls()) {
   x
 }
 
+# ls()はfの中で評価される
 # ls() evaluated inside f:
 f()
 ```
@@ -1275,6 +1284,7 @@ f()
 ```
 
 ```r
+# ls()は大域的環境において評価される
 # ls() evaluated in global environment:
 f(ls())
 ```
@@ -1566,7 +1576,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe94bab4e80"
+## [1] "0x7fe94bbf03b0"
 ```
 
 ```r
@@ -1575,7 +1585,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7fe9536a12e0"
+## [1] "0x7fe94bbe3cf0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
