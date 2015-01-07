@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 4 3
-## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4
+## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3
 ```
 
 ```r
@@ -1318,7 +1318,11 @@ The first time a promise is accessed the expression is evaluated in the environm
 
 プロミスに初めてアクセスした時、式は生成された環境において評価される。この値はキャッシュされ、その後のアクセスに対して改めて評価するようなことはない(しかし、元の式は値に紐づいているので、`substitute()`はその値に対して継続してアクセスすることができる)。プロミスについてより情報が欲しいなら`pryr::promise_info()`を使うと良い。この関数は従来のRコードではアクセスできないプロミスについての情報を取り出すためにC++を用いている。
 
+```
 Laziness is useful in if statements --- the second statement below will be evaluated only if the first is true. If it wasn't, the statement would return an error because `NULL > 0` is a logical vector of length 0 and not a valid input to `if`. \indexc{if}
+```
+
+遅延評価は、if文において有用である。例えば下記コードにおいて、2つ目の引数は遅延評価により1つ目の引数が真の時のみ評価される。もし遅延評価をしない場合、このif文はエラーを返す。なぜなら`NULL > 0`は長さ0の論理値ベクトルであり、`if`の入力値としては適切ではないからである。 \indexc{if}
 
 
 ```r
@@ -1328,7 +1332,11 @@ if (!is.null(x) && x > 0) {
 }
 ```
 
+```
 We could implement "&&" ourselves:
+```
+
+ここであらためて"&&"を実装してみよう。
 
 
 ```r
@@ -1346,7 +1354,11 @@ a <- NULL
 ## [1] FALSE
 ```
 
+```
 This function would not work without lazy evaluation because both `x` and `y` would always be evaluated, testing `a > 0` even when `a` was NULL.
+```
+
+この関数は遅延評価なしには機能しない。なぜなら`x`と`y`の両者ともに常に評価されるからである。`a `がNULLであっても`a > 0 `がテストされる。
 
 Sometimes you can also use laziness to eliminate an if statement altogether. For example, instead of:
 
@@ -1589,7 +1601,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab5615948"
+## [1] "0x7feab7b4dc18"
 ```
 
 ```r
@@ -1598,7 +1610,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab5618670"
+## [1] "0x7feab72947a8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
