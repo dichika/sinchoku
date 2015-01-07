@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4
-## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
+## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1360,7 +1360,11 @@ This function would not work without lazy evaluation because both `x` and `y` wo
 
 この関数は遅延評価なしには機能しない。なぜなら`x`と`y`の両者ともに常に評価されるからである。`a `がNULLであっても`a > 0 `がテストされる。
 
+```
 Sometimes you can also use laziness to eliminate an if statement altogether. For example, instead of:
+```
+
+遅延評価を用いてif文を無くしてしまうこともできる。例えば下記コードのように書く代わりに
 
 
 ```r
@@ -1371,7 +1375,7 @@ if (is.null(a)) stop("a is null")
 ## Error in eval(expr, envir, enclos): a is null
 ```
 
-You could write:
+こう書くこともできる。
 
 
 ```r
@@ -1601,7 +1605,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b4dc18"
+## [1] "0x7feab7b30670"
 ```
 
 ```r
@@ -1610,7 +1614,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab72947a8"
+## [1] "0x7feab6d01e10"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
