@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
-## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3
 ```
 
 ```r
@@ -1388,7 +1388,11 @@ if (is.null(a)) stop("a is null")
 
 ### `...`
 
+```
 There is a special argument called `...` .  This argument will match any arguments not otherwise matched, and can be easily passed on to other functions.  This is useful if you want to collect arguments to call another function, but you don't want to prespecify their possible names. `...` is often used in conjunction with S3 generic functions to allow individual methods to be more flexible. \indexc{...}
+```
+
+特殊な引数として`...`がある。これはマッチしなかった任意の引数にマッチするものであり、他の関数に容易に渡すことができる。これは事前に指定しづらい引数をまとめて、他の関数に渡す時に便利である。`...`はS3のジェネリック関数と組み合わせて用いることで、個々のメソッドをより柔軟にすることができる。
 
 One relatively sophisticated user of `...` is the base `plot()` function. `plot()` is a generic method with arguments `x`, `y` and `...` . To understand what `...` does for a given function we need to read the help: "Arguments to be passed to methods, such as graphical parameters". Most simple invocations of `plot()` end up calling `plot.default()` which has many more arguments, but also has `...` .  Again, reading the documentation reveals that `...` accepts "other graphical parameters", which are listed in the help for `par()`.  This allows us to write code like:
 
@@ -1605,7 +1609,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b30670"
+## [1] "0x7feab7b16a88"
 ```
 
 ```r
@@ -1614,7 +1618,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab6d01e10"
+## [1] "0x7feab7b446f0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
