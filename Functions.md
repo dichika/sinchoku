@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3
+##  [1] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1437,7 +1437,11 @@ f(a = 1, b = 2)
 ## [1] "a" "b"
 ```
 
+```
 Using `...` comes at a price --- any misspelled arguments will not raise an error, and any arguments after `...` must be fully named.  This makes it easy for typos to go unnoticed:
+```
+
+`...`を使うにはそれなりの代償を必要とする。引数をスペルミスしてもエラーは出ず、また`...`の後にくる引数は名前付きのものでなくてはならない。これは気づかれることの無いタイプミスを招く。
 
 
 ```r
@@ -1448,7 +1452,11 @@ sum(1, 2, NA, na.mr = TRUE)
 ## [1] NA
 ```
 
+```
 It's often better to be explicit rather than implicit, so you might instead ask users to supply a list of additional arguments. That's certainly easier if you're trying to use `...` with multiple additional functions.
+```
+
+暗黙の指定よりも、明示的な指定の方が往々にして望ましい。したがって、追加する引数のリストを渡すような形で関数は作るべきである。複数の追加関数に対して`...`を用いようとするのであればそれがより簡単な方法といえる。
 
 ### Exercises
 
@@ -1622,7 +1630,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab561ac20"
+## [1] "0x7feab7b2d5b0"
 ```
 
 ```r
@@ -1631,7 +1639,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b35e20"
+## [1] "0x7feab7b488e8"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
