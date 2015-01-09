@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 3 4 4 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1458,9 +1458,13 @@ It's often better to be explicit rather than implicit, so you might instead ask 
 
 暗黙の指定よりも、明示的な指定の方が往々にして望ましい。したがって、追加する引数のリストを渡すような形で関数は作るべきである。複数の追加関数に対して`...`を用いようとするのであればそれがより簡単な方法といえる。
 
-### Exercises
+### エクササイズ(Exercises)
 
+```
 1.  Clarify the following list of odd function calls:
+```
+
+以下の関数呼び出しにおける奇妙な点を挙げよ。
 
     
     ```r
@@ -1469,8 +1473,12 @@ It's often better to be explicit rather than implicit, so you might instead ask 
     cor(m = "k", y = y, u = "p", x = x)
     ```
 
+```
 1.  What does this function return? Why? Which principle does it illustrate?
-  
+```
+
+以下の関数はどのような結果を返すか? どのような原則を表しているか?
+
     
     ```r
     f1 <- function(x = {y <- 1; 2}, y = 0) {
@@ -1479,7 +1487,11 @@ It's often better to be explicit rather than implicit, so you might instead ask 
     f1()
     ```
 
+```
 1.  What does this function return? Why? Which principle does it illustrate?
+```
+
+以下の関数はどのような結果を返すか? どのような原則を表しているか?
 
     
     ```r
@@ -1630,7 +1642,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b2d5b0"
+## [1] "0x7feab7cb83b8"
 ```
 
 ```r
@@ -1639,7 +1651,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b488e8"
+## [1] "0x7feab7cb9218"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
