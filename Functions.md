@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 4 3 4 3 4 3 3 3 3
 ```
 
 ```r
@@ -1510,11 +1510,19 @@ R supports two additional syntaxes for calling special types of functions: infix
 
 Rでは特殊な関数呼び出しとして2つの仕組みを備えている。infix関数とreplacement関数である。
 
-### Infix functions {#infix-functions}
+### infix関数(Infix functions) {#infix-functions}
 
+```
 Most functions in R are "prefix" operators: the name of the function comes before the arguments. You can also create infix functions where the function name comes in between its arguments, like `+` or `-`.  All user-created infix functions must start and end with `%`. R comes with the following infix functions predefined: `%%`, `%*%`, `%/%`, `%in%`, `%o%`,  `%x%`. (The complete list of built-in infix operators that don't need `%` is: `::, :::, $, @, ^, *, /, +, -, >, >=, <, <=, ==, !=, !, &, &&, |, ||, ~, <-, <<-`) \index{functions!infix} \index{infix functions} \indexc{\%\%}
+```
 
+Rにおける多くの関数は"prefix"タイプの演算子である。つまり、関数の名称が引数の前にくる。ここで、Rにおいて、`+`や`-`のように引数の間に関数の名称がくる"infix"タイプの関数を生成することもできる。ユーザが定義したinfix関数は`%`で関数の名称をはさむことになっている。このような形であらかじめ定義された関数として以下のものがある(`%%`、`%*%`、`%/%`、`%in%`、`%o%`、`%x%`)。なお、`%`を必要としない組み込みのinfix演算子として、`::, :::, $, @, ^, *, /, +, -, >, >=, <, <=, ==, !=, !, &, &&, |, ||, ~, <-, <<-`が挙げられる。 \index{functions!infix} \index{infix functions} \indexc{\%\%}
+
+```
 For example, we could create a new operator that pastes together strings:
+```
+
+例えば、文字列を結合する演算子として以下のようなものを新しく定義してみよう。
 
 
 ```r
@@ -1526,7 +1534,11 @@ For example, we could create a new operator that pastes together strings:
 ## [1] "new string"
 ```
 
+```
 Note that when creating the function, you have to put the name in backticks because it's a special name. This is just a syntactic sugar for an ordinary function call; as far as R is concerned there is no difference between these two expressions:
+```
+
+ここで二項演算子を定義する際、Rに通常の文字列とは異なることを認識させるためにバックティックで囲むことを忘れてはいけない。%を用いた二項演算子はあくまで関数呼び出しにおける糖衣構文であり、Rが認識する限り、以下の例のようにバックティックを用いて通常の関数呼び出しを行うこともできる。
 
 
 ```r
@@ -1545,7 +1557,11 @@ Note that when creating the function, you have to put the name in backticks beca
 ## [1] "new string"
 ```
 
+```
 Or indeed between \indexc{`}
+```
+
+%を用いない二項演算子についても同じことがいえる。
 
 
 ```r
@@ -1564,7 +1580,11 @@ Or indeed between \indexc{`}
 ## [1] 6
 ```
 
+```
 The names of infix functions are more flexible than regular R functions: they can contain any sequence of characters (except "%", of course). You will need to escape any special characters in the string used to define the function, but not when you call it:
+```
+
+二項演算子の名称は通常のRの関数よりも柔軟性があり、"%"を除くあらゆる文字列を用いることができる。なお、関数定義の際は、特殊文字についてはエスケープ文字を用いる必要があるが、関数呼び出しの際はそのようなエスケープ文字は必要ではない。
 
 
 ```r
@@ -1595,7 +1615,11 @@ The names of infix functions are more flexible than regular R functions: they ca
 ## [1] "a b"
 ```
 
+```
 R's default precedence rules mean that infix operators are composed from left to right:
+```
+
+デフォルトでは二項演算子は左から右に評価される。
 
 
 ```r
@@ -1646,7 +1670,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b46540"
+## [1] "0x7feab7ad6940"
 ```
 
 ```r
@@ -1655,7 +1679,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab57d2478"
+## [1] "0x7feab5619cf0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
