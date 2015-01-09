@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 4 4 3 3 4 4 3 3 3 4 3 3 3 3 3 4 3 4 3 3
-## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 4 3 4 3 3 3 3 3 3 3 3 3 4 3 3
 ```
 
 ```r
@@ -1407,7 +1407,11 @@ plot(1:5, col = "red")
 plot(1:5, cex = 5, pch = 20)
 ```
 
+```
 This illustrates both the advantages and disadvantages of `...`: it makes `plot()` very flexible, but to understand how to use it, we have to carefully read the documentation. Additionally, if we read the source code for `plot.default`, we can discover undocumented features. It's possible to pass along other arguments to `Axis()` and `box()`:
+```
+
+このコードは`...`の宵面と悪い面を表している。`...`は`plot()`をフレキシブルなものとする一方、使い方を理解しようとするとドキュメントを注意深く読まなくてはならない。しかも、`plot.default()`のソースコードを読むとドキュメント化されていない部分があることに気づく。例えば、以下のように他の引数を`Axis()`および`box()`に引き渡すことも実は可能である。
 
 
 ```r
@@ -1614,7 +1618,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab700cc18"
+## [1] "0x7feab57dc2e0"
 ```
 
 ```r
@@ -1623,7 +1627,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7e66c18"
+## [1] "0x7feab55a42e0"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
