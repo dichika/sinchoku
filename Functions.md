@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 4 3 4 3 4 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 3 4 4 3 3 3 3 3 3
+## [36] 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1631,7 +1631,11 @@ R's default precedence rules mean that infix operators are composed from left to
 ## [1] "((a %-% b) %-% c)"
 ```
 
+```
 There's one infix function that I use very often. It's inspired by Ruby's `||` logical or operator, although it works a little differently in R because Ruby has a more flexible definition of what evaluates to `TRUE` in an if statement. It's useful as a way of providing a default value in case the output of another function is `NULL`:
+```
+
+筆者がよく使う二項演算子を紹介しよう。これはRuby言語の`||`に触発されて作ったものである。Rubyにおける`||`はif文における`TRUE`の評価についてより柔軟な定義がされており、Rの`||`とは挙動が異なる。以下の例のように、独自に`%||%`を定義して、一方の関数の出力が`NULL`だった場合、あらかじめ指定した初期値を返すようにしておくと便利である。
 
 
 ```r
@@ -1670,7 +1674,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7ad6940"
+## [1] "0x7feab7459e70"
 ```
 
 ```r
@@ -1679,7 +1683,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab5619cf0"
+## [1] "0x7feab7453420"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
