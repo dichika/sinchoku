@@ -632,7 +632,7 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 4 3 3
 ## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
@@ -1646,7 +1646,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7d2b618"
+## [1] "0x7feab7b46540"
 ```
 
 ```r
@@ -1655,7 +1655,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab308a280"
+## [1] "0x7feab57d2478"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
