@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 4 3 4 3 3 3 3 3 3 3 3 3 4 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 4 3 4 3 3 3 3
 ```
 
 ```r
@@ -1419,7 +1419,11 @@ plot(1:5, bty = "u")
 plot(1:5, labels = FALSE)
 ```
 
+```
 To capture `...` in a form that is easier to work with, you can use `list(...)`. (See [capturing unevaluated dots](#capturing-dots) for other ways to capture `...` without evaluating the arguments.)
+```
+`...`をより使いやすい形で取り出すには、`list(...)`を用いるとよい。
+(`...`を未評価のまま取り出す他の方法については[capturing unevaluated dots](#capturing-dots)を参照のこと。)
 
 
 ```r
@@ -1618,7 +1622,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab57dc2e0"
+## [1] "0x7feab561ac20"
 ```
 
 ```r
@@ -1627,7 +1631,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab55a42e0"
+## [1] "0x7feab7b35e20"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
