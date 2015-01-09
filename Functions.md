@@ -632,7 +632,7 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 3 4 4 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 4 3
 ## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
@@ -1502,9 +1502,13 @@ It's often better to be explicit rather than implicit, so you might instead ask 
     f2()
     ```
 
-## Special calls {#special-calls}
+## 特殊な関数呼び出し(Special calls) {#special-calls}
 
+```
 R supports two additional syntaxes for calling special types of functions: infix and replacement functions.
+```
+
+Rでは特殊な関数呼び出しとして2つの仕組みを備えている。infix関数とreplacement関数である。
 
 ### Infix functions {#infix-functions}
 
@@ -1642,7 +1646,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7cb83b8"
+## [1] "0x7feab7d2b618"
 ```
 
 ```r
@@ -1651,7 +1655,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7cb9218"
+## [1] "0x7feab308a280"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
