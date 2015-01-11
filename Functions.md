@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 4 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4
-## [36] 4 3 3 3 3 3 3 3 4 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab78a4488"
+## [1] "0x7feab7cb8fa8"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab78a5b50"
+## [1] "0x7feab57dc008"
 ```
 
 ```
@@ -1850,9 +1850,13 @@ names(x) <- `*tmp*`
 
 引数として与えられたベクトルにおいてランダムな位置で値を変更するreplacement関数を定義せよ。
 
-## Return values {#return-values}
+## 返り値(Return values) {#return-values}
 
+```
 The last expression evaluated in a function becomes the return value, the result of invoking the function. \index{functions!return value}
+```
+
+関数内で最後に評価された式は返り値、つまり関数の実行結果となる。 \index{functions!return value}
 
 
 ```r
@@ -1878,13 +1882,18 @@ f(15)
 ## [1] 10
 ```
 
+```
 Generally, I think it's good style to reserve the use of an explicit `return()` for when you are returning early, such as for an error, or a simple case of the function. This style of programming can also reduce the level of indentation, and generally make functions easier to understand because you can reason about them locally. \indexc{return()}
+```
+
+筆者としては明示的に`return()`を用いるのはエラー処理の時など関数の浅い段階で値を返すとき、もしくは簡単な関数ときに限った方が良いと考える。このプログラミングスタイルをとると、インデントが深くなるのを避けることができる。また関数に局所的に意味をもたせることができるので、理解しやすいコードになるという利点がある。
 
 
 ```r
 f <- function(x, y) {
   if (!x) return(y)
 
+  # この後に複雑な処理が続く
   # complicated processing here
 }
 ```
