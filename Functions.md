@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 3 4 4 3 3 3 3 3 3
-## [36] 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
 ```
 
 ```r
@@ -1635,7 +1635,7 @@ R's default precedence rules mean that infix operators are composed from left to
 There's one infix function that I use very often. It's inspired by Ruby's `||` logical or operator, although it works a little differently in R because Ruby has a more flexible definition of what evaluates to `TRUE` in an if statement. It's useful as a way of providing a default value in case the output of another function is `NULL`:
 ```
 
-筆者がよく使う二項演算子を紹介しよう。これはRuby言語の`||`に触発されて作ったものである。Rubyにおける`||`はif文における`TRUE`の評価についてより柔軟な定義がされており、Rの`||`とは挙動が異なる。以下の例のように、独自に`%||%`を定義して、一方の関数の出力が`NULL`だった場合、あらかじめ指定した初期値を返すようにしておくと便利である。
+筆者がよく使う二項演算子を紹介しよう。これはRuby言語の`||`演算子に触発されて作ったものである。Rubyにおける`||`はif文における`TRUE`の評価についてより柔軟な定義がされており、Rの`||`とは挙動が異なる。以下の例のように、独自に`%||%`を定義して、一方の関数の出力が`NULL`だった場合、あらかじめ指定した初期値を返すようにしておくと便利である。
 
 
 ```r
@@ -1645,7 +1645,11 @@ function_that_might_return_null() %||% default value
 
 ### Replacement functions {#replacement-functions}
 
+```
 Replacement functions act like they modify their arguments in place, and have the special name `xxx<-`. They typically have two arguments (`x` and `value`), although they can have more, and they must return the modified object. For example, the following function allows you to modify the second element of a vector: \index{replacement functions} \index{functions!replacement}
+```
+
+replacement関数はその引数をその場で変更するような挙動をする。また、`xxx<-`といった特殊な名前をもつ。引数は複数とることができるが`x`と`value`という2つの引数をもつことが多く、返り値として変更されたオブジェクトを返す。例えば以下の関数を用いると引数として指定したベクトルの2つ目の要素を変更する。 \index{replacement functions} \index{functions!replacement}
 
 
 ```r
@@ -1674,7 +1678,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7459e70"
+## [1] "0x7feab418a010"
 ```
 
 ```r
@@ -1683,7 +1687,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7453420"
+## [1] "0x7feab4189a80"
 ```
 
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
