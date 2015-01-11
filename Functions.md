@@ -632,7 +632,7 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 4 3 3 4 4 3 3 3 4 3 3 4 3 3
+##  [1] 3 4 3 3 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 3 3 3 3 3
 ## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab41908e0"
+## [1] "0x7feab7d203b0"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab4176a10"
+## [1] "0x7feab57dc2e0"
 ```
 
 ```
@@ -1939,7 +1939,11 @@ x$a
 ## [1] 1
 ```
 
+```
 (There are two important exceptions to the copy-on-modify rule: environments and reference classes. These can be modified in place, so extra care is needed when working with them.)
+```
+
+(copy-on-modfiyルールには2つの重要な例外がある。環境とリファレンスクラスである。これらはその場で変更され、コピーは生じない。従って、これらを扱う時は少し注意が必要である。)
 
 This is notably different to languages like Java where you can modify the inputs of a function. This copy-on-modify behaviour has important performance consequences which are discussed in depth in [profiling](#profiling). (Note that the performance consequences are a result of R's implementation of copy-on-modify semantics; they are not true in general. Clojure is a new language that makes extensive use of copy-on-modify semantics with limited performance consequences.)
 
