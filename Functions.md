@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 4 3 3 4 4 3 3 3 4 3 3 4 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7cb8fa8"
+## [1] "0x7feab41908e0"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab57dc008"
+## [1] "0x7feab4176a10"
 ```
 
 ```
@@ -1898,11 +1898,23 @@ f <- function(x, y) {
 }
 ```
 
+```
 Functions can return only a single object. But this is not a limitation because you can return a list containing any number of objects.
+```
 
+関数は単体のオブジェクトを返す。しかしこの制限はオブジェクトをリストに格納して返り値として返すことで回避できる。
+
+```
 The functions that are the easiest to understand and reason about are pure functions: functions that always map the same input to the same output and have no other impact on the workspace. In other words, pure functions have no __side effects__: they don't affect the state of the world in any way apart from the value they return. \index{pure functions}
+```
 
+最も理解しやすくその挙動を把握できるのは純粋関数、つまり同じ入力に対しては常に同じ出力を返し、ワークスペースに何の影響も及ぼさない関数である。言い換えると、純粋関数は__副作用__の無い関数といえる。純粋関数はその返り値以外、世界の状態に何の影響も及ぼさない。 \index{pure functions}
+
+```
 R protects you from one type of side effect: most R objects have copy-on-modify semantics. So modifying a function argument does not change the original value: \index{copy-on-modify}
+```
+
+多くのRオブジェクトはcopy-on-modifyセマンティクスをもつということで副作用を防いでいる。つまり関数の引数の変更はその元の値を変化させない。
 
 
 ```r
