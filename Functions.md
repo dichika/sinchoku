@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
+##  [1] 3 3 3 3 4 3 3 3 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 4
+## [36] 4 3 3 3 3 3 3 3 4 3 3 3 3 3 3
 ```
 
 ```r
@@ -1666,9 +1666,17 @@ x
 ##  [1]  1  5  3  4  5  6  7  8  9 10
 ```
 
+```
 When R evaluates the assignment `second(x) <- 5`, it notices that the left hand side of the `<-` is not a simple name, so it looks for a function named `second<-` to do the replacement. \index{assignment!replacement functions}
+```
 
+Rは`second(x) <- 5`を評価するとき、`<-`の左側はただのオブジェクトの名前ではないことを把握する。そして`<-`の代わりに`second<-`という名前の関数がないか検索する。
+
+```
 I say they "act" like they modify their arguments in place, because they actually create a modified copy. We can see that by using `pryr::address()` to find the memory address of the underlying object.
+```
+
+先ほどreplacement関数は引数をその場で変更するような"挙動をする"と述べたが、実際は変更済みのコピーを作る。以下の例では`pryr::address()`を用いてオブジェクトのメモリアドレスを確認する。
 
 
 ```r
@@ -1678,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab418a010"
+## [1] "0x7feab78a4488"
 ```
 
 ```r
@@ -1687,10 +1695,14 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab4189a80"
+## [1] "0x7feab78a5b50"
 ```
 
+```
 Built-in functions that are implemented using `.Primitive()` will modify in place: \index{primitive functions}
+```
+
+`.Primitive()`を用いた組み込み関数はコピーではなく実際にオブジェクトをその場で変更する挙動をする。 \index{primitive functions}
 
 
 ```r
@@ -1703,9 +1715,17 @@ address(x)
 #> [1] "0x103945110"
 ```
 
+```
 It's important to be aware of this behaviour since it has important performance implications.
+```
 
+パフォーマンスにおいて重要な意味合いをもっているため、この挙動を理解しておくことは重要である。
+
+```
 If you want to supply additional arguments, they go in between `x` and `value`:
+```
+
+引数を加える際は、`x`と`value`の間に加える
 
 
 ```r
@@ -1721,28 +1741,44 @@ x
 ##  [1] 10  6  3  4  5  6  7  8  9 10
 ```
 
+```
 When you call `modify(x, 1) <- 10`, behind the scenes R turns it into:
+```
+
+`modify(x, 1) <- 10`を実行すると、その裏ではRは以下のようなコードを実行している。
 
 
 ```r
 x <- `modify<-`(x, 1, 10)
 ```
 
+```
 This means you can't do things like:
+```
+
+これは以下のようなコードは実行できないことを意味する。
 
 
 ```r
 modify(get("x"), 1) <- 10
 ```
 
+```
 because that gets turned into the invalid code:
+```
+
+なぜなら上記コードは以下のコードと同義であり、これはエラーになるからである。
 
 
 ```r
 get("x") <- `modify<-`(get("x"), 1, 10)
 ```
 
+```
 It's often useful to combine replacement and subsetting:
+```
+
+replacement関数はデータ抽出関数と組み合わせると使い勝手が良い。
 
 
 ```r
@@ -1763,7 +1799,10 @@ names(x)
 ## [1] "a"   "two" "c"
 ```
 
+```
 This works because the expression `names(x)[2] <- "two"` is evaluated as if you had written:
+```
+このコードは正常に実行できる。なぜなら`names(x)[2] <- "two"`は以下のコードと等価であるからだ。
 
 
 ```r
@@ -1772,21 +1811,44 @@ This works because the expression `names(x)[2] <- "two"` is evaluated as if you 
 names(x) <- `*tmp*`
 ```
 
+```
 (Yes, it really does create a local variable named `*tmp*`, which is removed afterwards.)
+```
 
-### Exercises
+(実際に、ローカル変数として*tmp*は生成されており、処理が終わった後消去されている。)
 
-1. Create a list of all the replacement functions found in the base package. 
-   Which ones are primitive functions?
+### エクササイズ(Exercises)
 
+```
+1. Create a list of all the replacement functions found in the base package. Which ones are primitive functions?
+```
+
+1. baseパッケージ内のreplacement関数をリストアップせよ。また、どれがprimitive関数だろうか?
+
+```
 2. What are valid names for user-created infix functions?
+```
 
+2. ユーザー定義の二項演算子はどのように定義すればよいか?
+
+```
 3. Create an infix `xor()` operator.
+```
 
-4. Create infix versions of the set functions `intersect()`, `union()`, and 
-   `setdiff()`.
+3. `xor()`演算子を定義せよ。
 
+```
+4. Create infix versions of the set functions `intersect()`, `union()`, and `setdiff()`.
+```
+
+`intersect()`、`union()`、`setdiff()`といった集合演算子と同じ挙動を示す演算子を定義せよ。
+
+
+```
 5. Create a replacement function that modifies a random location in a vector.
+```
+
+引数として与えられたベクトルにおいてランダムな位置で値を変更するreplacement関数を定義せよ。
 
 ## Return values {#return-values}
 
