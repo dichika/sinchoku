@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 4 3 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
-## [36] 3 3 3 3 3 3 3 3 3 4 4 3 3 3 3
+##  [1] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b496f0"
+## [1] "0x7feab789da78"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab57cfa80"
+## [1] "0x7feab56158e0"
 ```
 
 ```
@@ -1957,16 +1957,35 @@ Most base R functions are pure, with a few notable exceptions:
 
 Rの基本関数群の多くは純粋関数だが、いくつか押さえておきたい例外がある。
 
+```
 * `library()` which loads a package, and hence modifies the search path.
+```
 
-* `setwd()`, `Sys.setenv()`, `Sys.setlocale()` which change the working 
-  directory, environment variables, and the locale, respectively.
+* `library()`はパッケージをロードするための関数であり、結果としてサーチパスを変更する。
 
+```
+* `setwd()`, `Sys.setenv()`, `Sys.setlocale()` which change the working directory, environment variables, and the locale, respectively.
+```
+
+* `setwd()`, `Sys.setenv()`, `Sys.setlocale()`はそれぞれ作業ディレクトリ、環境変数、ロケールを変更する関数である。
+
+```
 * `plot()` and friends which produce graphical output.
+```
 
+* `plot()`関数群はグラフィカル出力を生成する。
+
+```
 * `write()`, `write.csv()`, `saveRDS()`, etc. which save output to disk.
+```
 
+* `write()`, `write.csv()`, `saveRDS()`などは出力をディスクに保存する。
+
+```
 * `options()` and `par()` which modify global settings.
+```
+
+* `options()` and `par()`はグローバル設定を変更する。
 
 * S4 related functions which modify global tables of classes and methods.
 
