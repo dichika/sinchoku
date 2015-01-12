@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 4 3 3 3 4 3 3 3 3 3 3 4 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
+## [36] 3 3 3 3 3 4 3 3 4 3 3 3 4 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab8220348"
+## [1] "0x7feab80d4950"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab8001480"
+## [1] "0x7feab3257d40"
 ```
 
 ```
@@ -2040,7 +2040,11 @@ f2() == 1
 ## [1] TRUE
 ```
 
+```
 You can force an invisible value to be displayed by wrapping it in parentheses:
+```
+
+カッコで囲むことでinvisibleな値を強制的に表示させることもできる。
 
 
 ```r
@@ -2051,7 +2055,11 @@ You can force an invisible value to be displayed by wrapping it in parentheses:
 ## [1] 1
 ```
 
+```
 The most common function that returns invisibly is `<-`: \index{assignment}
+```
+
+invisibleな値を返す関数の中でもっとも馴染みがあるのは`<-`だろう。\index{assignment}
 
 
 ```r
@@ -2063,14 +2071,22 @@ a <- 2
 ## [1] 2
 ```
 
+```
 This is what makes it possible to assign one value to multiple variables:
+```
+
+これにより、一つの値を複数の変数に代入することが可能になっている。
 
 
 ```r
 a <- b <- c <- d <- 2
 ```
 
+```
 because this is parsed as:
+```
+
+実際にはこれは以下のようにパースされている。
 
 
 ```r
