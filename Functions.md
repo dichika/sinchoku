@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 4 3 3 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 3 3 3 3 3
-## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 3 4 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3
+## [36] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7d203b0"
+## [1] "0x7feab57d2a70"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab57dc2e0"
+## [1] "0x7feab57cee08"
 ```
 
 ```
@@ -1945,7 +1945,11 @@ x$a
 
 (copy-on-modfiyルールには2つの重要な例外がある。環境とリファレンスクラスである。これらはその場で変更され、コピーは生じない。従って、これらを扱う時は少し注意が必要である。)
 
+```
 This is notably different to languages like Java where you can modify the inputs of a function. This copy-on-modify behaviour has important performance consequences which are discussed in depth in [profiling](#profiling). (Note that the performance consequences are a result of R's implementation of copy-on-modify semantics; they are not true in general. Clojure is a new language that makes extensive use of copy-on-modify semantics with limited performance consequences.)
+```
+
+これは、関数の引数を変更してしまうJavaなど他のプログラミング言語とは明らかに違っている点である。copy-on-modifyのパフォーマンス面の議論については[profiling](#profiling)の章で行う。(なお、このパフォーマンス面の結果はRにおけるcopy-on-modifyの実装の結果であり、copy-on-modifyのアルゴリズムとしての結果とはいえないことに注意してほしい。Clojureという新しい言語ではcopy-on-modifyを拡張して用いており、結果としてパフォーマンスが限定的なものとなっている。)
 
 Most base R functions are pure, with a few notable exceptions:
 
