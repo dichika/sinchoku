@@ -632,7 +632,7 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 4 4 3 3 4 3 3 4 3 3 4 3 3 3 3 4 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 4 3 3 3 4 3 3 3 3 3 3 4 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4
 ## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab724bb48"
+## [1] "0x7feab8220348"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7ee4c20"
+## [1] "0x7feab8001480"
 ```
 
 ```
@@ -2005,7 +2005,11 @@ It's generally a good idea to minimise the use of side effects, and where possib
 
 副作用の利用を必要最小限に抑え、可能な限り純粋関数と非純粋関数を分けて副作用の影響を小さくするのが一般的に良いアイデアとされている。純粋関数はテストが容易である。なぜなら入力値と出力値のみに気を配ればよいからである。また、Rの異なるバージョン、Rの異なる動作環境において異なる挙動を示す可能性は小さい。例えばggplot2の開発においては以下のような原則を設けている。「ggplot2におけるほとんどの操作はプロットを表現するオブジェクトにおいて行われる。そして`print`もしくは`plot`の呼び出しのみが実際のプロットを描画するという副作用をもつ。」
 
+```
 Functions can return `invisible` values, which are not printed out by default when you call the function. \indexc{invisible()} \index{functions!invisible results}
+```
+
+関数は`invisible`な値を返すこともできる。これは関数を呼び出したときにその結果をコンソールに出力しないというものである。 \indexc{invisible()} \index{functions!invisible results}
 
 
 ```r
