@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
-## [36] 3 3 3 3 3 4 3 3 4 3 3 3 4 3 3
+##  [1] 4 3 3 3 3 3 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
+## [36] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab80d4950"
+## [1] "0x7feab7f34e70"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab3257d40"
+## [1] "0x7feab84eb680"
 ```
 
 ```
@@ -2097,9 +2097,13 @@ because this is parsed as:
 ## [1] 2
 ```
 
-### On exit {#on-exit}
+### 処理を抜ける際の処理(On exit) {#on-exit}
 
+```
 As well as returning a value, functions can set up other triggers to occur when the function is finished using `on.exit()`. This is often used as a way to guarantee that changes to the global state are restored when the function exits. The code in `on.exit()` is run regardless of how the function exits, whether with an explicit (early) return, an error, or simply reaching the end of the function body. \indexc{on.exit()}
+```
+
+返り値の他にも関数は、処理の終了時に`on.exit()`を用いて他の挙動を起こすことができる。これは関数がその処理を終えた時にglobal stateに対する変化を回復することを保証する方法としてしばしば用いられる。
 
 
 ```r
