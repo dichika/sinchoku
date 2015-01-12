@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 3 3 3 3 3 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3
-## [36] 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 4 4 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 4 3
+## [36] 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7f34e70"
+## [1] "0x7feab5618148"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab84eb680"
+## [1] "0x7feab7ae56f0"
 ```
 
 ```
@@ -2103,7 +2103,7 @@ because this is parsed as:
 As well as returning a value, functions can set up other triggers to occur when the function is finished using `on.exit()`. This is often used as a way to guarantee that changes to the global state are restored when the function exits. The code in `on.exit()` is run regardless of how the function exits, whether with an explicit (early) return, an error, or simply reaching the end of the function body. \indexc{on.exit()}
 ```
 
-返り値の他にも関数は、処理の終了時に`on.exit()`を用いて他の挙動を起こすことができる。これは関数がその処理を終えた時にglobal stateに対する変化を回復することを保証する方法としてしばしば用いられる。
+返り値の他にも関数は、処理の終了時に`on.exit()`を用いて他の挙動を起こすことができる。これは関数がその処理を終えた時にglobal stateに対する変化を回復することを保証する方法としてしばしば用いられる。`on.exit()`内のコードは関数がどのような形(返り値を返す場合、エラーを起こした場合、関数定義の最後の行まで実行し終わった場合)で処理を終了しようとも実行される。
 
 
 ```r
@@ -2128,18 +2128,35 @@ in_dir("~", getwd())
 ## [1] "/Users/ichikawadaisuke"
 ```
 
+```
 The basic pattern is simple:
+```
 
-* We first set the directory to a new location, capturing the current location 
-  from the output of `setwd()`.
+シンプルな使用例を示した。
 
-* We then use `on.exit()` to ensure that the working directory is returned to 
-  the previous value regardless of how the function exits.
+```
+* We first set the directory to a new location, capturing the current location from the output of `setwd()`.
+```
 
-* Finally, we explicitly force evaluation of the code. (We don't actually need 
-  `force()` here, but it makes it clear to readers what we're doing.)
+* まずディレクトリを新しい場所に設定し、その際`setwd()`の出力から変更前の作業ディレクトリを保存している。
 
+```
+* We then use `on.exit()` to ensure that the working directory is returned to the previous value regardless of how the function exits.
+```
+
+ここで`on.exit()`を用いており、関数がどのような形で終了しようとも、作業ディレクトリが関数実行前の場所にセットされるようにしている。
+
+```
+* Finally, we explicitly force evaluation of the code. (We don't actually need `force()` here, but it makes it clear to readers what we're doing.)
+```
+
+最後にコードを明示的に強制評価している(ここでわざわざ`force()`を用いる必要は無いが、コードの意図を明確に伝えるために用いている。)
+
+```
 **Caution**: If you're using multiple `on.exit()` calls within a function, make sure to set `add = TRUE`. Unfortunately, the default in `on.exit()` is `add = FALSE`, so that every time you run it, it overwrites existing exit expressions. Because of the way `on.exit()` is implemented, it's not possible to create a variant with `add = TRUE`, so you must be careful when using it.
+```
+
+**注意** `on.exit()`を一つの関数の中で複数回用いる際は、`add=TRUE`を引数にセットしておくこと。こうすることで、関数を実行するたびに既存の終了時実行式が上書きされていく。`on.exit()`の仕様により、`add=TRUE`とした`on.exit()`の派生関数を定義することはできないので、`on.exit()`を用いる際は、`add=TRUE`に注意しておいてほしい。
 
 ### Exercises
 
