@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 3 3 3 3 4 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3
-## [36] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3
+## [36] 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab724bce8"
+## [1] "0x7feab7b46408"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b35e88"
+## [1] "0x7feab8347c80"
 ```
 
 ```
@@ -1987,12 +1987,23 @@ Rの基本関数群の多くは純粋関数だが、いくつか押さえてお�
 
 * `options()` and `par()`はグローバル設定を変更する。
 
+```
 * S4 related functions which modify global tables of classes and methods.
+```
 
-* Random number generators which produce different numbers each time you 
-  run them.
+* S4クラスシステムに関連する関数群はクラスおよびメソッドのグローバルテーブルを変更する。
 
+```
+* Random number generators which produce different numbers each time you run them.
+```
+
+乱数生成は実行するたびに異なる数値を生成する。
+
+```
 It's generally a good idea to minimise the use of side effects, and where possible, to minimise the footprint of side effects by separating pure from impure functions. Pure functions are easier to test (because all you need to worry about are the input values and the output), and are less likely to work differently on different versions of R or on different platforms. For example, this is one of the motivating principles of ggplot2: most operations work on an object that represents a plot, and only the final `print` or `plot` call has the side effect of actually drawing the plot.
+```
+
+副作用の利用を必要最小限に抑え、可能な限り純粋関数と非純粋関数を分けて副作用の影響を小さくするのが一般的に良いアイデアとされている。
 
 Functions can return `invisible` values, which are not printed out by default when you call the function. \indexc{invisible()} \index{functions!invisible results}
 
