@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 4 4 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 4 3
-## [36] 3 3 4 3 3 3 4 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab5618148"
+## [1] "0x7fa5f5cbb740"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7ae56f0"
+## [1] "0x7fa5f5c922f0"
 ```
 
 ```
@@ -2158,19 +2158,31 @@ The basic pattern is simple:
 
 **注意** `on.exit()`を一つの関数の中で複数回用いる際は、`add=TRUE`を引数にセットしておくこと。こうすることで、関数を実行するたびに既存の終了時実行式が上書きされていく。`on.exit()`の仕様により、`add=TRUE`とした`on.exit()`の派生関数を定義することはできないので、`on.exit()`を用いる際は、`add=TRUE`に注意しておいてほしい。
 
-### Exercises
+### エクササイズ(Exercises)
 
-1.  How does the `chdir` parameter of `source()` compare to `in_dir()`? Why 
-    might you prefer one approach to the other?
+```
+1.  How does the `chdir` parameter of `source()` compare to `in_dir()`? Why might you prefer one approach to the other?
+```
 
-1.  What function undoes the action of `library()`? How do you save and restore
-    the values of `options()` and `par()`?
+1.  `source`関数の`chdir`パラメータは、先に定義した`in_dir()`と比較するとどのような違いがあるか? どちらのアプローチが良いと思うか?
 
-1.  Write a function that opens a graphics device, runs the supplied code, and 
-    closes the graphics device (always, regardless of whether or not the plotting 
-    code worked).
+```
+1.  What function undoes the action of `library()`? How do you save and restore the values of `options()` and `par()`?
+```
 
+1. `library()` の実行結果を元に戻してしまう関数はなにか? どのようにすれば`options()`や`par()`の値を保存し、元の状態に回復させられるだろうか?
+
+```
+1.  Write a function that opens a graphics device, runs the supplied code, and closes the graphics device (always, regardless of whether or not the plotting code worked).
+```
+
+1.  グラフィックデバイスを開き、任意のコードを実行し、その終了結果にかかわらずグラフィックデバイスを閉じる関数を書きなさい。
+
+```
 1.  We can use `on.exit()` to implement a simple version of `capture.output()`.
+```
+
+1.  `capture.output()`関数の簡易版を作る際に`on.exit()`を用いることができる。
 
     
     ```r
@@ -2191,28 +2203,55 @@ The basic pattern is simple:
     ## [1] "a" "b" "c"
     ```
 
-    Compare `capture.output()` to `capture.output2()`. How do the functions 
-    differ? What features have I removed to make the key ideas easier to see? 
-    How have I rewritten the key ideas to be easier to understand?
+```
+    Compare `capture.output()` to `capture.output2()`. How do the functions differ? What features have I removed to make the key ideas easier to see? How have I rewritten the key ideas to be easier to understand?
+```
 
+`capture.output()`と`capture.output2()`を比較しなさい。この2つの関数はどのように異なるか? `capture.output()`の鍵となるアイデアが明確にわかるよう筆者が省いた要素はなんだろうか? 結果としてどれだけわかりやすくなっているだろうか?
 
-## Quiz answers {#function-answers}
+## クイズの解答(Quiz answers) {#function-answers}
 
 \enlargethispage*{\baselineskip}
 
+```
 1.  The three components of a function are its body, arguments, and environment.
+```
 
+1.  3つの構成要素とはbodyとargumentとenvironmentである。
+
+```
 1.  `f1(1)()` returns 11.
+```
 
+1.  `f1(1)()`は11を返す。
+
+```
 1.  You'd normally write it in infix style: `1 + (2 * 3)`.
+```
 
-1.  Rewriting the call to `mean(c(1:10, NA), na.rm = TRUE)` is easier to
-    understand.
-    
-1.  No, it does not throw an error because the second argument is never used 
-    so it's never evaluated.
+1.  二項演算子の形で書くと`1 + (2 * 3)`となる。
 
+```
+1.  Rewriting the call to `mean(c(1:10, NA), na.rm = TRUE)` is easier to understand.
+```
+
+1.  `mean(c(1:10, NA), na.rm = TRUE)`と書き直すとわかりやすい。
+
+```    
+1.  No, it does not throw an error because the second argument is never used so it's never evaluated.
+```
+
+1.  答えはいいえである。2つ目の引数は用いられないため評価されることはない。結果としてエラーを投げない。
+
+```
 1.  See [infix](#infix-functions) and 
     [replacement functions](#replacement-functions).
+```
 
+1.  [infix](#infix-functions) と [replacement functions](#replacement-functions)の項を見よ。
+
+```
 1.  You use `on.exit()`; see [on exit](#on-exit) for details.
+```
+
+1.  `on.exit()`を用いると良い。詳しくは[on exit](#on-exit)の項目を見よ。
