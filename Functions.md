@@ -632,8 +632,8 @@ replicate(50, (1 + 2))
 ```
 
 ```
-##  [1] 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 4 3 3 3 3 4 3
-## [36] 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3
+##  [1] 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
 ```r
@@ -1686,7 +1686,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab7b46408"
+## [1] "0x7feab80446e0"
 ```
 
 ```r
@@ -1695,7 +1695,7 @@ address(x)
 ```
 
 ```
-## [1] "0x7feab8347c80"
+## [1] "0x7feab7dbfc88"
 ```
 
 ```
@@ -2003,7 +2003,7 @@ Rの基本関数群の多くは純粋関数だが、いくつか押さえてお�
 It's generally a good idea to minimise the use of side effects, and where possible, to minimise the footprint of side effects by separating pure from impure functions. Pure functions are easier to test (because all you need to worry about are the input values and the output), and are less likely to work differently on different versions of R or on different platforms. For example, this is one of the motivating principles of ggplot2: most operations work on an object that represents a plot, and only the final `print` or `plot` call has the side effect of actually drawing the plot.
 ```
 
-副作用の利用を必要最小限に抑え、可能な限り純粋関数と非純粋関数を分けて副作用の影響を小さくするのが一般的に良いアイデアとされている。
+副作用の利用を必要最小限に抑え、可能な限り純粋関数と非純粋関数を分けて副作用の影響を小さくするのが一般的に良いアイデアとされている。純粋関数はテストが容易である。なぜなら入力値と出力値のみに気を配ればよいからである。また、Rの異なるバージョン、Rの異なる動作環境において異なる挙動を示す可能性は小さい。例えばggplot2の開発においては以下のような原則を設けている。
 
 Functions can return `invisible` values, which are not printed out by default when you call the function. \indexc{invisible()} \index{functions!invisible results}
 
